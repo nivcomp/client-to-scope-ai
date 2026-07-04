@@ -1,0 +1,61 @@
+# Client-to-Scope AI
+
+Client-to-Scope AI is an internal operating system for Yaniv to manage agency work from first client conversation through approved scope, paid hours, supplier delivery, change requests, and project communication.
+
+This repository currently contains the documentation foundation only. It is intentionally not a public SaaS demo, not a packaged product, and not yet an application. The first build should support Yaniv's own client and supplier workflow before considering broader reuse.
+
+## Current Scope
+
+The initial foundation defines:
+
+- Product vision and internal MVP scope
+- Core user flows for Yaniv, clients, and suppliers
+- Data model planning
+- Roles and permissions
+- Pricing, margin, payments, and paid-hour rules
+- Supplier onboarding and time tracking
+- Client approvals and change request controls
+- AI agent placeholders and future responsibilities
+- A practical Lovable build plan
+
+## Product Principle
+
+The agency stays in control.
+
+Clients can explain needs, review progress, approve scopes, make payments, and request changes. Suppliers can view assigned work, provide updates, and track time. Yaniv controls pricing, scope, supplier assignment, client-facing promises, margin, and whether work is allowed to begin.
+
+## Recommended Build Order
+
+1. Build the basic internal dashboard for Yaniv.
+2. Add client, project, supplier, pricing, approval, and time tracking records.
+3. Add simple client-facing approval views.
+4. Add supplier-facing assigned work and time entry views.
+5. Add change request review and pricing controls.
+6. Add file and link organization.
+7. Add AI-assisted drafting and summarization after the workflow is stable.
+
+## Documentation Index
+
+- [Product Vision](docs/product-vision.md)
+- [Internal Use MVP](docs/internal-use-mvp.md)
+- [User Flows](docs/user-flows.md)
+- [Data Model](docs/data-model.md)
+- [Roles and Permissions](docs/roles-and-permissions.md)
+- [Pricing and Margin](docs/pricing-and-margin.md)
+- [Supplier Onboarding](docs/supplier-onboarding.md)
+- [Supplier Time Tracking](docs/supplier-time-tracking.md)
+- [Client Approval and Payments](docs/client-approval-and-payments.md)
+- [Agency Control Rules](docs/agency-control-rules.md)
+- [AI Agents Plan](docs/ai-agents-plan.md)
+- [Lovable Build Plan](docs/lovable-build-plan.md)
+
+## Not Yet Included
+
+- No app code
+- No package setup
+- No React or Supabase implementation
+- No AI API calls
+- No payment provider integration
+- No complex authentication
+
+The next builder should treat these docs as the source of truth for the first application pass.
