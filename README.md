@@ -2,11 +2,11 @@
 
 Client-to-Scope AI is an internal operating system for Yaniv to manage agency work from first client conversation through approved scope, paid hours, supplier delivery, change requests, and project communication.
 
-This repository currently contains the documentation foundation only. It is intentionally not a public SaaS demo, not a packaged product, and not yet an application. The first build should support Yaniv's own client and supplier workflow before considering broader reuse.
+This repository contains the documentation foundation and the first static internal app foundation. It is intentionally not a public SaaS demo. The first build supports Yaniv's own client and supplier workflow before considering broader reuse.
 
 ## Current Scope
 
-The initial foundation defines:
+The documentation foundation defines:
 
 - Product vision and internal MVP scope
 - Core user flows for Yaniv, clients, and suppliers
@@ -17,6 +17,20 @@ The initial foundation defines:
 - Client approvals and change request controls
 - AI agent placeholders and future responsibilities
 - A practical Lovable build plan
+
+The static app foundation adds:
+
+- Internal dashboard
+- Clients and projects pages
+- Project detail page
+- Suppliers and supplier detail pages
+- Pricing and margin page
+- Change requests page
+- Supplier time entries page
+- Payments and hour banks page
+- Client portal placeholder
+- Supplier portal placeholder
+- AI Workbench placeholder
 
 ## Product Principle
 
@@ -49,13 +63,34 @@ Clients can explain needs, review progress, approve scopes, make payments, and r
 - [AI Agents Plan](docs/ai-agents-plan.md)
 - [Lovable Build Plan](docs/lovable-build-plan.md)
 
+## Run The App
+
+Install dependencies:
+
+```bash
+pnpm install
+```
+
+Start the local development server:
+
+```bash
+pnpm run dev
+```
+
+Build for production:
+
+```bash
+pnpm run build
+```
+
+The app uses mock data from `src/data/mockData.ts` and TypeScript records from `src/types/domain.ts`.
+
 ## Not Yet Included
 
-- No app code
-- No package setup
-- No React or Supabase implementation
 - No AI API calls
 - No payment provider integration
 - No complex authentication
+- No Supabase connection yet
+- No real client or supplier accounts
 
-The next builder should treat these docs as the source of truth for the first application pass.
+The next builder should keep the docs as the source of truth and replace mock data with Supabase records only after the workflow is stable.
