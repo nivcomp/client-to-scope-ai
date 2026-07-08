@@ -85,6 +85,15 @@ pnpm run build
 
 The app uses mock data from `src/data/mockData.ts` and TypeScript records from `src/types/domain.ts`.
 
+## App Structure
+
+- `src/App.tsx` keeps the active view state and renders the selected page.
+- `src/pages/` contains one file per internal MVP screen.
+- `src/components/` contains shared UI pieces.
+- `src/lib/domainHelpers.ts` contains shared formatting and lookup helpers.
+- `src/data/mockData.ts` contains static mock records for the current app foundation.
+- `src/types/domain.ts` contains the domain record definitions from the docs.
+
 ## Not Yet Included
 
 - No AI API calls
