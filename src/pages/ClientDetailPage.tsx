@@ -1,10 +1,18 @@
+import { type FormEvent, useState } from "react";
+import type { NewProjectInput } from "../App";
 import { PageHeader } from "../components/PageHeader";
 import { StatusBadge } from "../components/StatusBadge";
-import { changeRequests, clientPayments, hourBanks } from "../data/mockData";
 import { canWorkStart, currency, getClientById, getProjectsForClient, statusLabels } from "../lib/domainHelpers";
+import type { ChangeRequest, Client, ClientPayment, HourBank, Project } from "../types/domain";
 
 type ClientDetailPageProps = {
   selectedClientId?: string;
+  clients: Client[];
+  projects: Project[];
+  changeRequests: ChangeRequest[];
+  clientPayments: ClientPayment[];
+  hourBanks: HourBank[];
+  onProjectCreate: (clientId: string, input: NewProjectInput) => void;
   onProjectSelect: (projectId: string) => void;
 };
 
@@ -15,8 +23,24 @@ function getWaitingOn(projectStatus: string, paymentStatus?: string) {
   return "Active monitoring";
 }
 
-export function ClientDetailPage({ selectedClientId, onProjectSelect }: ClientDetailPageProps) {
-  const client = selectedClientId ? getClientById(selectedClientId) : undefined;
+const initialProjectForm: NewProjectInput = {
+  name: "",
+  summary: "",
+  budgetSignal: "",
+};
+
+export function ClientDetailPage({
+  selectedClientId,
+  clients,
+  projects,
+  changeRequests,
+  clientPayments,
+  hourBanks,
+  onProjectCreate,
+  onProjectSelect,
+}: ClientDetailPageProps) {
+  const [projectForm, setProjectForm] = useState<NewProjectInput>(initialProjectForm);
+  const client = selectedClientId ? getClientById(selectedClientId, clients) : undefined;
 
   if (!client) {
     return (
@@ -30,29 +54,41 @@ export function ClientDetailPage({ selectedClientId, onProjectSelect }: ClientDe
     );
   }
 
-  const clientProjects = getProjectsForClient(client.id);
+  const activeClient = client;
+  const clientProjects = getProjectsForClient(activeClient.id, projects);
   const clientProjectIds = clientProjects.map((project) => project.id);
-  const clientHourBanks = hourBanks.filter((bank) => bank.clientId === client.id);
+  const clientHourBanks = hourBanks.filter((bank) => bank.clientId === activeClient.id);
   const openChangeRequests = changeRequests.filter(
     (request) => clientProjectIds.includes(request.projectId) && request.status !== "declined" && request.status !== "client_approved",
   );
+
+  function handleProjectSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    if (!projectForm.name.trim() || !projectForm.summary.trim()) return;
+    onProjectCreate(activeClient.id, {
+      name: projectForm.name.trim(),
+      summary: projectForm.summary.trim(),
+      budgetSignal: projectForm.budgetSignal.trim() || "Unknown",
+    });
+    setProjectForm(initialProjectForm);
+  }
 
   return (
     <>
       <PageHeader title="Client Detail" subtitle="A focused client workspace for Yaniv to see project state, blockers, payments, paid hours, and requests." />
       <section className="detail-grid">
         <article className="card">
-          <h2>{client.company}</h2>
+          <h2>{activeClient.company}</h2>
           <dl className="meta-list">
-            <div><dt>Contact</dt><dd>{client.name}</dd></div>
-            <div><dt>Email</dt><dd>{client.email}</dd></div>
-            <div><dt>Phone</dt><dd>{client.phone ?? "Not set"}</dd></div>
-            <div><dt>Status</dt><dd><StatusBadge label={client.status} tone={client.status === "lead" ? "warning" : "success"} /></dd></div>
+            <div><dt>Contact</dt><dd>{activeClient.name}</dd></div>
+            <div><dt>Email</dt><dd>{activeClient.email}</dd></div>
+            <div><dt>Phone</dt><dd>{activeClient.phone ?? "Not set"}</dd></div>
+            <div><dt>Status</dt><dd><StatusBadge label={activeClient.status} tone={activeClient.status === "lead" ? "warning" : "success"} /></dd></div>
           </dl>
         </article>
         <article className="card">
           <h2>Notes</h2>
-          <p>{client.notes}</p>
+          <p>{activeClient.notes}</p>
         </article>
       </section>
 
@@ -83,6 +119,27 @@ export function ClientDetailPage({ selectedClientId, onProjectSelect }: ClientDe
             })}
           </tbody>
         </table>
+      </section>
+
+      <section className="card form-panel">
+        <h2>Create project for this client</h2>
+        <form className="form-grid" onSubmit={handleProjectSubmit}>
+          <label>
+            Project name
+            <input value={projectForm.name} onChange={(event) => setProjectForm({ ...projectForm, name: event.target.value })} />
+          </label>
+          <label>
+            Budget signal
+            <input value={projectForm.budgetSignal} onChange={(event) => setProjectForm({ ...projectForm, budgetSignal: event.target.value })} />
+          </label>
+          <label className="span-2">
+            Summary
+            <textarea value={projectForm.summary} onChange={(event) => setProjectForm({ ...projectForm, summary: event.target.value })} />
+          </label>
+          <div className="form-actions">
+            <button className="primary-button" type="submit">Create and open project</button>
+          </div>
+        </form>
       </section>
 
       <section className="detail-grid">

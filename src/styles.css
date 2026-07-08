@@ -209,6 +209,88 @@ select {
   color: #4f5d52;
 }
 
+.form-panel {
+  margin-bottom: 16px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.form-grid label {
+  display: grid;
+  gap: 6px;
+  color: #526056;
+  font-size: 0.86rem;
+  font-weight: 700;
+}
+
+.form-grid input,
+.form-grid select,
+.form-grid textarea {
+  width: 100%;
+  min-height: 40px;
+  border: 1px solid #ccd7cc;
+  border-radius: 6px;
+  background: #ffffff;
+  color: #17201a;
+  padding: 9px 10px;
+}
+
+.form-grid textarea {
+  min-height: 88px;
+  resize: vertical;
+}
+
+.span-2,
+.form-note,
+.form-actions {
+  grid-column: 1 / -1;
+}
+
+.form-note {
+  margin: 0;
+  color: #657466;
+  font-size: 0.9rem;
+}
+
+.form-actions,
+.action-row,
+.table-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.action-row {
+  margin-top: 14px;
+}
+
+button {
+  border: 1px solid #c7d2c7;
+  border-radius: 6px;
+  background: #ffffff;
+  color: #243027;
+  padding: 7px 10px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #f3f6f1;
+}
+
+.primary-button {
+  border-color: #17201a;
+  background: #17201a;
+  color: #ffffff;
+}
+
+.primary-button:hover {
+  background: #273329;
+}
+
 .two-column,
 .detail-grid {
   display: grid;
@@ -388,6 +470,10 @@ ul {
 
   .stats-grid,
   .agent-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .form-grid {
     grid-template-columns: 1fr;
   }
 

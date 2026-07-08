@@ -1,5 +1,5 @@
 import { clients, projectPricing, projects, suppliers } from "../data/mockData";
-import type { Project, ProjectStatus } from "../types/domain";
+import type { Client, Project, ProjectPricing, ProjectStatus, Supplier } from "../types/domain";
 
 export const currency = new Intl.NumberFormat("en-GB", {
   style: "currency",
@@ -26,36 +26,36 @@ export const statusLabels: Record<ProjectStatus, string> = {
   completed: "Completed",
 };
 
-export function getClient(project: Project) {
-  return clients.find((client) => client.id === project.clientId);
+export function getClient(project: Project, clientRecords: Client[] = clients) {
+  return clientRecords.find((client) => client.id === project.clientId);
 }
 
-export function getClientById(clientId: string) {
-  return clients.find((client) => client.id === clientId);
+export function getClientById(clientId: string, clientRecords: Client[] = clients) {
+  return clientRecords.find((client) => client.id === clientId);
 }
 
-export function getPricing(projectId: string) {
-  return projectPricing.find((pricing) => pricing.projectId === projectId);
+export function getPricing(projectId: string, pricingRecords: ProjectPricing[] = projectPricing) {
+  return pricingRecords.find((pricing) => pricing.projectId === projectId);
 }
 
-export function getProjectById(projectId: string) {
-  return projects.find((project) => project.id === projectId);
+export function getProjectById(projectId: string, projectRecords: Project[] = projects) {
+  return projectRecords.find((project) => project.id === projectId);
 }
 
-export function getProjectsForClient(clientId: string) {
-  return projects.filter((project) => project.clientId === clientId);
+export function getProjectsForClient(clientId: string, projectRecords: Project[] = projects) {
+  return projectRecords.filter((project) => project.clientId === clientId);
 }
 
-export function getSupplierById(supplierId: string) {
-  return suppliers.find((supplier) => supplier.id === supplierId);
+export function getSupplierById(supplierId: string, supplierRecords: Supplier[] = suppliers) {
+  return supplierRecords.find((supplier) => supplier.id === supplierId);
 }
 
-export function getSupplierName(supplierId: string) {
-  return suppliers.find((supplier) => supplier.id === supplierId)?.name ?? "Unassigned";
+export function getSupplierName(supplierId: string, supplierRecords: Supplier[] = suppliers) {
+  return supplierRecords.find((supplier) => supplier.id === supplierId)?.name ?? "Unassigned";
 }
 
-export function getProjectName(projectId: string) {
-  return projects.find((project) => project.id === projectId)?.name ?? "Unknown project";
+export function getProjectName(projectId: string, projectRecords: Project[] = projects) {
+  return projectRecords.find((project) => project.id === projectId)?.name ?? "Unknown project";
 }
 
 export function canWorkStart(project: Project) {

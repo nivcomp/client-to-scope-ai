@@ -85,6 +85,8 @@ pnpm run build
 
 The app uses mock data from `src/data/mockData.ts` and TypeScript records from `src/types/domain.ts`.
 
+Phase 2B workflow forms use local in-memory React state only. New clients, projects, change requests, payment updates, and supplier time approvals reset when the page refreshes.
+
 ## App Structure
 
 - `src/App.tsx` keeps the active view state and renders the selected page.

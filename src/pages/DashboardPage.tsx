@@ -3,10 +3,18 @@ import { PageHeader } from "../components/PageHeader";
 import { RulePanel } from "../components/RulePanel";
 import { StatCard } from "../components/StatCard";
 import { StatusBadge } from "../components/StatusBadge";
-import { changeRequests, clients, projects, supplierPayments, timeEntries } from "../data/mockData";
+import { supplierPayments } from "../data/mockData";
 import { canWorkStart, currency, getClient, marginAmount, statusLabels } from "../lib/domainHelpers";
+import type { ChangeRequest, Client, Project, TimeEntry } from "../types/domain";
 
-export function DashboardPage() {
+type DashboardPageProps = {
+  clients: Client[];
+  projects: Project[];
+  changeRequests: ChangeRequest[];
+  timeEntries: TimeEntry[];
+};
+
+export function DashboardPage({ clients, projects, changeRequests, timeEntries }: DashboardPageProps) {
   const metrics = useMemo(() => {
     const totals = marginAmount();
     return {
@@ -56,7 +64,7 @@ export function DashboardPage() {
                 .map((project) => (
                   <tr key={project.id}>
                     <td>{project.name}</td>
-                    <td>{getClient(project)?.company}</td>
+                    <td>{getClient(project, clients)?.company}</td>
                     <td><StatusBadge label={statusLabels[project.status]} tone="warning" /></td>
                     <td>{canWorkStart(project) ? "Ready" : "Blocked until payment or hours"}</td>
                   </tr>
