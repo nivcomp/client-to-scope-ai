@@ -250,6 +250,31 @@ tr:last-child td {
   border-bottom: 0;
 }
 
+.clickable-row {
+  cursor: pointer;
+}
+
+.clickable-row:hover {
+  background: #f6f8f4;
+}
+
+.empty-state {
+  max-width: 720px;
+  padding: 28px;
+  border: 1px dashed #b9c5ba;
+  border-radius: 8px;
+  background: #fbfdfa;
+}
+
+.empty-state h2 {
+  margin: 0 0 8px;
+}
+
+.empty-state p {
+  margin: 0;
+  color: #536156;
+}
+
 .status-badge {
   display: inline-flex;
   align-items: center;

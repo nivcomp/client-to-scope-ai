@@ -1,10 +1,27 @@
 import { PageHeader } from "../components/PageHeader";
 import { StatusBadge } from "../components/StatusBadge";
-import { supplierProfiles, suppliers, timeEntries } from "../data/mockData";
-import { currency, getProjectName } from "../lib/domainHelpers";
+import { supplierProfiles, timeEntries } from "../data/mockData";
+import { currency, getProjectName, getSupplierById } from "../lib/domainHelpers";
 
-export function SupplierDetailPage() {
-  const supplier = suppliers[0];
+type SupplierDetailPageProps = {
+  selectedSupplierId?: string;
+};
+
+export function SupplierDetailPage({ selectedSupplierId }: SupplierDetailPageProps) {
+  const supplier = selectedSupplierId ? getSupplierById(selectedSupplierId) : undefined;
+
+  if (!supplier) {
+    return (
+      <>
+        <PageHeader title="Supplier Detail" subtitle="Select a supplier from the Suppliers page to inspect assigned work, time, and visibility rules." />
+        <section className="empty-state">
+          <h2>No supplier selected</h2>
+          <p>Open the Suppliers page and choose a supplier row.</p>
+        </section>
+      </>
+    );
+  }
+
   const profile = supplierProfiles.find((item) => item.supplierId === supplier.id);
   const entries = timeEntries.filter((entry) => entry.supplierId === supplier.id);
 

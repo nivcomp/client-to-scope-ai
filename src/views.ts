@@ -1,6 +1,7 @@
 export const views = [
   { key: "dashboard", label: "Dashboard" },
   { key: "clients", label: "Clients" },
+  { key: "client-detail", label: "Client Detail" },
   { key: "projects", label: "Projects" },
   { key: "project-detail", label: "Project Detail" },
   { key: "suppliers", label: "Suppliers" },

@@ -3,7 +3,11 @@ import { StatusBadge } from "../components/StatusBadge";
 import { projects } from "../data/mockData";
 import { canWorkStart, getClient, getSupplierName, statusLabels } from "../lib/domainHelpers";
 
-export function ProjectsPage() {
+type ProjectsPageProps = {
+  onProjectSelect: (projectId: string) => void;
+};
+
+export function ProjectsPage({ onProjectSelect }: ProjectsPageProps) {
   return (
     <>
       <PageHeader title="Projects" subtitle="Each project tracks status, client, assigned suppliers, budget signal, and whether delivery can start." />
@@ -20,7 +24,7 @@ export function ProjectsPage() {
           </thead>
           <tbody>
             {projects.map((project) => (
-              <tr key={project.id}>
+              <tr key={project.id} className="clickable-row" onClick={() => onProjectSelect(project.id)}>
                 <td>{project.name}</td>
                 <td>{getClient(project)?.company}</td>
                 <td><StatusBadge label={statusLabels[project.status]} tone={canWorkStart(project) ? "success" : "warning"} /></td>

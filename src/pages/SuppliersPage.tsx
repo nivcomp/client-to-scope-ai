@@ -3,7 +3,11 @@ import { StatusBadge } from "../components/StatusBadge";
 import { supplierProfiles, suppliers } from "../data/mockData";
 import { currency } from "../lib/domainHelpers";
 
-export function SuppliersPage() {
+type SuppliersPageProps = {
+  onSupplierSelect: (supplierId: string) => void;
+};
+
+export function SuppliersPage({ onSupplierSelect }: SuppliersPageProps) {
   return (
     <>
       <PageHeader title="Suppliers" subtitle="Supplier records track capability, availability, cost, and approval status for Yaniv's internal use." />
@@ -22,7 +26,7 @@ export function SuppliersPage() {
             {suppliers.map((supplier) => {
               const profile = supplierProfiles.find((item) => item.supplierId === supplier.id);
               return (
-                <tr key={supplier.id}>
+                <tr key={supplier.id} className="clickable-row" onClick={() => onSupplierSelect(supplier.id)}>
                   <td>{supplier.name}</td>
                   <td><StatusBadge label={supplier.status} tone={supplier.status === "approved" ? "success" : "warning"} /></td>
                   <td>{supplier.timezone}</td>

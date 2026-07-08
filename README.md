@@ -21,7 +21,7 @@ The documentation foundation defines:
 The static app foundation adds:
 
 - Internal dashboard
-- Clients and projects pages
+- Clients, client detail, and projects pages
 - Project detail page
 - Suppliers and supplier detail pages
 - Pricing and margin page

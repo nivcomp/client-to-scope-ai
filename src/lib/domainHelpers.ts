@@ -30,8 +30,24 @@ export function getClient(project: Project) {
   return clients.find((client) => client.id === project.clientId);
 }
 
+export function getClientById(clientId: string) {
+  return clients.find((client) => client.id === clientId);
+}
+
 export function getPricing(projectId: string) {
   return projectPricing.find((pricing) => pricing.projectId === projectId);
+}
+
+export function getProjectById(projectId: string) {
+  return projects.find((project) => project.id === projectId);
+}
+
+export function getProjectsForClient(clientId: string) {
+  return projects.filter((project) => project.clientId === clientId);
+}
+
+export function getSupplierById(supplierId: string) {
+  return suppliers.find((supplier) => supplier.id === supplierId);
 }
 
 export function getSupplierName(supplierId: string) {
