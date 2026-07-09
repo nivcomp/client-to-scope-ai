@@ -9,6 +9,7 @@ import {
   timeEntries as initialTimeEntries,
 } from "./data/mockData";
 import { AIWorkbenchPage } from "./pages/AIWorkbenchPage";
+import { ActionQueuePage } from "./pages/ActionQueuePage";
 import { ChangeRequestsPage } from "./pages/ChangeRequestsPage";
 import { ClientDetailPage } from "./pages/ClientDetailPage";
 import { ClientPortalPage } from "./pages/ClientPortalPage";
@@ -163,6 +164,21 @@ function App() {
 
   const page = {
     dashboard: <DashboardPage clients={clients} projects={projects} changeRequests={changeRequests} timeEntries={timeEntries} />,
+    "action-queue": (
+      <ActionQueuePage
+        clients={clients}
+        projects={projects}
+        changeRequests={changeRequests}
+        timeEntries={timeEntries}
+        clientPayments={clientPayments}
+        hourBanks={hourBanks}
+        onProjectSelect={openProjectDetail}
+        onClientSelect={openClientDetail}
+        onPaymentReceived={markPaymentReceived}
+        onTimeEntryStatusChange={updateTimeEntryStatus}
+        onChangeRequestStatusChange={updateChangeRequestStatus}
+      />
+    ),
     clients: <ClientsPage clients={clients} onClientCreate={createClient} onClientSelect={openClientDetail} />,
     "client-detail": (
       <ClientDetailPage

@@ -22,6 +22,10 @@ export function AIWorkbenchPage() {
           </article>
         ))}
       </section>
+      <section className="card">
+        <h2>Future agency control context</h2>
+        <p>The Agency Control Agent should use Action Queue data as its main context before drafting recommendations for Yaniv.</p>
+      </section>
       <RulePanel />
     </>
   );

@@ -87,6 +87,8 @@ The app uses mock data from `src/data/mockData.ts` and TypeScript records from `
 
 Phase 2B workflow forms use local in-memory React state only. New clients, projects, change requests, payment updates, and supplier time approvals reset when the page refreshes.
 
+Phase 2C adds an Action Queue / Agency Control Dashboard that groups the same local state into daily work queues for pricing, approvals, payments, supplier time review, blocked work, and ready-to-start projects.
+
 ## App Structure
 
 - `src/App.tsx` keeps the active view state and renders the selected page.

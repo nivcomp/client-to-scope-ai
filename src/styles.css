@@ -204,9 +204,18 @@ select {
   font-size: 0.95rem;
 }
 
+.queue-section {
+  margin-bottom: 16px;
+}
+
 .card p,
 .rule-panel li {
   color: #4f5d52;
+}
+
+.muted-text {
+  color: #657466;
+  font-size: 0.84rem;
 }
 
 .form-panel {
