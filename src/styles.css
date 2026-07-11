@@ -208,6 +208,22 @@ select {
   margin-bottom: 16px;
 }
 
+.reset-panel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.reset-panel h2 {
+  margin-bottom: 4px;
+}
+
+.reset-panel p {
+  margin: 0;
+}
+
 .card p,
 .rule-panel li {
   color: #4f5d52;
@@ -505,6 +521,11 @@ ul {
   .stats-grid,
   .agent-grid {
     grid-template-columns: 1fr;
+  }
+
+  .reset-panel {
+    align-items: stretch;
+    flex-direction: column;
   }
 
   .form-grid {

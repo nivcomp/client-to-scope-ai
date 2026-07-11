@@ -83,6 +83,28 @@ function App() {
     setActiveView("supplier-detail");
   }
 
+  function resetLocalSession() {
+    setClients(initialClients);
+    setProjects(initialProjects);
+    setChangeRequests(initialChangeRequests);
+    setTimeEntries(initialTimeEntries);
+    setClientPayments(initialClientPayments);
+    setSelectedClientId(undefined);
+    setSelectedProjectId(undefined);
+    setSelectedSupplierId(undefined);
+    setActiveView("action-queue");
+    const entry: ActivityEntry = {
+      id: createId("activity"),
+      createdAt: new Date().toLocaleString("en-GB", {
+        dateStyle: "short",
+        timeStyle: "short",
+      }),
+      label: "Session reset",
+      detail: "Local workflow state was restored from mock seed data.",
+    };
+    setActivityEntries([entry]);
+  }
+
   function createClient(input: NewClientInput) {
     const client: Client = {
       id: createId("client"),
@@ -215,6 +237,7 @@ function App() {
         onPaymentReceived={markPaymentReceived}
         onTimeEntryStatusChange={updateTimeEntryStatus}
         onChangeRequestStatusChange={updateChangeRequestStatus}
+        onResetSession={resetLocalSession}
       />
     ),
     clients: <ClientsPage clients={clients} onClientCreate={createClient} onClientSelect={openClientDetail} />,

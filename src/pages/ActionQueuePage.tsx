@@ -27,6 +27,7 @@ type ActionQueuePageProps = {
   onPaymentReceived: (paymentId: string) => void;
   onTimeEntryStatusChange: (timeEntryId: string, status: "approved" | "rejected") => void;
   onChangeRequestStatusChange: (changeRequestId: string, status: "priced" | "client_approved" | "declined") => void;
+  onResetSession: () => void;
 };
 
 function clientLabel(project: Project, clients: Client[]) {
@@ -55,6 +56,7 @@ export function ActionQueuePage({
   onPaymentReceived,
   onTimeEntryStatusChange,
   onChangeRequestStatusChange,
+  onResetSession,
 }: ActionQueuePageProps) {
   const needsPricing = getNeedsPricingItems(projects, changeRequests);
   const waitingApproval = getWaitingApprovalItems(projects, changeRequests);
@@ -66,6 +68,13 @@ export function ActionQueuePage({
   return (
     <>
       <PageHeader title="Action Queue" subtitle="Yaniv's daily control screen for pricing, approvals, payments, supplier time, blocked work, and ready work." />
+      <section className="card reset-panel">
+        <div>
+          <h2>Local session controls</h2>
+          <p>Reset restores the mock seed data and clears current selections. It does not touch any backend.</p>
+        </div>
+        <button type="button" onClick={onResetSession}>Reset local session</button>
+      </section>
       <section className="stats-grid">
         <StatCard label="Needs pricing" value={needsPricing.length} tone={needsPricing.length ? "warning" : "default"} />
         <StatCard label="Client approval" value={waitingApproval.length} tone={waitingApproval.length ? "warning" : "default"} />

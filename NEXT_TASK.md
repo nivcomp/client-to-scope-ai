@@ -1,26 +1,25 @@
-# NEXT TASK: Local Activity Log for Yaniv Actions
+# NEXT TASK: Local Session Reset
 
 ## Goal
 
-Add a simple local activity log so Yaniv can see what changed during the current in-memory session.
+Add a simple local reset action so Yaniv can return the in-memory MVP demo to the original mock seed state after trying workflow actions.
 
 ## Why This Matters
 
-The MVP now has local workflow actions from the Action Queue and project/client pages. Without a visible session trail, it is easy to lose track of which payment, change request, time entry, client, or project was just updated.
+The app now supports local creation and updates for clients, projects, payments, supplier time, change requests, and activity entries. A reset control makes testing the workflow safer and faster without connecting persistence or requiring a manual browser refresh.
 
 ## Acceptance Criteria
 
-- App records local activity entries when Yaniv:
-  - creates a client or lead
-  - creates a project
-  - creates a change request
-  - creates a supplier time entry
-  - marks a payment received
-  - approves or rejects supplier time
-  - updates a change request status
-- Activity entries are stored in local React state only.
-- Activity entries reset on refresh, like the rest of Phase 2B local state.
-- Action Queue shows a recent activity section.
-- The implementation does not connect Supabase, AI APIs, payment providers, or auth.
+- Action Queue exposes a clear reset control for the local session.
+- Reset restores local state from the original mock data for:
+  - clients
+  - projects
+  - change requests
+  - supplier time entries
+  - client payments
+- Reset clears selected client/project/supplier state.
+- Reset leaves the user in the Action Queue.
+- Reset records a fresh local activity entry showing the reset happened.
+- No Supabase, AI APIs, payment providers, auth, or deployment are added.
 - Supplier-facing pages still do not expose client price, agency margin, or internal pricing notes.
 - `pnpm run build` passes.

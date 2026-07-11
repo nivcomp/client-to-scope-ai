@@ -91,6 +91,8 @@ Phase 2C adds an Action Queue / Agency Control Dashboard that groups the same lo
 
 The current autonomous build cycle adds a local Recent Activity trail for workflow actions. It is also in-memory only and resets on refresh.
 
+The Action Queue also includes a local session reset that restores the mock seed data without connecting a backend.
+
 ## App Structure
 
 - `src/App.tsx` keeps the active view state and renders the selected page.
