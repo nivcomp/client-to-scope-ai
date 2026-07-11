@@ -115,3 +115,34 @@ Add local assign and remove controls for project suppliers in Project Detail.
 
 **Next**  
 - Update Supplier Detail and Supplier Portal to use app-level local project and time-entry state.
+
+---
+
+### 2026-07-11 - Supplier views use local assignment state
+
+**Work unit**  
+Update supplier-facing placeholder screens to use app-level local project and time-entry state.
+
+**Changes**  
+- Passed local `projects` and `timeEntries` state into Supplier Detail.
+- Passed local `projects` state into Supplier Portal.
+- Added assigned-project visibility to Supplier Detail so local supplier assignments appear even before time is logged.
+- Preserved supplier visibility rules by keeping client price, agency margin, and internal pricing notes out of supplier-facing screens.
+
+**Tests**  
+- `pnpm run build` passed.
+- No automated test script exists beyond the production build.
+
+**Files**  
+- `src/App.tsx`
+- `src/pages/SupplierDetailPage.tsx`
+- `src/pages/SupplierPortalPage.tsx`
+- `README.md`
+- `NEXT_TASK.md`
+- `WORK_LOG.md`
+
+**Commit**  
+- Commit will be created after this log entry; final automation summary records the SHA.
+
+**Next**  
+- Update Supplier Portal to use the selected supplier context instead of a fixed placeholder supplier id.

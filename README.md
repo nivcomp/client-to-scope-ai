@@ -97,6 +97,8 @@ Project Detail can create a local manual client payment request for projects wit
 
 Project Detail can also assign and remove approved suppliers using local state. These assignments update the internal project command center and Action Queue during the current session.
 
+Supplier Detail and Supplier Portal consume local project and time-entry state for assignment-sensitive views, while still excluding client price, margin, and internal pricing notes.
+
 ## App Structure
 
 - `src/App.tsx` keeps the active view state and renders the selected page.

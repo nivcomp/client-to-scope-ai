@@ -1,8 +1,12 @@
 import { PageHeader } from "../components/PageHeader";
-import { projects } from "../data/mockData";
 import { canWorkStart } from "../lib/domainHelpers";
+import type { Project } from "../types/domain";
 
-export function SupplierPortalPage() {
+type SupplierPortalPageProps = {
+  projects: Project[];
+};
+
+export function SupplierPortalPage({ projects }: SupplierPortalPageProps) {
   const supplierId = "supplier-1";
   const assigned = projects.filter((project) => project.assignedSupplierIds.includes(supplierId));
   return (

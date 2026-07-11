@@ -310,7 +310,7 @@ function App() {
       />
     ),
     suppliers: <SuppliersPage onSupplierSelect={openSupplierDetail} />,
-    "supplier-detail": <SupplierDetailPage selectedSupplierId={selectedSupplierId} />,
+    "supplier-detail": <SupplierDetailPage selectedSupplierId={selectedSupplierId} projects={projects} timeEntries={timeEntries} />,
     "pricing-margin": <PricingMarginPage />,
     "change-requests": (
       <ChangeRequestsPage
@@ -336,7 +336,7 @@ function App() {
       />
     ),
     "client-portal": <ClientPortalPage />,
-    "supplier-portal": <SupplierPortalPage />,
+    "supplier-portal": <SupplierPortalPage projects={projects} />,
     "ai-workbench": <AIWorkbenchPage />,
   } satisfies Record<ViewKey, JSX.Element>;
 

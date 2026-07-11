@@ -1,13 +1,16 @@
 import { PageHeader } from "../components/PageHeader";
 import { StatusBadge } from "../components/StatusBadge";
-import { supplierProfiles, timeEntries } from "../data/mockData";
-import { currency, getProjectName, getSupplierById } from "../lib/domainHelpers";
+import { supplierProfiles } from "../data/mockData";
+import { canWorkStart, currency, getProjectName, getSupplierById } from "../lib/domainHelpers";
+import type { Project, TimeEntry } from "../types/domain";
 
 type SupplierDetailPageProps = {
   selectedSupplierId?: string;
+  projects: Project[];
+  timeEntries: TimeEntry[];
 };
 
-export function SupplierDetailPage({ selectedSupplierId }: SupplierDetailPageProps) {
+export function SupplierDetailPage({ selectedSupplierId, projects, timeEntries }: SupplierDetailPageProps) {
   const supplier = selectedSupplierId ? getSupplierById(selectedSupplierId) : undefined;
 
   if (!supplier) {
@@ -24,6 +27,7 @@ export function SupplierDetailPage({ selectedSupplierId }: SupplierDetailPagePro
 
   const profile = supplierProfiles.find((item) => item.supplierId === supplier.id);
   const entries = timeEntries.filter((entry) => entry.supplierId === supplier.id);
+  const assignedProjects = projects.filter((project) => project.assignedSupplierIds.includes(supplier.id));
 
   return (
     <>
@@ -45,6 +49,33 @@ export function SupplierDetailPage({ selectedSupplierId }: SupplierDetailPagePro
         </article>
       </section>
       <section className="card">
+        <h2>Assigned projects</h2>
+        {assignedProjects.length ? (
+          <table>
+            <thead>
+              <tr>
+                <th>Project</th>
+                <th>Status</th>
+                <th>Start rule</th>
+                <th>Visible instruction</th>
+              </tr>
+            </thead>
+            <tbody>
+              {assignedProjects.map((project) => (
+                <tr key={project.id}>
+                  <td>{project.name}</td>
+                  <td><StatusBadge label={project.status} tone={canWorkStart(project) ? "success" : "warning"} /></td>
+                  <td>{canWorkStart(project) ? "Ready" : "Blocked by agency gate"}</td>
+                  <td>Assigned scope and work updates only</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        ) : (
+          <p>No projects assigned to this supplier in the current local session.</p>
+        )}
+      </section>
+      <section className="card">
         <h2>Time entries</h2>
         <table>
           <thead>
@@ -58,7 +89,7 @@ export function SupplierDetailPage({ selectedSupplierId }: SupplierDetailPagePro
           <tbody>
             {entries.map((entry) => (
               <tr key={entry.id}>
-                <td>{getProjectName(entry.projectId)}</td>
+                <td>{getProjectName(entry.projectId, projects)}</td>
                 <td>{entry.date}</td>
                 <td>{entry.hours}</td>
                 <td><StatusBadge label={entry.status} tone={entry.status === "approved" ? "success" : "warning"} /></td>

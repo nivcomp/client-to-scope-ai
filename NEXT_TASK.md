@@ -1,28 +1,28 @@
-# NEXT TASK: Supplier Views Use Local Assignment State
+# NEXT TASK: Supplier Portal Uses Selected Supplier Context
 
 ## Last Completed
 
-Project Detail now supports local supplier assignment controls. Yaniv can assign and remove approved suppliers from the selected project, and the same local project state feeds Project Detail and Action Queue.
+Supplier Detail and Supplier Portal now receive app-level local project and time-entry state. Supplier-facing views can reflect local supplier assignments during the current session while continuing to hide client price, agency margin, and internal pricing notes.
 
 ## Remaining Limitations
 
-- Supplier assignment changes are local only and reset on refresh or local session reset.
-- Supplier Detail and Supplier Portal still read some seed mock data directly, so they do not yet reflect every local workflow change.
+- Supplier assignment and time changes are local only and reset on refresh or local session reset.
+- Supplier Portal still uses a fixed placeholder supplier id, so it does not yet reflect the selected supplier context.
 - There is still no durable database persistence, authentication, or real supplier account context.
 
 ## Recommended Next Work Unit
 
-Update Supplier Detail and Supplier Portal to receive local app state for projects and time entries instead of reading assignment-sensitive mock data directly.
+Update Supplier Portal to use the currently selected supplier when available, with a simple fallback supplier for the placeholder state.
 
 ## Why This Matters
 
-After local assignment controls, supplier-facing screens should reflect the current session state while still hiding client price, agency margin, and internal pricing notes. This keeps the MVP workflow coherent without adding persistence or auth.
+The MVP now has local assignment controls and supplier-facing views that consume local state. Removing the fixed supplier placeholder makes the supplier portal more coherent without adding authentication or real supplier accounts.
 
 ## Acceptance Criteria
 
-- Supplier Detail receives projects and time entries from app-level local state.
-- Supplier Portal receives projects from app-level local state.
-- Local supplier assignments appear in the supplier-facing placeholder screens during the same session.
-- Supplier-facing screens continue to hide client price, agency margin, and internal pricing notes.
+- Supplier Portal receives `selectedSupplierId` from app state.
+- Supplier Portal displays assigned projects for the selected supplier when one is selected.
+- Supplier Portal keeps a clear fallback state when no supplier is selected.
+- Supplier Portal continues to hide client price, agency margin, and internal pricing notes.
 - No Supabase, AI APIs, payment providers, auth, or deployment are added.
 - `pnpm run build` passes.
