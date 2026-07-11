@@ -55,3 +55,33 @@ Create the top-level project memory files used by future Codex automation cycles
 
 **Next**  
 - Add `AGENTS.md`, then let the first automation cycle inspect the repository and update `NEXT_TASK.md` based on the code's actual status.
+
+---
+
+### 2026-07-11 - Local payment request creation
+
+**Work unit**  
+Add a local manual client payment request flow from Project Detail.
+
+**Changes**  
+- Added app-level local state handling for creating requested client payments.
+- Added a Project Detail payment request form for projects without an existing payment record.
+- New requested payments feed the existing Action Queue and Payments / Hour Banks views through shared local state.
+- Updated project memory to point the next cycle at local supplier assignment controls.
+
+**Tests**  
+- `pnpm run build` passed.
+- No automated test script exists beyond the production build.
+
+**Files**  
+- `src/App.tsx`
+- `src/pages/ProjectDetailPage.tsx`
+- `README.md`
+- `NEXT_TASK.md`
+- `WORK_LOG.md`
+
+**Commit**  
+- Commit will be created after this log entry; final automation summary records the SHA.
+
+**Next**  
+- Add local supplier assignment controls in Project Detail.

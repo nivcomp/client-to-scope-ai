@@ -23,7 +23,7 @@ import { SupplierDetailPage } from "./pages/SupplierDetailPage";
 import { SupplierPortalPage } from "./pages/SupplierPortalPage";
 import { SupplierTimePage } from "./pages/SupplierTimePage";
 import { SuppliersPage } from "./pages/SuppliersPage";
-import { getProjectName, getSupplierName } from "./lib/domainHelpers";
+import { currency, getProjectName, getSupplierName } from "./lib/domainHelpers";
 import type { ChangeRequest, Client, ClientPayment, HourBank, Project, TimeEntry } from "./types/domain";
 import type { ViewKey } from "./views";
 
@@ -31,6 +31,7 @@ export type NewClientInput = Pick<Client, "name" | "company" | "email" | "phone"
 export type NewProjectInput = Pick<Project, "name" | "summary" | "budgetSignal">;
 export type NewChangeRequestInput = Pick<ChangeRequest, "title" | "description" | "agencyPrice" | "supplierCost">;
 export type NewTimeEntryInput = Pick<TimeEntry, "supplierId" | "date" | "hours" | "description">;
+export type NewClientPaymentInput = Pick<ClientPayment, "amount" | "dueDate" | "notes">;
 export type ActivityEntry = {
   id: string;
   createdAt: string;
@@ -187,6 +188,27 @@ function App() {
     }
   }
 
+  function createClientPayment(projectId: string, input: NewClientPaymentInput) {
+    const payment: ClientPayment = {
+      id: createId("client-payment"),
+      projectId,
+      amount: input.amount,
+      currency: "GBP",
+      status: "requested",
+      dueDate: input.dueDate || undefined,
+      notes: input.notes.trim() || "Manual payment request created locally.",
+    };
+    setClientPayments((current) => [...current, payment]);
+    setProjects((current) =>
+      current.map((project) =>
+        project.id === projectId && project.status !== "completed"
+          ? { ...project, status: "waiting_for_payment", paymentGateStatus: "blocked" }
+          : project,
+      ),
+    );
+    recordActivity("Payment requested", `${currency.format(payment.amount)} was requested for ${getProjectName(projectId, projects)}.`);
+  }
+
   function updateTimeEntryStatus(timeEntryId: string, status: "approved" | "rejected") {
     const entryToUpdate = timeEntries.find((entry) => entry.id === timeEntryId);
     setTimeEntries((current) =>
@@ -264,6 +286,7 @@ function App() {
         clientPayments={clientPayments}
         onChangeRequestCreate={createChangeRequest}
         onChangeRequestStatusChange={updateChangeRequestStatus}
+        onClientPaymentCreate={createClientPayment}
         onPaymentReceived={markPaymentReceived}
         onTimeEntryCreate={createTimeEntry}
         onTimeEntryStatusChange={updateTimeEntryStatus}

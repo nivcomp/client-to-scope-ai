@@ -1,5 +1,5 @@
 import { type FormEvent, useState } from "react";
-import type { NewChangeRequestInput, NewTimeEntryInput } from "../App";
+import type { NewChangeRequestInput, NewClientPaymentInput, NewTimeEntryInput } from "../App";
 import { PageHeader } from "../components/PageHeader";
 import { StatusBadge } from "../components/StatusBadge";
 import {
@@ -31,6 +31,7 @@ type ProjectDetailPageProps = {
   clientPayments: ClientPayment[];
   onChangeRequestCreate: (projectId: string, clientId: string, input: NewChangeRequestInput) => void;
   onChangeRequestStatusChange: (changeRequestId: string, status: "priced" | "client_approved" | "declined") => void;
+  onClientPaymentCreate: (projectId: string, input: NewClientPaymentInput) => void;
   onPaymentReceived: (paymentId: string) => void;
   onTimeEntryCreate: (projectId: string, input: NewTimeEntryInput) => void;
   onTimeEntryStatusChange: (timeEntryId: string, status: "approved" | "rejected") => void;
@@ -50,6 +51,12 @@ const initialTimeForm: NewTimeEntryInput = {
   description: "",
 };
 
+const initialPaymentForm: NewClientPaymentInput = {
+  amount: 0,
+  dueDate: "",
+  notes: "",
+};
+
 export function ProjectDetailPage({
   selectedProjectId,
   clients,
@@ -59,12 +66,14 @@ export function ProjectDetailPage({
   clientPayments,
   onChangeRequestCreate,
   onChangeRequestStatusChange,
+  onClientPaymentCreate,
   onPaymentReceived,
   onTimeEntryCreate,
   onTimeEntryStatusChange,
 }: ProjectDetailPageProps) {
   const [changeForm, setChangeForm] = useState<NewChangeRequestInput>(initialChangeForm);
   const [timeForm, setTimeForm] = useState<NewTimeEntryInput>(initialTimeForm);
+  const [paymentForm, setPaymentForm] = useState<NewClientPaymentInput>(initialPaymentForm);
   const project = selectedProjectId ? getProjectById(selectedProjectId, projects) : undefined;
 
   if (!project) {
@@ -113,6 +122,17 @@ export function ProjectDetailPage({
     setTimeForm({ ...initialTimeForm, supplierId: timeForm.supplierId });
   }
 
+  function handlePaymentSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    if (paymentForm.amount <= 0) return;
+    onClientPaymentCreate(activeProject.id, {
+      amount: paymentForm.amount,
+      dueDate: paymentForm.dueDate || undefined,
+      notes: paymentForm.notes.trim(),
+    });
+    setPaymentForm(initialPaymentForm);
+  }
+
   return (
     <>
       <PageHeader title="Project Command Center" subtitle="A single project view for summary, client context, payment gate, scope, pricing, suppliers, changes, files, and decisions." />
@@ -144,6 +164,41 @@ export function ProjectDetailPage({
           ) : null}
         </article>
       </section>
+      {!payment ? (
+        <section className="card form-panel">
+          <h2>Create payment request</h2>
+          <form className="form-grid" onSubmit={handlePaymentSubmit}>
+            <label>
+              Amount
+              <input
+                min="1"
+                type="number"
+                value={paymentForm.amount || ""}
+                onChange={(event) => setPaymentForm({ ...paymentForm, amount: Number(event.target.value) })}
+              />
+            </label>
+            <label>
+              Due date optional
+              <input
+                type="date"
+                value={paymentForm.dueDate ?? ""}
+                onChange={(event) => setPaymentForm({ ...paymentForm, dueDate: event.target.value })}
+              />
+            </label>
+            <label className="span-2">
+              Notes
+              <textarea
+                value={paymentForm.notes}
+                onChange={(event) => setPaymentForm({ ...paymentForm, notes: event.target.value })}
+              />
+            </label>
+            <p className="form-note">This creates a local requested payment only. Work remains blocked until Yaniv marks the payment received.</p>
+            <div className="form-actions">
+              <button className="primary-button" type="submit">Create payment request</button>
+            </div>
+          </form>
+        </section>
+      ) : null}
       <section className="detail-grid">
         <article className="card">
           <h2>Brief</h2>

@@ -89,9 +89,11 @@ Phase 2B workflow forms use local in-memory React state only. New clients, proje
 
 Phase 2C adds an Action Queue / Agency Control Dashboard that groups the same local state into daily work queues for pricing, approvals, payments, supplier time review, blocked work, and ready-to-start projects.
 
-The current autonomous build cycle adds a local Recent Activity trail for workflow actions. It is also in-memory only and resets on refresh.
+The local workflow includes a Recent Activity trail for workflow actions. It is also in-memory only and resets on refresh.
 
 The Action Queue also includes a local session reset that restores the mock seed data without connecting a backend.
+
+Project Detail can create a local manual client payment request for projects without an existing payment record. Requested payments appear in the Action Queue and Payments / Hour Banks views, and work remains gated until the payment is marked received.
 
 ## App Structure
 
