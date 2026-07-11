@@ -85,3 +85,33 @@ Add a local manual client payment request flow from Project Detail.
 
 **Next**  
 - Add local supplier assignment controls in Project Detail.
+
+---
+
+### 2026-07-11 - Local supplier assignment controls
+
+**Work unit**  
+Add local assign and remove controls for project suppliers in Project Detail.
+
+**Changes**  
+- Added app-level local state handling for assigning and unassigning suppliers on a project.
+- Added Project Detail controls to assign only approved suppliers and remove assigned suppliers.
+- Local assignments update Project Detail and the Action Queue through shared project state.
+- Updated project memory to point the next cycle at supplier-facing views using local assignment state.
+
+**Tests**  
+- `pnpm run build` passed.
+- No automated test script exists beyond the production build.
+
+**Files**  
+- `src/App.tsx`
+- `src/pages/ProjectDetailPage.tsx`
+- `README.md`
+- `NEXT_TASK.md`
+- `WORK_LOG.md`
+
+**Commit**  
+- Commit will be created after this log entry; final automation summary records the SHA.
+
+**Next**  
+- Update Supplier Detail and Supplier Portal to use app-level local project and time-entry state.

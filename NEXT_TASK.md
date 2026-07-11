@@ -1,30 +1,28 @@
-# NEXT TASK: Local Supplier Assignment Controls
+# NEXT TASK: Supplier Views Use Local Assignment State
 
 ## Last Completed
 
-Project Detail now supports creating a local manual client payment request for projects that do not yet have a payment record. The requested payment feeds the existing Action Queue and Payments / Hour Banks views through app-level in-memory state.
+Project Detail now supports local supplier assignment controls. Yaniv can assign and remove approved suppliers from the selected project, and the same local project state feeds Project Detail and Action Queue.
 
 ## Remaining Limitations
 
-- Payment requests are local only and reset on refresh or local session reset.
-- There is still no payment provider integration.
-- There is no durable database persistence.
-- Projects still need a simple local supplier assignment control before Yaniv can fully simulate assignment readiness.
+- Supplier assignment changes are local only and reset on refresh or local session reset.
+- Supplier Detail and Supplier Portal still read some seed mock data directly, so they do not yet reflect every local workflow change.
+- There is still no durable database persistence, authentication, or real supplier account context.
 
 ## Recommended Next Work Unit
 
-Add a small local supplier assignment control in Project Detail so Yaniv can assign and unassign approved suppliers from a project using existing mock suppliers and local React state.
+Update Supplier Detail and Supplier Portal to receive local app state for projects and time entries instead of reading assignment-sensitive mock data directly.
 
 ## Why This Matters
 
-The MVP workflow already tracks payment readiness, supplier time, and ready-to-start projects. Assignment is still mostly seed-data driven, so Yaniv cannot fully simulate moving a paid project into supplier work without editing mock data.
+After local assignment controls, supplier-facing screens should reflect the current session state while still hiding client price, agency margin, and internal pricing notes. This keeps the MVP workflow coherent without adding persistence or auth.
 
 ## Acceptance Criteria
 
-- Project Detail shows approved suppliers that can be assigned to the selected project.
-- Yaniv can assign a supplier to the project using local state only.
-- Yaniv can remove an assigned supplier from the project using local state only.
-- Assigned suppliers continue to appear in Project Detail and Action Queue ready-to-start rows.
-- Supplier-facing pages still do not expose client price, agency margin, or internal pricing notes.
+- Supplier Detail receives projects and time entries from app-level local state.
+- Supplier Portal receives projects from app-level local state.
+- Local supplier assignments appear in the supplier-facing placeholder screens during the same session.
+- Supplier-facing screens continue to hide client price, agency margin, and internal pricing notes.
 - No Supabase, AI APIs, payment providers, auth, or deployment are added.
 - `pnpm run build` passes.

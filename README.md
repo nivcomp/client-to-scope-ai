@@ -95,6 +95,8 @@ The Action Queue also includes a local session reset that restores the mock seed
 
 Project Detail can create a local manual client payment request for projects without an existing payment record. Requested payments appear in the Action Queue and Payments / Hour Banks views, and work remains gated until the payment is marked received.
 
+Project Detail can also assign and remove approved suppliers using local state. These assignments update the internal project command center and Action Queue during the current session.
+
 ## App Structure
 
 - `src/App.tsx` keeps the active view state and renders the selected page.

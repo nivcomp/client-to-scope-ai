@@ -33,6 +33,7 @@ type ProjectDetailPageProps = {
   onChangeRequestStatusChange: (changeRequestId: string, status: "priced" | "client_approved" | "declined") => void;
   onClientPaymentCreate: (projectId: string, input: NewClientPaymentInput) => void;
   onPaymentReceived: (paymentId: string) => void;
+  onSupplierAssignmentChange: (projectId: string, supplierId: string, assigned: boolean) => void;
   onTimeEntryCreate: (projectId: string, input: NewTimeEntryInput) => void;
   onTimeEntryStatusChange: (timeEntryId: string, status: "approved" | "rejected") => void;
 };
@@ -68,12 +69,14 @@ export function ProjectDetailPage({
   onChangeRequestStatusChange,
   onClientPaymentCreate,
   onPaymentReceived,
+  onSupplierAssignmentChange,
   onTimeEntryCreate,
   onTimeEntryStatusChange,
 }: ProjectDetailPageProps) {
   const [changeForm, setChangeForm] = useState<NewChangeRequestInput>(initialChangeForm);
   const [timeForm, setTimeForm] = useState<NewTimeEntryInput>(initialTimeForm);
   const [paymentForm, setPaymentForm] = useState<NewClientPaymentInput>(initialPaymentForm);
+  const [supplierToAssign, setSupplierToAssign] = useState("");
   const project = selectedProjectId ? getProjectById(selectedProjectId, projects) : undefined;
 
   if (!project) {
@@ -99,6 +102,8 @@ export function ProjectDetailPage({
   const projectTimeEntries = timeEntries.filter((entry) => entry.projectId === activeProject.id);
   const projectFiles = fileLinks.filter((file) => file.projectId === activeProject.id);
   const projectDecisions = decisionLogs.filter((decision) => decision.projectId === activeProject.id);
+  const approvedSuppliers = suppliers.filter((supplier) => supplier.status === "approved");
+  const assignableSuppliers = approvedSuppliers.filter((supplier) => !activeProject.assignedSupplierIds.includes(supplier.id));
 
   function handleChangeSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -131,6 +136,13 @@ export function ProjectDetailPage({
       notes: paymentForm.notes.trim(),
     });
     setPaymentForm(initialPaymentForm);
+  }
+
+  function handleSupplierAssign(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    if (!supplierToAssign) return;
+    onSupplierAssignmentChange(activeProject.id, supplierToAssign, true);
+    setSupplierToAssign("");
   }
 
   return (
@@ -308,6 +320,7 @@ export function ProjectDetailPage({
                   <th>Supplier</th>
                   <th>Status</th>
                   <th>Skills</th>
+                  <th>Actions</th>
                 </tr>
               </thead>
               <tbody>
@@ -319,6 +332,11 @@ export function ProjectDetailPage({
                       <td>{supplier?.name ?? getSupplierName(supplierId)}</td>
                       <td>{supplier?.status ?? "Unknown"}</td>
                       <td>{profile?.mainSkills.join(", ") ?? "Not set"}</td>
+                      <td>
+                        <button type="button" onClick={() => onSupplierAssignmentChange(activeProject.id, supplierId, false)}>
+                          Remove
+                        </button>
+                      </td>
                     </tr>
                   );
                 })}
@@ -327,6 +345,24 @@ export function ProjectDetailPage({
           ) : (
             <p>No supplier assigned yet.</p>
           )}
+          <form className="inline-form" onSubmit={handleSupplierAssign}>
+            <label>
+              Assign approved supplier
+              <select value={supplierToAssign} onChange={(event) => setSupplierToAssign(event.target.value)}>
+                <option value="">Select supplier</option>
+                {assignableSuppliers.map((supplier) => {
+                  const profile = supplierProfiles.find((item) => item.supplierId === supplier.id);
+                  return (
+                    <option key={supplier.id} value={supplier.id}>
+                      {supplier.name}{profile ? ` - ${profile.mainSkills.join(", ")}` : ""}
+                    </option>
+                  );
+                })}
+              </select>
+            </label>
+            <button type="submit" disabled={!supplierToAssign}>Assign</button>
+          </form>
+          <p className="form-note">Only agency-approved suppliers can be assigned. Assignment stays local until persistence is added.</p>
         </article>
         <article className="card">
           <h2>Supplier time entries</h2>

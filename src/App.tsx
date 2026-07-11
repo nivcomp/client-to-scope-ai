@@ -209,6 +209,22 @@ function App() {
     recordActivity("Payment requested", `${currency.format(payment.amount)} was requested for ${getProjectName(projectId, projects)}.`);
   }
 
+  function updateProjectSupplierAssignment(projectId: string, supplierId: string, assigned: boolean) {
+    setProjects((current) =>
+      current.map((project) => {
+        if (project.id !== projectId) return project;
+        const supplierIds = assigned
+          ? Array.from(new Set([...project.assignedSupplierIds, supplierId]))
+          : project.assignedSupplierIds.filter((id) => id !== supplierId);
+        return { ...project, assignedSupplierIds: supplierIds, updatedDate: new Date().toISOString().slice(0, 10) };
+      }),
+    );
+    recordActivity(
+      assigned ? "Supplier assigned" : "Supplier unassigned",
+      `${getSupplierName(supplierId)} was ${assigned ? "assigned to" : "removed from"} ${getProjectName(projectId, projects)}.`,
+    );
+  }
+
   function updateTimeEntryStatus(timeEntryId: string, status: "approved" | "rejected") {
     const entryToUpdate = timeEntries.find((entry) => entry.id === timeEntryId);
     setTimeEntries((current) =>
@@ -288,6 +304,7 @@ function App() {
         onChangeRequestStatusChange={updateChangeRequestStatus}
         onClientPaymentCreate={createClientPayment}
         onPaymentReceived={markPaymentReceived}
+        onSupplierAssignmentChange={updateProjectSupplierAssignment}
         onTimeEntryCreate={createTimeEntry}
         onTimeEntryStatusChange={updateTimeEntryStatus}
       />
