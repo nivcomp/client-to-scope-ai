@@ -89,6 +89,8 @@ Phase 2B workflow forms use local in-memory React state only. New clients, proje
 
 Phase 2C adds an Action Queue / Agency Control Dashboard that groups the same local state into daily work queues for pricing, approvals, payments, supplier time review, blocked work, and ready-to-start projects.
 
+The current autonomous build cycle adds a local Recent Activity trail for workflow actions. It is also in-memory only and resets on refresh.
+
 ## App Structure
 
 - `src/App.tsx` keeps the active view state and renders the selected page.

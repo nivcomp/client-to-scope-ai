@@ -23,6 +23,7 @@ import { SupplierDetailPage } from "./pages/SupplierDetailPage";
 import { SupplierPortalPage } from "./pages/SupplierPortalPage";
 import { SupplierTimePage } from "./pages/SupplierTimePage";
 import { SuppliersPage } from "./pages/SuppliersPage";
+import { getProjectName, getSupplierName } from "./lib/domainHelpers";
 import type { ChangeRequest, Client, ClientPayment, HourBank, Project, TimeEntry } from "./types/domain";
 import type { ViewKey } from "./views";
 
@@ -30,6 +31,12 @@ export type NewClientInput = Pick<Client, "name" | "company" | "email" | "phone"
 export type NewProjectInput = Pick<Project, "name" | "summary" | "budgetSignal">;
 export type NewChangeRequestInput = Pick<ChangeRequest, "title" | "description" | "agencyPrice" | "supplierCost">;
 export type NewTimeEntryInput = Pick<TimeEntry, "supplierId" | "date" | "hours" | "description">;
+export type ActivityEntry = {
+  id: string;
+  createdAt: string;
+  label: string;
+  detail: string;
+};
 
 function createId(prefix: string) {
   return `${prefix}-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`;
@@ -46,6 +53,20 @@ function App() {
   const [timeEntries, setTimeEntries] = useState<TimeEntry[]>(initialTimeEntries);
   const [clientPayments, setClientPayments] = useState<ClientPayment[]>(initialClientPayments);
   const [hourBanks] = useState<HourBank[]>(initialHourBanks);
+  const [activityEntries, setActivityEntries] = useState<ActivityEntry[]>([]);
+
+  function recordActivity(label: string, detail: string) {
+    const entry: ActivityEntry = {
+      id: createId("activity"),
+      createdAt: new Date().toLocaleString("en-GB", {
+        dateStyle: "short",
+        timeStyle: "short",
+      }),
+      label,
+      detail,
+    };
+    setActivityEntries((current) => [entry, ...current].slice(0, 20));
+  }
 
   function openClientDetail(clientId: string) {
     setSelectedClientId(clientId);
@@ -69,6 +90,7 @@ function App() {
       phone: input.phone || undefined,
     };
     setClients((current) => [...current, client]);
+    recordActivity("Client created", `${client.company} was added as ${client.status}.`);
     openClientDetail(client.id);
   }
 
@@ -86,6 +108,7 @@ function App() {
       updatedDate: new Date().toISOString().slice(0, 10),
     };
     setProjects((current) => [...current, project]);
+    recordActivity("Project created", `${project.name} was created for ${clients.find((client) => client.id === clientId)?.company ?? "a client"}.`);
     openProjectDetail(project.id);
   }
 
@@ -101,6 +124,7 @@ function App() {
       supplierCost: input.supplierCost,
     };
     setChangeRequests((current) => [...current, request]);
+    recordActivity("Change request created", `${request.title} was added to ${getProjectName(projectId, projects)}.`);
   }
 
   function createTimeEntry(projectId: string, input: NewTimeEntryInput) {
@@ -114,6 +138,7 @@ function App() {
       status: "submitted",
     };
     setTimeEntries((current) => [...current, entry]);
+    recordActivity("Supplier time submitted", `${entry.hours} hours from ${getSupplierName(entry.supplierId)} were submitted for ${getProjectName(projectId, projects)}.`);
   }
 
   function markPaymentReceived(paymentId: string) {
@@ -125,6 +150,7 @@ function App() {
       ),
     );
     if (paymentToUpdate) {
+      recordActivity("Payment received", `${getProjectName(paymentToUpdate.projectId, projects)} payment was marked received.`);
       setProjects((current) =>
         current.map((project) =>
           project.id === paymentToUpdate.projectId
@@ -140,6 +166,7 @@ function App() {
   }
 
   function updateTimeEntryStatus(timeEntryId: string, status: "approved" | "rejected") {
+    const entryToUpdate = timeEntries.find((entry) => entry.id === timeEntryId);
     setTimeEntries((current) =>
       current.map((entry) =>
         entry.id === timeEntryId
@@ -147,9 +174,16 @@ function App() {
           : entry,
       ),
     );
+    if (entryToUpdate) {
+      recordActivity(
+        status === "approved" ? "Supplier time approved" : "Supplier time rejected",
+        `${entryToUpdate.hours} hours from ${getSupplierName(entryToUpdate.supplierId)} for ${getProjectName(entryToUpdate.projectId, projects)} were ${status}.`,
+      );
+    }
   }
 
   function updateChangeRequestStatus(changeRequestId: string, status: "priced" | "client_approved" | "declined") {
+    const requestToUpdate = changeRequests.find((request) => request.id === changeRequestId);
     setChangeRequests((current) =>
       current.map((request) => {
         if (request.id !== changeRequestId) return request;
@@ -160,6 +194,9 @@ function App() {
         };
       }),
     );
+    if (requestToUpdate) {
+      recordActivity("Change request updated", `${requestToUpdate.title} is now ${status.replace("_", " ")}.`);
+    }
   }
 
   const page = {
@@ -172,6 +209,7 @@ function App() {
         timeEntries={timeEntries}
         clientPayments={clientPayments}
         hourBanks={hourBanks}
+        activityEntries={activityEntries}
         onProjectSelect={openProjectDetail}
         onClientSelect={openClientDetail}
         onPaymentReceived={markPaymentReceived}

@@ -218,6 +218,31 @@ select {
   font-size: 0.84rem;
 }
 
+.activity-list {
+  display: grid;
+  gap: 10px;
+}
+
+.activity-item {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 12px;
+  border: 1px solid #edf0eb;
+  border-radius: 8px;
+  background: #fbfdfa;
+}
+
+.activity-item p {
+  margin: 4px 0 0;
+}
+
+.activity-item span {
+  flex: 0 0 auto;
+  color: #657466;
+  font-size: 0.82rem;
+}
+
 .form-panel {
   margin-bottom: 16px;
 }

@@ -11,6 +11,7 @@ import {
   getWaitingPaymentItems,
 } from "../lib/actionQueue";
 import { currency, getClient, getProjectById, getProjectName, getSupplierName, statusLabels } from "../lib/domainHelpers";
+import type { ActivityEntry } from "../App";
 import type { ChangeRequest, Client, ClientPayment, HourBank, Project, TimeEntry } from "../types/domain";
 
 type ActionQueuePageProps = {
@@ -20,6 +21,7 @@ type ActionQueuePageProps = {
   timeEntries: TimeEntry[];
   clientPayments: ClientPayment[];
   hourBanks: HourBank[];
+  activityEntries: ActivityEntry[];
   onProjectSelect: (projectId: string) => void;
   onClientSelect: (clientId: string) => void;
   onPaymentReceived: (paymentId: string) => void;
@@ -47,6 +49,7 @@ export function ActionQueuePage({
   timeEntries,
   clientPayments,
   hourBanks,
+  activityEntries,
   onProjectSelect,
   onClientSelect,
   onPaymentReceived,
@@ -264,6 +267,25 @@ export function ActionQueuePage({
           <li>Change requests do not become work before pricing and client approval.</li>
           <li>AI can suggest later, but Yaniv remains the decision maker.</li>
         </ul>
+      </section>
+
+      <section className="card">
+        <h2>Recent Activity</h2>
+        {activityEntries.length ? (
+          <div className="activity-list">
+            {activityEntries.slice(0, 8).map((entry) => (
+              <article className="activity-item" key={entry.id}>
+                <div>
+                  <strong>{entry.label}</strong>
+                  <p>{entry.detail}</p>
+                </div>
+                <span>{entry.createdAt}</span>
+              </article>
+            ))}
+          </div>
+        ) : (
+          <p>No local activity recorded yet. Use a workflow action to start the session trail.</p>
+        )}
       </section>
     </>
   );
