@@ -74,6 +74,11 @@ function App() {
     setActiveView("client-detail");
   }
 
+  function openClientPortal(clientId: string) {
+    setSelectedClientId(clientId);
+    setActiveView("client-portal");
+  }
+
   function openProjectDetail(projectId: string) {
     setSelectedProjectId(projectId);
     setActiveView("project-detail");
@@ -294,6 +299,7 @@ function App() {
         hourBanks={hourBanks}
         onProjectCreate={createProject}
         onProjectSelect={openProjectDetail}
+        onClientPortalOpen={openClientPortal}
       />
     ),
     projects: <ProjectsPage clients={clients} projects={projects} onProjectSelect={openProjectDetail} />,

@@ -266,3 +266,33 @@ Update Client Portal to use selected client context and local client-facing stat
 
 **Next**  
 - Add a Client Detail action that opens Client Portal for the selected client context.
+
+---
+
+### 2026-07-12 - Client detail opens portal context
+
+**Work unit**  
+Add a Client Detail action that opens Client Portal for the selected client context.
+
+**Changes**  
+- Added an app-level handler that opens Client Portal while preserving `selectedClientId`.
+- Passed the handler into Client Detail.
+- Added an "Open client portal" action to Client Detail.
+- Preserved client visibility rules by keeping supplier cost, agency margin, and internal pricing notes out of Client Portal.
+
+**Tests**  
+- `pnpm run build` passed.
+- No automated test script exists beyond the production build.
+
+**Files**  
+- `src/App.tsx`
+- `src/pages/ClientDetailPage.tsx`
+- `README.md`
+- `NEXT_TASK.md`
+- `WORK_LOG.md`
+
+**Commit**  
+- Commit will be created after this log entry; final automation summary records the SHA.
+
+**Next**  
+- Show client-visible files and links in Client Portal.

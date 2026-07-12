@@ -14,6 +14,7 @@ type ClientDetailPageProps = {
   hourBanks: HourBank[];
   onProjectCreate: (clientId: string, input: NewProjectInput) => void;
   onProjectSelect: (projectId: string) => void;
+  onClientPortalOpen: (clientId: string) => void;
 };
 
 function getWaitingOn(projectStatus: string, paymentStatus?: string) {
@@ -38,6 +39,7 @@ export function ClientDetailPage({
   hourBanks,
   onProjectCreate,
   onProjectSelect,
+  onClientPortalOpen,
 }: ClientDetailPageProps) {
   const [projectForm, setProjectForm] = useState<NewProjectInput>(initialProjectForm);
   const client = selectedClientId ? getClientById(selectedClientId, clients) : undefined;
@@ -89,6 +91,11 @@ export function ClientDetailPage({
         <article className="card">
           <h2>Notes</h2>
           <p>{activeClient.notes}</p>
+          <div className="action-row">
+            <button className="primary-button" type="button" onClick={() => onClientPortalOpen(activeClient.id)}>
+              Open client portal
+            </button>
+          </div>
         </article>
       </section>
 

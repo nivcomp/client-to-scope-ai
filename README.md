@@ -107,6 +107,8 @@ Supplier Detail includes a direct action to open Supplier Portal for the same se
 
 Client Portal consumes selected client context and local app state to show client-facing projects, payments, paid hours, and change-request status without exposing agency-only pricing data.
 
+Client Detail includes a direct action to open Client Portal for the same selected client context.
+
 ## App Structure
 
 - `src/App.tsx` keeps the active view state and renders the selected page.

@@ -1,28 +1,28 @@
-# NEXT TASK: Client Detail Opens Portal Context
+# NEXT TASK: Client Portal Shows Client-Visible Files
 
 ## Last Completed
 
-Client Portal now receives `selectedClientId` and local app state. It shows the selected or fallback client's projects, payment gate status, visible payment/hour-bank state, and change-request status without exposing supplier cost, agency margin, or internal pricing notes.
+Client Detail now exposes a clear action to open Client Portal for the selected client. The action preserves the selected client context already held in app state, so Client Portal shows that client's projects, payment state, paid hours, and change requests.
 
 ## Remaining Limitations
 
 - Client portal state is local only and resets on refresh or local session reset.
-- Client Portal still has to be opened from the sidebar, so the selected client context is not obvious from Client Detail.
+- Client Portal does not yet show client-visible files and links attached to the selected client's projects.
 - There is still no durable database persistence, authentication, or real client account context.
 
 ## Recommended Next Work Unit
 
-Add a simple button from Client Detail to open Client Portal for the selected client using the existing selected client state.
+Update Client Portal to show client-visible files and links from the existing mock `fileLinks` records for the selected client's projects.
 
 ## Why This Matters
 
-Supplier Detail can now jump into the supplier-facing placeholder for the selected supplier. Client Detail should offer the same workflow so Yaniv can inspect a client internally and immediately preview what the client would see.
+The MVP docs include files and links as part of client-facing project communication. Showing only client-visible items keeps the portal useful while preserving agency-only and supplier-only visibility boundaries.
 
 ## Acceptance Criteria
 
-- Client Detail exposes a clear action to open Client Portal for the selected client.
-- The action preserves the selected client context already held in app state.
-- Client Portal shows that client's projects, payment state, paid hours, and change requests.
+- Client Portal lists files and links for the selected client's projects.
+- Only records with `visibility` set to `client_visible` are shown.
+- The section uses existing mock `fileLinks`; no upload or storage integration is added.
 - Client Portal continues to hide supplier cost, agency margin, and internal pricing notes.
 - No Supabase, AI APIs, payment providers, auth, or deployment are added.
 - `pnpm run build` passes.
