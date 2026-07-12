@@ -101,6 +101,8 @@ Supplier Detail and Supplier Portal consume local project and time-entry state f
 
 Supplier Portal uses the selected supplier when available and falls back to an approved seed supplier for the placeholder view.
 
+Supplier Portal also shows the selected supplier's local time entries and marks only approved time as payable.
+
 ## App Structure
 
 - `src/App.tsx` keeps the active view state and renders the selected page.

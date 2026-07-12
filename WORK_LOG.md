@@ -176,3 +176,33 @@ Update Supplier Portal to use the selected supplier context instead of a fixed p
 
 **Next**  
 - Show local supplier time entries in Supplier Portal.
+
+---
+
+### 2026-07-12 - Supplier portal local time entries
+
+**Work unit**  
+Show selected supplier local time entries in Supplier Portal.
+
+**Changes**  
+- Passed app-level local `timeEntries` into Supplier Portal.
+- Added a supplier-facing time-entry table filtered to the selected or fallback supplier.
+- Marked approved supplier time as payable and submitted/rejected time as not payable until agency approval.
+- Preserved supplier visibility rules by keeping client price, agency margin, and internal pricing notes out of the portal.
+
+**Tests**  
+- `pnpm run build` passed.
+- No automated test script exists beyond the production build.
+
+**Files**  
+- `src/App.tsx`
+- `src/pages/SupplierPortalPage.tsx`
+- `README.md`
+- `NEXT_TASK.md`
+- `WORK_LOG.md`
+
+**Commit**  
+- Commit will be created after this log entry; final automation summary records the SHA.
+
+**Next**  
+- Add a Supplier Detail action that opens Supplier Portal for the selected supplier context.
