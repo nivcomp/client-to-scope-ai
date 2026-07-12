@@ -146,3 +146,33 @@ Update supplier-facing placeholder screens to use app-level local project and ti
 
 **Next**  
 - Update Supplier Portal to use the selected supplier context instead of a fixed placeholder supplier id.
+
+---
+
+### 2026-07-11 - Supplier portal selected context
+
+**Work unit**  
+Update Supplier Portal to use the selected supplier context instead of a fixed placeholder supplier id.
+
+**Changes**  
+- Passed `selectedSupplierId` from app state into Supplier Portal.
+- Supplier Portal now uses the selected supplier when available.
+- Added a clear fallback supplier state for the placeholder portal when no supplier has been selected.
+- Preserved supplier visibility rules by keeping client price, agency margin, and internal pricing notes out of the portal.
+
+**Tests**  
+- `pnpm run build` passed.
+- No automated test script exists beyond the production build.
+
+**Files**  
+- `src/App.tsx`
+- `src/pages/SupplierPortalPage.tsx`
+- `README.md`
+- `NEXT_TASK.md`
+- `WORK_LOG.md`
+
+**Commit**  
+- Commit will be created after this log entry; final automation summary records the SHA.
+
+**Next**  
+- Show local supplier time entries in Supplier Portal.

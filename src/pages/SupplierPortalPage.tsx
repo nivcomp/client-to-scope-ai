@@ -1,19 +1,25 @@
 import { PageHeader } from "../components/PageHeader";
+import { suppliers } from "../data/mockData";
 import { canWorkStart } from "../lib/domainHelpers";
 import type { Project } from "../types/domain";
 
 type SupplierPortalPageProps = {
+  selectedSupplierId?: string;
   projects: Project[];
 };
 
-export function SupplierPortalPage({ projects }: SupplierPortalPageProps) {
-  const supplierId = "supplier-1";
-  const assigned = projects.filter((project) => project.assignedSupplierIds.includes(supplierId));
+export function SupplierPortalPage({ selectedSupplierId, projects }: SupplierPortalPageProps) {
+  const fallbackSupplier = suppliers.find((supplier) => supplier.status === "approved") ?? suppliers[0];
+  const supplier = suppliers.find((item) => item.id === selectedSupplierId) ?? fallbackSupplier;
+  const assigned = supplier
+    ? projects.filter((project) => project.assignedSupplierIds.includes(supplier.id))
+    : [];
   return (
     <>
       <PageHeader title="Supplier Portal Placeholder" subtitle="A limited supplier view for assigned work, updates, own time entries, and amount owed." />
       <section className="card">
         <h2>Supplier cannot see client price or margin</h2>
+        <p>{selectedSupplierId ? `Viewing as ${supplier?.name}.` : `No supplier selected. Showing fallback supplier ${supplier?.name}.`}</p>
         <table>
           <thead>
             <tr>

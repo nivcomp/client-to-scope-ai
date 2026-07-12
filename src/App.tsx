@@ -336,7 +336,7 @@ function App() {
       />
     ),
     "client-portal": <ClientPortalPage />,
-    "supplier-portal": <SupplierPortalPage projects={projects} />,
+    "supplier-portal": <SupplierPortalPage selectedSupplierId={selectedSupplierId} projects={projects} />,
     "ai-workbench": <AIWorkbenchPage />,
   } satisfies Record<ViewKey, JSX.Element>;
 

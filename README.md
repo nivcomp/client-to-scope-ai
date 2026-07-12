@@ -99,6 +99,8 @@ Project Detail can also assign and remove approved suppliers using local state. 
 
 Supplier Detail and Supplier Portal consume local project and time-entry state for assignment-sensitive views, while still excluding client price, margin, and internal pricing notes.
 
+Supplier Portal uses the selected supplier when available and falls back to an approved seed supplier for the placeholder view.
+
 ## App Structure
 
 - `src/App.tsx` keeps the active view state and renders the selected page.
