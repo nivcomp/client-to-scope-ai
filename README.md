@@ -105,6 +105,8 @@ Supplier Portal also shows the selected supplier's local time entries and marks 
 
 Supplier Detail includes a direct action to open Supplier Portal for the same selected supplier context.
 
+Client Portal consumes selected client context and local app state to show client-facing projects, payments, paid hours, and change-request status without exposing agency-only pricing data.
+
 ## App Structure
 
 - `src/App.tsx` keeps the active view state and renders the selected page.

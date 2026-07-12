@@ -347,7 +347,16 @@ function App() {
         onPaymentReceived={markPaymentReceived}
       />
     ),
-    "client-portal": <ClientPortalPage />,
+    "client-portal": (
+      <ClientPortalPage
+        selectedClientId={selectedClientId}
+        clients={clients}
+        projects={projects}
+        changeRequests={changeRequests}
+        clientPayments={clientPayments}
+        hourBanks={hourBanks}
+      />
+    ),
     "supplier-portal": <SupplierPortalPage selectedSupplierId={selectedSupplierId} projects={projects} timeEntries={timeEntries} />,
     "ai-workbench": <AIWorkbenchPage />,
   } satisfies Record<ViewKey, JSX.Element>;

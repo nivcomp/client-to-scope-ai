@@ -236,3 +236,33 @@ Add a Supplier Detail action that opens Supplier Portal for the selected supplie
 
 **Next**  
 - Update Client Portal to use selected client context and local client-facing state.
+
+---
+
+### 2026-07-12 - Client portal selected context
+
+**Work unit**  
+Update Client Portal to use selected client context and local client-facing state.
+
+**Changes**  
+- Passed selected client, local projects, payments, hour banks, and change requests into Client Portal.
+- Replaced hardcoded client seed data with selected-client or fallback-client context.
+- Added client-facing project status, payment gate, payment/hour-bank, and change-request views.
+- Preserved visibility rules by excluding supplier cost, agency margin, and internal pricing notes.
+
+**Tests**  
+- `pnpm run build` passed.
+- No automated test script exists beyond the production build.
+
+**Files**  
+- `src/App.tsx`
+- `src/pages/ClientPortalPage.tsx`
+- `README.md`
+- `NEXT_TASK.md`
+- `WORK_LOG.md`
+
+**Commit**  
+- Commit will be created after this log entry; final automation summary records the SHA.
+
+**Next**  
+- Add a Client Detail action that opens Client Portal for the selected client context.
