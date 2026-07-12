@@ -326,3 +326,32 @@ Show client-visible files and links in Client Portal.
 
 **Next**  
 - Show client-visible project messages in Client Portal.
+
+---
+
+### 2026-07-12 - Client portal visible messages
+
+**Work unit**  
+Show client-visible project messages in Client Portal.
+
+**Changes**  
+- Added a client-visible messages section to Client Portal.
+- Filtered project messages by selected client projects and `visibility === "client_visible"`.
+- Used existing mock `projectMessages`; no chat, AI, or notification integration was added.
+- Preserved visibility rules by excluding agency-only and supplier-only messages from Client Portal.
+
+**Tests**  
+- `pnpm run build` passed.
+- No automated test script exists beyond the production build.
+
+**Files**  
+- `src/pages/ClientPortalPage.tsx`
+- `README.md`
+- `NEXT_TASK.md`
+- `WORK_LOG.md`
+
+**Commit**  
+- Commit will be created after this log entry; final automation summary records the SHA.
+
+**Next**  
+- Show supplier-visible files and links in Supplier Portal.

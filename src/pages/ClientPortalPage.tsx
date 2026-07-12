@@ -1,6 +1,6 @@
 import { PageHeader } from "../components/PageHeader";
 import { StatusBadge } from "../components/StatusBadge";
-import { approvals, fileLinks } from "../data/mockData";
+import { approvals, fileLinks, projectMessages } from "../data/mockData";
 import { canWorkStart, currency, getClientById, statusLabels } from "../lib/domainHelpers";
 import type { ChangeRequest, Client, ClientPayment, HourBank, Project } from "../types/domain";
 
@@ -29,6 +29,9 @@ export function ClientPortalPage({
   const clientChangeRequests = changeRequests.filter((request) => clientProjectIds.includes(request.projectId));
   const clientVisibleFiles = fileLinks.filter(
     (file) => clientProjectIds.includes(file.projectId) && file.visibility === "client_visible",
+  );
+  const clientVisibleMessages = projectMessages.filter(
+    (message) => clientProjectIds.includes(message.projectId) && message.visibility === "client_visible",
   );
 
   return (
@@ -182,6 +185,36 @@ export function ClientPortalPage({
           </table>
         ) : (
           <p>No client-visible files or links are available for this client yet.</p>
+        )}
+      </section>
+      <section className="card">
+        <h2>Messages</h2>
+        {clientVisibleMessages.length ? (
+          <table>
+            <thead>
+              <tr>
+                <th>Project</th>
+                <th>From</th>
+                <th>Message</th>
+                <th>Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              {clientVisibleMessages.map((message) => {
+                const project = clientProjects.find((item) => item.id === message.projectId);
+                return (
+                  <tr key={message.id}>
+                    <td>{project?.name ?? "Project"}</td>
+                    <td>{message.authorRole}</td>
+                    <td>{message.body}</td>
+                    <td>{message.createdDate}</td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        ) : (
+          <p>No client-visible project messages are available yet.</p>
         )}
       </section>
     </>

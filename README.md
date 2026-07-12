@@ -111,6 +111,8 @@ Client Detail includes a direct action to open Client Portal for the same select
 
 Client Portal lists client-visible files and links from project records without exposing agency-only or supplier-only files.
 
+Client Portal also lists client-visible project messages without adding chat, AI, or notification integrations.
+
 ## App Structure
 
 - `src/App.tsx` keeps the active view state and renders the selected page.
