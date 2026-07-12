@@ -84,6 +84,11 @@ function App() {
     setActiveView("supplier-detail");
   }
 
+  function openSupplierPortal(supplierId: string) {
+    setSelectedSupplierId(supplierId);
+    setActiveView("supplier-portal");
+  }
+
   function resetLocalSession() {
     setClients(initialClients);
     setProjects(initialProjects);
@@ -310,7 +315,14 @@ function App() {
       />
     ),
     suppliers: <SuppliersPage onSupplierSelect={openSupplierDetail} />,
-    "supplier-detail": <SupplierDetailPage selectedSupplierId={selectedSupplierId} projects={projects} timeEntries={timeEntries} />,
+    "supplier-detail": (
+      <SupplierDetailPage
+        selectedSupplierId={selectedSupplierId}
+        projects={projects}
+        timeEntries={timeEntries}
+        onSupplierPortalOpen={openSupplierPortal}
+      />
+    ),
     "pricing-margin": <PricingMarginPage />,
     "change-requests": (
       <ChangeRequestsPage

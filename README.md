@@ -103,6 +103,8 @@ Supplier Portal uses the selected supplier when available and falls back to an a
 
 Supplier Portal also shows the selected supplier's local time entries and marks only approved time as payable.
 
+Supplier Detail includes a direct action to open Supplier Portal for the same selected supplier context.
+
 ## App Structure
 
 - `src/App.tsx` keeps the active view state and renders the selected page.

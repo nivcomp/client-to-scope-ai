@@ -1,28 +1,28 @@
-# NEXT TASK: Supplier Detail Opens Portal Context
+# NEXT TASK: Client Portal Uses Selected Client Context
 
 ## Last Completed
 
-Supplier Portal now receives local `timeEntries` from app state and shows the selected or fallback supplier's time entries. Approved time is marked payable, while submitted and rejected time remain not payable until agency approval.
+Supplier Detail now exposes a clear action to open Supplier Portal for the selected supplier. The action preserves the selected supplier context already held in app state, so the portal shows that supplier's assigned projects and local time entries.
 
 ## Remaining Limitations
 
 - Supplier assignment and time changes are local only and reset on refresh or local session reset.
-- Supplier Portal still has to be opened from the sidebar, so the selected supplier context is not obvious from Supplier Detail.
-- There is still no durable database persistence, authentication, or real supplier account context.
+- Client Portal still uses placeholder content and does not reflect the selected client context.
+- There is still no durable database persistence, authentication, or real client account context.
 
 ## Recommended Next Work Unit
 
-Add a simple button from Supplier Detail to open Supplier Portal for the selected supplier using the existing selected supplier state.
+Update Client Portal to receive `selectedClientId` and local app state so it can show the selected client's visible projects, payment gate status, and approval/change-request context.
 
 ## Why This Matters
 
-Yaniv can now inspect a supplier internally and should be able to jump directly into the supplier-facing placeholder view for the same supplier. This improves the local MVP workflow without adding authentication or routing complexity.
+Supplier-facing placeholder workflow now follows selected context. Client-facing placeholder workflow should do the same so Yaniv can inspect a client internally and understand what the client would see without adding authentication or persistence.
 
 ## Acceptance Criteria
 
-- Supplier Detail exposes a clear action to open Supplier Portal for the selected supplier.
-- The action preserves the selected supplier context already held in app state.
-- Supplier Portal shows that supplier's assigned projects and local time entries.
-- Supplier-facing screens continue to hide client price, agency margin, and internal pricing notes.
+- Client Portal receives `selectedClientId` from app state.
+- Client Portal shows selected client context when available and a clear fallback when not.
+- Client Portal shows only client-appropriate project status, payment gate, and change-request status.
+- Client Portal does not expose supplier cost, agency margin, or internal pricing notes.
 - No Supabase, AI APIs, payment providers, auth, or deployment are added.
 - `pnpm run build` passes.

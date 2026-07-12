@@ -206,3 +206,33 @@ Show selected supplier local time entries in Supplier Portal.
 
 **Next**  
 - Add a Supplier Detail action that opens Supplier Portal for the selected supplier context.
+
+---
+
+### 2026-07-12 - Supplier detail opens portal context
+
+**Work unit**  
+Add a Supplier Detail action that opens Supplier Portal for the selected supplier context.
+
+**Changes**  
+- Added an app-level handler that opens Supplier Portal while preserving `selectedSupplierId`.
+- Passed the handler into Supplier Detail.
+- Added an "Open supplier portal" action to Supplier Detail.
+- Preserved supplier visibility rules by keeping client price, agency margin, and internal pricing notes out of supplier-facing screens.
+
+**Tests**  
+- `pnpm run build` passed.
+- No automated test script exists beyond the production build.
+
+**Files**  
+- `src/App.tsx`
+- `src/pages/SupplierDetailPage.tsx`
+- `README.md`
+- `NEXT_TASK.md`
+- `WORK_LOG.md`
+
+**Commit**  
+- Commit will be created after this log entry; final automation summary records the SHA.
+
+**Next**  
+- Update Client Portal to use selected client context and local client-facing state.

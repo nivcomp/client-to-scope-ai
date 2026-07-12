@@ -8,9 +8,10 @@ type SupplierDetailPageProps = {
   selectedSupplierId?: string;
   projects: Project[];
   timeEntries: TimeEntry[];
+  onSupplierPortalOpen: (supplierId: string) => void;
 };
 
-export function SupplierDetailPage({ selectedSupplierId, projects, timeEntries }: SupplierDetailPageProps) {
+export function SupplierDetailPage({ selectedSupplierId, projects, timeEntries, onSupplierPortalOpen }: SupplierDetailPageProps) {
   const supplier = selectedSupplierId ? getSupplierById(selectedSupplierId) : undefined;
 
   if (!supplier) {
@@ -46,6 +47,11 @@ export function SupplierDetailPage({ selectedSupplierId, projects, timeEntries }
         <article className="card warning-card">
           <h2>Supplier visibility rule</h2>
           <p>Supplier portal excludes client price, margin, and internal agency notes.</p>
+          <div className="action-row">
+            <button className="primary-button" type="button" onClick={() => onSupplierPortalOpen(supplier.id)}>
+              Open supplier portal
+            </button>
+          </div>
         </article>
       </section>
       <section className="card">
