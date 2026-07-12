@@ -473,3 +473,32 @@ Show supplier-visible assigned scope items in Supplier Portal.
 
 **Next**  
 - Show client-visible scope items in Client Portal.
+
+---
+
+### 2026-07-12 - Client portal scope items
+
+**Work unit**  
+Show client-visible scope items in Client Portal.
+
+**Changes**  
+- Added a scope items section to Client Portal.
+- Filtered scope items by the selected client's projects and `clientVisible === true`.
+- Used existing mock `scopes` and `scopeItems`; no workflow, persistence, AI, auth, or payment integration was added.
+- Preserved client visibility rules by excluding supplier costs, agency margin, internal delivery notes, and pricing notes.
+
+**Tests**  
+- `pnpm run build` passed.
+- No automated test script exists beyond the production build.
+
+**Files**  
+- `src/pages/ClientPortalPage.tsx`
+- `README.md`
+- `NEXT_TASK.md`
+- `WORK_LOG.md`
+
+**Commit**  
+- Commit will be created after this log entry; final automation summary records the SHA.
+
+**Next**  
+- Show scope approval details in Client Portal.

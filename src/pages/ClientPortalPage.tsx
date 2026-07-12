@@ -1,6 +1,6 @@
 import { PageHeader } from "../components/PageHeader";
 import { StatusBadge } from "../components/StatusBadge";
-import { approvals, fileLinks, projectMessages } from "../data/mockData";
+import { approvals, fileLinks, projectMessages, scopeItems, scopes } from "../data/mockData";
 import { canWorkStart, currency, getClientById, statusLabels } from "../lib/domainHelpers";
 import type { ChangeRequest, Client, ClientPayment, HourBank, Project } from "../types/domain";
 
@@ -33,6 +33,12 @@ export function ClientPortalPage({
   const clientVisibleMessages = projectMessages.filter(
     (message) => clientProjectIds.includes(message.projectId) && message.visibility === "client_visible",
   );
+  const clientVisibleScopeItems = scopeItems
+    .map((item) => {
+      const scope = scopes.find((currentScope) => currentScope.id === item.scopeId);
+      return { item, scope };
+    })
+    .filter(({ item, scope }) => item.clientVisible && scope && clientProjectIds.includes(scope.projectId));
 
   return (
     <>
@@ -69,6 +75,39 @@ export function ClientPortalPage({
           </table>
         ) : (
           <p>No client-visible projects are available for this client yet.</p>
+        )}
+      </section>
+      <section className="card">
+        <h2>Scope items</h2>
+        {clientVisibleScopeItems.length ? (
+          <table>
+            <thead>
+              <tr>
+                <th>Project</th>
+                <th>Scope</th>
+                <th>Phase</th>
+                <th>Item</th>
+                <th>Acceptance</th>
+              </tr>
+            </thead>
+            <tbody>
+              {clientVisibleScopeItems.map(({ item, scope }) => (
+                <tr key={item.id}>
+                  <td>{scope ? clientProjects.find((project) => project.id === scope.projectId)?.name ?? "Project" : "Project"}</td>
+                  <td>{scope ? `v${scope.version} · ${scope.status}` : "Scope"}</td>
+                  <td>{item.phase}</td>
+                  <td>
+                    <strong>{item.title}</strong>
+                    <br />
+                    {item.description}
+                  </td>
+                  <td>{item.acceptanceNotes}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        ) : (
+          <p>No client-visible scope items are available for this client yet.</p>
         )}
       </section>
       <section className="detail-grid">

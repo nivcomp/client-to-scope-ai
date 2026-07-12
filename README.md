@@ -113,6 +113,8 @@ Client Portal lists client-visible files and links from project records without 
 
 Client Portal also lists client-visible project messages without adding chat, AI, or notification integrations.
 
+Client Portal lists client-visible scope items from selected client projects without exposing supplier costs, agency margin, or internal delivery notes.
+
 Supplier Portal lists supplier-visible files and links from assigned projects without exposing client-only or agency-only files.
 
 Supplier Portal also lists supplier-visible project messages without adding chat, AI, or notification integrations.
