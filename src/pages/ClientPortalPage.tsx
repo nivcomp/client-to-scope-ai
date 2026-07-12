@@ -218,6 +218,7 @@ export function ClientPortalPage({
                 <th>Request</th>
                 <th>Project</th>
                 <th>Status</th>
+                <th>Client price</th>
                 <th>Rule</th>
               </tr>
             </thead>
@@ -229,6 +230,7 @@ export function ClientPortalPage({
                     <td>{request.title}</td>
                     <td>{project?.name ?? "Project"}</td>
                     <td><StatusBadge label={request.status} tone={request.status === "client_approved" ? "success" : "warning"} /></td>
+                    <td>{request.agencyPrice ? currency.format(request.agencyPrice) : "Awaiting agency pricing"}</td>
                     <td>{request.status === "client_approved" ? "Approved change can become work" : "Needs agency pricing and client approval before work starts"}</td>
                   </tr>
                 );

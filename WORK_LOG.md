@@ -532,3 +532,32 @@ Show scope approval details in Client Portal.
 
 **Next**  
 - Show client-facing change request prices in Client Portal.
+
+---
+
+### 2026-07-12 - Client portal change request prices
+
+**Work unit**  
+Show client-facing change request prices in Client Portal.
+
+**Changes**  
+- Added a client price column to Client Portal change requests.
+- Displayed `agencyPrice` when present and a clear awaiting-pricing state when absent.
+- Preserved client visibility rules by excluding supplier costs, agency margin, internal pricing notes, and supplier cost estimates.
+- No change request action, persistence, AI, auth, or payment integration was added.
+
+**Tests**  
+- `pnpm run build` passed.
+- No automated test script exists beyond the production build.
+
+**Files**  
+- `src/pages/ClientPortalPage.tsx`
+- `README.md`
+- `NEXT_TASK.md`
+- `WORK_LOG.md`
+
+**Commit**  
+- Commit will be created after this log entry; final automation summary records the SHA.
+
+**Next**  
+- Show approved payable amounts in Supplier Portal.

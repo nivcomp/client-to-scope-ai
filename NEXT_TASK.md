@@ -1,28 +1,29 @@
-# NEXT TASK: Client Portal Shows Client Change Request Prices
+# NEXT TASK: Supplier Portal Shows Approved Payable Amounts
 
 ## Last Completed
 
-Client Portal now lists scope approval details for the selected client's projects.
+Client Portal change requests now show the client-facing agency price when it exists.
 
 ## Remaining Limitations
 
 - Portal state is local only and resets on refresh or local session reset.
-- Client Portal shows change request status, but it does not yet show client-facing change request prices when agency pricing is available.
+- Supplier Portal shows time entry status and payable rule, but it does not yet summarize approved payable amounts for the selected supplier.
 - There is still no durable database persistence, authentication, or real supplier account context.
 
 ## Recommended Next Work Unit
 
-Update Client Portal change requests to show the client-facing agency price when it exists, while continuing to hide supplier cost and agency margin.
+Update Supplier Portal to show a simple approved payable amount summary for the selected supplier using existing `supplierProfiles` rates and approved local time entries.
 
 ## Why This Matters
 
-Client change requests must be reviewed and priced before they become work. Showing the client-facing price in the portal makes that rule visible without exposing supplier costs or margin.
+Suppliers need to understand what approved time is payable, while the agency still controls approval. A small read-only summary improves the supplier placeholder without exposing client price or agency margin.
 
 ## Acceptance Criteria
 
-- Client Portal change requests include a client-facing price column.
-- The price shows `agencyPrice` when present and a clear "Awaiting agency pricing" state when absent.
-- Supplier cost, agency margin, and internal pricing notes remain hidden.
-- No new change request action, persistence, or payment integration is added.
+- Supplier Portal shows total approved hours for the selected supplier.
+- Supplier Portal shows an estimated payable amount using the supplier's hourly rate from `supplierProfiles`.
+- Submitted or rejected time is clearly excluded from payable totals.
+- Client price, agency margin, and internal pricing notes remain hidden.
+- No new payment action, persistence, or payment integration is added.
 - No Supabase, AI APIs, payment providers, auth, or deployment are added.
 - `pnpm run build` passes.
