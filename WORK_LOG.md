@@ -621,3 +621,31 @@ Show project-level payable breakdown in Supplier Portal.
 
 **Next**  
 - Show payment due details in Client Portal.
+
+---
+
+### 2026-07-12 - Client portal payment details
+
+**Work unit**  
+Show payment due details in Client Portal.
+
+**Changes**  
+- Added due date, received date, and notes columns to Client Portal payment rows.
+- Used existing local `ClientPayment` records; no payment action or provider integration was added.
+- Preserved client visibility rules by excluding supplier cost, agency margin, and internal pricing notes.
+
+**Tests**  
+- `pnpm run build` passed.
+- No automated test script exists beyond the production build.
+
+**Files**  
+- `src/pages/ClientPortalPage.tsx`
+- `README.md`
+- `NEXT_TASK.md`
+- `WORK_LOG.md`
+
+**Commit**  
+- Commit will be created after this log entry; final automation summary records the SHA.
+
+**Next**  
+- Show paid hour expiry dates in Client Portal.

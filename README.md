@@ -111,6 +111,8 @@ Supplier Detail includes a direct action to open Supplier Portal for the same se
 
 Client Portal consumes selected client context and local app state to show client-facing projects, payments, paid hours, and change-request status without exposing agency-only pricing data.
 
+Client Portal payment rows include due date, received date, and payment notes from existing local client payment records.
+
 Client Detail includes a direct action to open Client Portal for the same selected client context.
 
 Client Portal lists client-visible files and links from project records without exposing agency-only or supplier-only files.

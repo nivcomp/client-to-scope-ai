@@ -159,6 +159,9 @@ export function ClientPortalPage({
                   <th>Project</th>
                   <th>Amount</th>
                   <th>Status</th>
+                  <th>Due</th>
+                  <th>Received</th>
+                  <th>Notes</th>
                 </tr>
               </thead>
               <tbody>
@@ -171,6 +174,9 @@ export function ClientPortalPage({
                         <td>{project?.name ?? "Project"}</td>
                         <td>{currency.format(payment.amount)}</td>
                         <td><StatusBadge label={payment.status} tone={payment.status === "received" ? "success" : "warning"} /></td>
+                        <td>{payment.dueDate ?? "Not set"}</td>
+                        <td>{payment.receivedDate ?? "Not received"}</td>
+                        <td>{payment.notes}</td>
                       </tr>
                     );
                   })}
