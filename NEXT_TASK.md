@@ -1,27 +1,27 @@
-# NEXT TASK: Client Portal Shows Paid Hour Expiry
+# NEXT TASK: Client Portal Shows Paid Hour Usage
 
 ## Last Completed
 
-Client Portal payments now show due date, received date, and payment notes.
+Client Portal paid hour rows now show expiry date when available.
 
 ## Remaining Limitations
 
 - Portal state is local only and resets on refresh or local session reset.
-- Client Portal shows paid hour balances, but it does not yet show hour bank expiry dates when available.
+- Client Portal shows paid hour purchased and remaining totals, but it does not yet show used hours.
 - There is still no durable database persistence, authentication, or real supplier account context.
 
 ## Recommended Next Work Unit
 
-Update Client Portal paid hours to show expiry date from existing hour bank records.
+Update Client Portal paid hours to show used hours from existing hour bank records.
 
 ## Why This Matters
 
-Paid hours are part of the payment gate. Showing expiry dates makes the hour-bank placeholder more operational without adding billing or payment integration.
+Paid hours are part of the payment gate. Showing used hours makes the hour-bank placeholder clearer without adding billing or payment integration.
 
 ## Acceptance Criteria
 
-- Client Portal paid hour rows show expiry date when available.
-- Client Portal paid hour rows show a clear "No expiry" state when no expiry date exists.
+- Client Portal paid hour rows show used hours.
+- Paid hour rows continue to show purchased, remaining, and expiry.
 - Supplier cost, agency margin, and internal pricing notes remain hidden.
 - No new payment action, persistence, or payment integration is added.
 - No Supabase, AI APIs, payment providers, auth, or deployment are added.

@@ -195,6 +195,7 @@ export function ClientPortalPage({
                   <th>Project</th>
                   <th>Purchased</th>
                   <th>Remaining</th>
+                  <th>Expiry</th>
                 </tr>
               </thead>
               <tbody>
@@ -205,6 +206,7 @@ export function ClientPortalPage({
                       <td>{project?.name ?? "General"}</td>
                       <td>{bank.hoursPurchased} hrs</td>
                       <td>{bank.hoursRemaining} hrs</td>
+                      <td>{bank.expiryDate ?? "No expiry"}</td>
                     </tr>
                   );
                 })}

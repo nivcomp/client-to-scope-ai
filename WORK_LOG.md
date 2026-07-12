@@ -649,3 +649,32 @@ Show payment due details in Client Portal.
 
 **Next**  
 - Show paid hour expiry dates in Client Portal.
+
+---
+
+### 2026-07-13 - Client portal paid hour expiry
+
+**Work unit**  
+Show paid hour expiry dates in Client Portal.
+
+**Changes**  
+- Added an expiry column to Client Portal paid hour rows.
+- Displayed `expiryDate` when available and a clear `No expiry` state when absent.
+- Used existing local `HourBank` records; no billing action, persistence, AI, auth, or payment integration was added.
+- Preserved client visibility rules by excluding supplier cost, agency margin, and internal pricing notes.
+
+**Tests**  
+- `pnpm run build` passed.
+- No automated test script exists beyond the production build.
+
+**Files**  
+- `src/pages/ClientPortalPage.tsx`
+- `README.md`
+- `NEXT_TASK.md`
+- `WORK_LOG.md`
+
+**Commit**  
+- Commit will be created after this log entry; final automation summary records the SHA.
+
+**Next**  
+- Show paid hour usage in Client Portal.

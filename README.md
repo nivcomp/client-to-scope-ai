@@ -113,6 +113,8 @@ Client Portal consumes selected client context and local app state to show clien
 
 Client Portal payment rows include due date, received date, and payment notes from existing local client payment records.
 
+Client Portal paid hour rows include hour bank expiry dates when available.
+
 Client Detail includes a direct action to open Client Portal for the same selected client context.
 
 Client Portal lists client-visible files and links from project records without exposing agency-only or supplier-only files.
