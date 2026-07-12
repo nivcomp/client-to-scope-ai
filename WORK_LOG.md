@@ -591,3 +591,33 @@ Show approved payable amounts in Supplier Portal.
 
 **Next**  
 - Show project-level payable breakdown in Supplier Portal.
+
+---
+
+### 2026-07-12 - Supplier portal payable breakdown
+
+**Work unit**  
+Show project-level payable breakdown in Supplier Portal.
+
+**Changes**  
+- Added a payable project breakdown to Supplier Portal.
+- Grouped approved time entries by project for the selected supplier.
+- Displayed project name, approved hours, and estimated payable amount using the supplier's hourly rate.
+- Kept submitted and rejected time excluded from payable totals.
+- Preserved supplier visibility rules by excluding client price, agency margin, internal pricing notes, and payment actions.
+
+**Tests**  
+- `pnpm run build` passed.
+- No automated test script exists beyond the production build.
+
+**Files**  
+- `src/pages/SupplierPortalPage.tsx`
+- `README.md`
+- `NEXT_TASK.md`
+- `WORK_LOG.md`
+
+**Commit**  
+- Commit will be created after this log entry; final automation summary records the SHA.
+
+**Next**  
+- Show payment due details in Client Portal.

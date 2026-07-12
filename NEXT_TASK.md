@@ -1,29 +1,29 @@
-# NEXT TASK: Supplier Portal Shows Payable Project Breakdown
+# NEXT TASK: Client Portal Shows Payment Due Details
 
 ## Last Completed
 
-Supplier Portal now shows total approved hours and estimated payable amount for the selected supplier.
+Supplier Portal now shows approved payable hours and estimated amount broken down by project.
 
 ## Remaining Limitations
 
 - Portal state is local only and resets on refresh or local session reset.
-- Supplier Portal shows a total payable summary, but it does not yet break approved payable hours down by project.
+- Client Portal shows payment amount and status, but it does not yet show due date, received date, or payment notes.
 - There is still no durable database persistence, authentication, or real supplier account context.
 
 ## Recommended Next Work Unit
 
-Update Supplier Portal to show a simple project-level breakdown of approved payable hours and estimated amount using existing approved local time entries.
+Update Client Portal payments to show due date, received date, and notes from existing client payment records.
 
 ## Why This Matters
 
-The supplier can now see the total amount likely payable. A project-level breakdown makes that total easier to verify without exposing client price, agency margin, or internal pricing notes.
+Payment gates are central to the MVP. Showing due and received dates in the client-facing placeholder makes payment readiness clearer without adding payment provider integration.
 
 ## Acceptance Criteria
 
-- Supplier Portal shows approved payable hours grouped by project for the selected supplier.
-- Each project row shows project name, approved hours, and estimated amount using the supplier's hourly rate.
-- Submitted or rejected time remains excluded from payable totals.
-- Client price, agency margin, and internal pricing notes remain hidden.
+- Client Portal payment rows show due date when available.
+- Client Portal payment rows show received date when available.
+- Client Portal payment rows show client-safe payment notes.
+- Supplier cost, agency margin, and internal pricing notes remain hidden.
 - No new payment action, persistence, or payment integration is added.
 - No Supabase, AI APIs, payment providers, auth, or deployment are added.
 - `pnpm run build` passes.

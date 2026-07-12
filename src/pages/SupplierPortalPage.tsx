@@ -35,13 +35,18 @@ export function SupplierPortalPage({ selectedSupplierId, projects, timeEntries }
   const supplierProfile = supplier
     ? supplierProfiles.find((profile) => profile.supplierId === supplier.id)
     : undefined;
-  const approvedHours = supplierTimeEntries
-    .filter((entry) => entry.status === "approved")
-    .reduce((total, entry) => total + entry.hours, 0);
+  const approvedTimeEntries = supplierTimeEntries.filter((entry) => entry.status === "approved");
+  const approvedHours = approvedTimeEntries.reduce((total, entry) => total + entry.hours, 0);
   const excludedHours = supplierTimeEntries
     .filter((entry) => entry.status !== "approved")
     .reduce((total, entry) => total + entry.hours, 0);
   const estimatedPayableAmount = approvedHours * (supplierProfile?.hourlyRate ?? 0);
+  const payableProjects = Array.from(
+    approvedTimeEntries.reduce((projectTotals, entry) => {
+      projectTotals.set(entry.projectId, (projectTotals.get(entry.projectId) ?? 0) + entry.hours);
+      return projectTotals;
+    }, new Map<string, number>()),
+  );
   return (
     <>
       <PageHeader title="Supplier Portal Placeholder" subtitle="A limited supplier view for assigned work, updates, own time entries, and amount owed." />
@@ -120,6 +125,28 @@ export function SupplierPortalPage({ selectedSupplierId, projects, timeEntries }
             <strong>{excludedHours} hrs</strong>
           </article>
         </div>
+        {payableProjects.length ? (
+          <table>
+            <thead>
+              <tr>
+                <th>Payable project</th>
+                <th>Approved hours</th>
+                <th>Estimated amount</th>
+              </tr>
+            </thead>
+            <tbody>
+              {payableProjects.map(([projectId, hours]) => (
+                <tr key={projectId}>
+                  <td>{getProjectName(projectId, projects)}</td>
+                  <td>{hours} hrs</td>
+                  <td>{supplierProfile ? currency.format(hours * supplierProfile.hourlyRate) : "Rate missing"}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        ) : (
+          <p>No approved time is payable for this supplier yet.</p>
+        )}
         {supplierTimeEntries.length ? (
           <table>
             <thead>
