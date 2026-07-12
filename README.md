@@ -115,6 +115,8 @@ Client Portal payment rows include due date, received date, and payment notes fr
 
 Client Portal paid hour rows include hour bank expiry dates when available.
 
+Client Portal paid hour rows also show used hours from existing local hour bank records.
+
 Client Detail includes a direct action to open Client Portal for the same selected client context.
 
 Client Portal lists client-visible files and links from project records without exposing agency-only or supplier-only files.

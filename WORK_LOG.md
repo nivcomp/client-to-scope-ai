@@ -678,3 +678,31 @@ Show paid hour expiry dates in Client Portal.
 
 **Next**  
 - Show paid hour usage in Client Portal.
+
+---
+
+### 2026-07-13 - Client portal paid hour usage
+
+**Work unit**  
+Show paid hour usage in Client Portal.
+
+**Changes**  
+- Added a used hours column to Client Portal paid hour rows.
+- Continued showing purchased, remaining, and expiry values from existing local `HourBank` records.
+- Preserved client visibility rules by excluding supplier cost, agency margin, and internal pricing notes.
+
+**Tests**  
+- `pnpm run build` passed.
+- No automated test script exists beyond the production build.
+
+**Files**  
+- `src/pages/ClientPortalPage.tsx`
+- `README.md`
+- `NEXT_TASK.md`
+- `WORK_LOG.md`
+
+**Commit**  
+- Commit will be created after this log entry; final automation summary records the SHA.
+
+**Next**  
+- Show paid hour usage percentage in Client Portal.
