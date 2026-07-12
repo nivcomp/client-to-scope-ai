@@ -502,3 +502,33 @@ Show client-visible scope items in Client Portal.
 
 **Next**  
 - Show scope approval details in Client Portal.
+
+---
+
+### 2026-07-12 - Client portal approval details
+
+**Work unit**  
+Show scope approval details in Client Portal.
+
+**Changes**  
+- Added a scope approvals section to Client Portal.
+- Filtered approval records by the selected client's projects.
+- Displayed project, scope version/status, approval status, notes, and approved date when available.
+- Used existing mock `approvals` and `scopes`; no approval action, persistence, AI, auth, or payment integration was added.
+- Preserved client visibility rules by excluding supplier costs, agency margin, internal delivery notes, and pricing notes.
+
+**Tests**  
+- `pnpm run build` passed.
+- No automated test script exists beyond the production build.
+
+**Files**  
+- `src/pages/ClientPortalPage.tsx`
+- `README.md`
+- `NEXT_TASK.md`
+- `WORK_LOG.md`
+
+**Commit**  
+- Commit will be created after this log entry; final automation summary records the SHA.
+
+**Next**  
+- Show client-facing change request prices in Client Portal.
