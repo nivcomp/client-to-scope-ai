@@ -296,3 +296,33 @@ Add a Client Detail action that opens Client Portal for the selected client cont
 
 **Next**  
 - Show client-visible files and links in Client Portal.
+
+---
+
+### 2026-07-12 - Client portal visible files
+
+**Work unit**  
+Show client-visible files and links in Client Portal.
+
+**Changes**  
+- Added a client-visible file/link section to Client Portal.
+- Filtered project files by selected client projects and `visibility === "client_visible"`.
+- Added one client-visible mock file link so the placeholder has a visible client-facing artifact.
+- Preserved visibility rules by excluding agency-only and supplier-only files from Client Portal.
+
+**Tests**  
+- `pnpm run build` passed.
+- No automated test script exists beyond the production build.
+
+**Files**  
+- `src/pages/ClientPortalPage.tsx`
+- `src/data/mockData.ts`
+- `README.md`
+- `NEXT_TASK.md`
+- `WORK_LOG.md`
+
+**Commit**  
+- Commit will be created after this log entry; final automation summary records the SHA.
+
+**Next**  
+- Show client-visible project messages in Client Portal.

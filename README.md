@@ -109,6 +109,8 @@ Client Portal consumes selected client context and local app state to show clien
 
 Client Detail includes a direct action to open Client Portal for the same selected client context.
 
+Client Portal lists client-visible files and links from project records without exposing agency-only or supplier-only files.
+
 ## App Structure
 
 - `src/App.tsx` keeps the active view state and renders the selected page.

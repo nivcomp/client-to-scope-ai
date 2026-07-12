@@ -407,4 +407,13 @@ export const fileLinks: FileLink[] = [
     visibility: "supplier_visible",
     addedBy: "agency_admin",
   },
+  {
+    id: "file-3",
+    projectId: "project-1",
+    title: "Approved scope summary",
+    url: "https://example.com/scope-summary",
+    fileType: "brief",
+    visibility: "client_visible",
+    addedBy: "agency_admin",
+  },
 ];

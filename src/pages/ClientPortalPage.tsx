@@ -1,6 +1,6 @@
 import { PageHeader } from "../components/PageHeader";
 import { StatusBadge } from "../components/StatusBadge";
-import { approvals } from "../data/mockData";
+import { approvals, fileLinks } from "../data/mockData";
 import { canWorkStart, currency, getClientById, statusLabels } from "../lib/domainHelpers";
 import type { ChangeRequest, Client, ClientPayment, HourBank, Project } from "../types/domain";
 
@@ -27,6 +27,9 @@ export function ClientPortalPage({
   const clientProjectIds = clientProjects.map((project) => project.id);
   const clientHourBanks = client ? hourBanks.filter((bank) => bank.clientId === client.id) : [];
   const clientChangeRequests = changeRequests.filter((request) => clientProjectIds.includes(request.projectId));
+  const clientVisibleFiles = fileLinks.filter(
+    (file) => clientProjectIds.includes(file.projectId) && file.visibility === "client_visible",
+  );
 
   return (
     <>
@@ -149,6 +152,36 @@ export function ClientPortalPage({
           </table>
         ) : (
           <p>No change requests are visible for this client.</p>
+        )}
+      </section>
+      <section className="card">
+        <h2>Files and links</h2>
+        {clientVisibleFiles.length ? (
+          <table>
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Project</th>
+                <th>Type</th>
+                <th>Link</th>
+              </tr>
+            </thead>
+            <tbody>
+              {clientVisibleFiles.map((file) => {
+                const project = clientProjects.find((item) => item.id === file.projectId);
+                return (
+                  <tr key={file.id}>
+                    <td>{file.title}</td>
+                    <td>{project?.name ?? "Project"}</td>
+                    <td>{file.fileType}</td>
+                    <td><a href={file.url}>Open</a></td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        ) : (
+          <p>No client-visible files or links are available for this client yet.</p>
         )}
       </section>
     </>
