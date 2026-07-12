@@ -115,6 +115,8 @@ Client Portal also lists client-visible project messages without adding chat, AI
 
 Supplier Portal lists supplier-visible files and links from assigned projects without exposing client-only or agency-only files.
 
+Supplier Portal also lists supplier-visible project messages without adding chat, AI, or notification integrations.
+
 ## App Structure
 
 - `src/App.tsx` keeps the active view state and renders the selected page.

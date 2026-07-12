@@ -375,6 +375,14 @@ export const projectMessages: ProjectMessage[] = [
     visibility: "agency_only",
     createdDate: "2026-07-06",
   },
+  {
+    id: "message-3",
+    projectId: "project-1",
+    authorRole: "agency_admin",
+    body: "Please review the assigned scope notes before starting any implementation work.",
+    visibility: "supplier_visible",
+    createdDate: "2026-07-07",
+  },
 ];
 
 export const decisionLogs: DecisionLog[] = [

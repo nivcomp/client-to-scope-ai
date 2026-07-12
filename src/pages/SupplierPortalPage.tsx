@@ -1,6 +1,6 @@
 import { PageHeader } from "../components/PageHeader";
 import { StatusBadge } from "../components/StatusBadge";
-import { fileLinks, suppliers } from "../data/mockData";
+import { fileLinks, projectMessages, suppliers } from "../data/mockData";
 import { canWorkStart, getProjectName } from "../lib/domainHelpers";
 import type { Project, TimeEntry } from "../types/domain";
 
@@ -19,6 +19,9 @@ export function SupplierPortalPage({ selectedSupplierId, projects, timeEntries }
   const assignedProjectIds = assigned.map((project) => project.id);
   const supplierVisibleFiles = fileLinks.filter(
     (file) => assignedProjectIds.includes(file.projectId) && file.visibility === "supplier_visible",
+  );
+  const supplierVisibleMessages = projectMessages.filter(
+    (message) => assignedProjectIds.includes(message.projectId) && message.visibility === "supplier_visible",
   );
   const supplierTimeEntries = supplier
     ? timeEntries.filter((entry) => entry.supplierId === supplier.id)
@@ -105,6 +108,36 @@ export function SupplierPortalPage({ selectedSupplierId, projects, timeEntries }
           </table>
         ) : (
           <p>No supplier-visible files or links are available for this supplier yet.</p>
+        )}
+      </section>
+      <section className="card">
+        <h2>Messages</h2>
+        {supplierVisibleMessages.length ? (
+          <table>
+            <thead>
+              <tr>
+                <th>Project</th>
+                <th>From</th>
+                <th>Message</th>
+                <th>Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              {supplierVisibleMessages.map((message) => {
+                const project = assigned.find((item) => item.id === message.projectId);
+                return (
+                  <tr key={message.id}>
+                    <td>{project?.name ?? "Project"}</td>
+                    <td>{message.authorRole}</td>
+                    <td>{message.body}</td>
+                    <td>{message.createdDate}</td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        ) : (
+          <p>No supplier-visible project messages are available for this supplier yet.</p>
         )}
       </section>
     </>
