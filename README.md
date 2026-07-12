@@ -117,6 +117,8 @@ Supplier Portal lists supplier-visible files and links from assigned projects wi
 
 Supplier Portal also lists supplier-visible project messages without adding chat, AI, or notification integrations.
 
+Client Portal and Supplier Portal show explicit empty states when selected records have no related visible data.
+
 ## App Structure
 
 - `src/App.tsx` keeps the active view state and renders the selected page.

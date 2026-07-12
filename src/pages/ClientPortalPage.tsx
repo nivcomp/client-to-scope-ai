@@ -40,32 +40,36 @@ export function ClientPortalPage({
       <section className="card">
         <h2>{client ? `${client.company} client view` : "No client available"}</h2>
         <p>{selectedClientId ? `Viewing as ${client?.name}.` : `No client selected. Showing fallback client ${client?.company ?? "none"}.`}</p>
-        <table>
-          <thead>
-            <tr>
-              <th>Project</th>
-              <th>Status</th>
-              <th>Approval</th>
-              <th>Payment</th>
-              <th>Start rule</th>
-            </tr>
-          </thead>
-          <tbody>
-            {clientProjects.map((project) => {
-              const approval = approvals.find((item) => item.projectId === project.id);
-              const payment = clientPayments.find((item) => item.projectId === project.id);
-              return (
-                <tr key={project.id}>
-                  <td>{project.name}</td>
-                  <td><StatusBadge label={statusLabels[project.status]} tone={canWorkStart(project) ? "success" : "warning"} /></td>
-                  <td>{approval?.status ?? "Not requested"}</td>
-                  <td>{payment?.status ?? "Not due"}</td>
-                  <td>{canWorkStart(project) ? "Ready" : "Waiting for approval, payment, or paid hours"}</td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
+        {clientProjects.length ? (
+          <table>
+            <thead>
+              <tr>
+                <th>Project</th>
+                <th>Status</th>
+                <th>Approval</th>
+                <th>Payment</th>
+                <th>Start rule</th>
+              </tr>
+            </thead>
+            <tbody>
+              {clientProjects.map((project) => {
+                const approval = approvals.find((item) => item.projectId === project.id);
+                const payment = clientPayments.find((item) => item.projectId === project.id);
+                return (
+                  <tr key={project.id}>
+                    <td>{project.name}</td>
+                    <td><StatusBadge label={statusLabels[project.status]} tone={canWorkStart(project) ? "success" : "warning"} /></td>
+                    <td>{approval?.status ?? "Not requested"}</td>
+                    <td>{payment?.status ?? "Not due"}</td>
+                    <td>{canWorkStart(project) ? "Ready" : "Waiting for approval, payment, or paid hours"}</td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        ) : (
+          <p>No client-visible projects are available for this client yet.</p>
+        )}
       </section>
       <section className="detail-grid">
         <article className="card">

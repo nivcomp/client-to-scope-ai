@@ -414,3 +414,33 @@ Show supplier-visible project messages in Supplier Portal.
 
 **Next**  
 - Add consistent empty states to Client Portal and Supplier Portal tables.
+
+---
+
+### 2026-07-12 - Portal empty states
+
+**Work unit**  
+Add consistent empty states to Client Portal and Supplier Portal tables.
+
+**Changes**  
+- Added a clear empty state when Client Portal has no visible projects for the selected client.
+- Added a clear empty state when Supplier Portal has no assigned projects for the selected supplier.
+- Kept existing empty states for payments, files, messages, time entries, and change requests unchanged.
+- Preserved all existing visibility filters and business rules.
+
+**Tests**  
+- `pnpm run build` passed.
+- No automated test script exists beyond the production build.
+
+**Files**  
+- `src/pages/ClientPortalPage.tsx`
+- `src/pages/SupplierPortalPage.tsx`
+- `README.md`
+- `NEXT_TASK.md`
+- `WORK_LOG.md`
+
+**Commit**  
+- Commit will be created after this log entry; final automation summary records the SHA.
+
+**Next**  
+- Show supplier-visible assigned scope items in Supplier Portal.

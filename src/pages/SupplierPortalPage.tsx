@@ -32,24 +32,28 @@ export function SupplierPortalPage({ selectedSupplierId, projects, timeEntries }
       <section className="card">
         <h2>Supplier cannot see client price or margin</h2>
         <p>{selectedSupplierId ? `Viewing as ${supplier?.name}.` : `No supplier selected. Showing fallback supplier ${supplier?.name}.`}</p>
-        <table>
-          <thead>
-            <tr>
-              <th>Assigned project</th>
-              <th>Start rule</th>
-              <th>Visible instruction</th>
-            </tr>
-          </thead>
-          <tbody>
-            {assigned.map((project) => (
-              <tr key={project.id}>
-                <td>{project.name}</td>
-                <td>{canWorkStart(project) ? "Ready" : "Blocked by agency gate"}</td>
-                <td>View assigned scope items only</td>
+        {assigned.length ? (
+          <table>
+            <thead>
+              <tr>
+                <th>Assigned project</th>
+                <th>Start rule</th>
+                <th>Visible instruction</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {assigned.map((project) => (
+                <tr key={project.id}>
+                  <td>{project.name}</td>
+                  <td>{canWorkStart(project) ? "Ready" : "Blocked by agency gate"}</td>
+                  <td>View assigned scope items only</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        ) : (
+          <p>No assigned projects are visible for this supplier yet.</p>
+        )}
       </section>
       <section className="card">
         <h2>My time entries</h2>
