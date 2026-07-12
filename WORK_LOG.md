@@ -561,3 +561,33 @@ Show client-facing change request prices in Client Portal.
 
 **Next**  
 - Show approved payable amounts in Supplier Portal.
+
+---
+
+### 2026-07-12 - Supplier portal payable summary
+
+**Work unit**  
+Show approved payable amounts in Supplier Portal.
+
+**Changes**  
+- Added a read-only payable summary to Supplier Portal.
+- Calculated total approved hours for the selected supplier.
+- Calculated estimated payable amount from the selected supplier's hourly rate in `supplierProfiles`.
+- Clearly excluded submitted and rejected time from payable totals.
+- Preserved supplier visibility rules by excluding client price, agency margin, internal pricing notes, and payment actions.
+
+**Tests**  
+- `pnpm run build` passed.
+- No automated test script exists beyond the production build.
+
+**Files**  
+- `src/pages/SupplierPortalPage.tsx`
+- `README.md`
+- `NEXT_TASK.md`
+- `WORK_LOG.md`
+
+**Commit**  
+- Commit will be created after this log entry; final automation summary records the SHA.
+
+**Next**  
+- Show project-level payable breakdown in Supplier Portal.

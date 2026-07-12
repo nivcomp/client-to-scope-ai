@@ -103,6 +103,8 @@ Supplier Portal uses the selected supplier when available and falls back to an a
 
 Supplier Portal also shows the selected supplier's local time entries and marks only approved time as payable.
 
+Supplier Portal summarizes approved payable hours and estimated payable amount from the selected supplier's hourly rate, while excluding submitted or rejected time.
+
 Supplier Detail includes a direct action to open Supplier Portal for the same selected supplier context.
 
 Client Portal consumes selected client context and local app state to show client-facing projects, payments, paid hours, and change-request status without exposing agency-only pricing data.

@@ -1,28 +1,28 @@
-# NEXT TASK: Supplier Portal Shows Approved Payable Amounts
+# NEXT TASK: Supplier Portal Shows Payable Project Breakdown
 
 ## Last Completed
 
-Client Portal change requests now show the client-facing agency price when it exists.
+Supplier Portal now shows total approved hours and estimated payable amount for the selected supplier.
 
 ## Remaining Limitations
 
 - Portal state is local only and resets on refresh or local session reset.
-- Supplier Portal shows time entry status and payable rule, but it does not yet summarize approved payable amounts for the selected supplier.
+- Supplier Portal shows a total payable summary, but it does not yet break approved payable hours down by project.
 - There is still no durable database persistence, authentication, or real supplier account context.
 
 ## Recommended Next Work Unit
 
-Update Supplier Portal to show a simple approved payable amount summary for the selected supplier using existing `supplierProfiles` rates and approved local time entries.
+Update Supplier Portal to show a simple project-level breakdown of approved payable hours and estimated amount using existing approved local time entries.
 
 ## Why This Matters
 
-Suppliers need to understand what approved time is payable, while the agency still controls approval. A small read-only summary improves the supplier placeholder without exposing client price or agency margin.
+The supplier can now see the total amount likely payable. A project-level breakdown makes that total easier to verify without exposing client price, agency margin, or internal pricing notes.
 
 ## Acceptance Criteria
 
-- Supplier Portal shows total approved hours for the selected supplier.
-- Supplier Portal shows an estimated payable amount using the supplier's hourly rate from `supplierProfiles`.
-- Submitted or rejected time is clearly excluded from payable totals.
+- Supplier Portal shows approved payable hours grouped by project for the selected supplier.
+- Each project row shows project name, approved hours, and estimated amount using the supplier's hourly rate.
+- Submitted or rejected time remains excluded from payable totals.
 - Client price, agency margin, and internal pricing notes remain hidden.
 - No new payment action, persistence, or payment integration is added.
 - No Supabase, AI APIs, payment providers, auth, or deployment are added.

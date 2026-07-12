@@ -1,7 +1,7 @@
 import { PageHeader } from "../components/PageHeader";
 import { StatusBadge } from "../components/StatusBadge";
-import { fileLinks, projectMessages, scopeItems, scopes, suppliers } from "../data/mockData";
-import { canWorkStart, getProjectName } from "../lib/domainHelpers";
+import { fileLinks, projectMessages, scopeItems, scopes, supplierProfiles, suppliers } from "../data/mockData";
+import { canWorkStart, currency, getProjectName } from "../lib/domainHelpers";
 import type { Project, TimeEntry } from "../types/domain";
 
 type SupplierPortalPageProps = {
@@ -32,6 +32,16 @@ export function SupplierPortalPage({ selectedSupplierId, projects, timeEntries }
   const supplierTimeEntries = supplier
     ? timeEntries.filter((entry) => entry.supplierId === supplier.id)
     : [];
+  const supplierProfile = supplier
+    ? supplierProfiles.find((profile) => profile.supplierId === supplier.id)
+    : undefined;
+  const approvedHours = supplierTimeEntries
+    .filter((entry) => entry.status === "approved")
+    .reduce((total, entry) => total + entry.hours, 0);
+  const excludedHours = supplierTimeEntries
+    .filter((entry) => entry.status !== "approved")
+    .reduce((total, entry) => total + entry.hours, 0);
+  const estimatedPayableAmount = approvedHours * (supplierProfile?.hourlyRate ?? 0);
   return (
     <>
       <PageHeader title="Supplier Portal Placeholder" subtitle="A limited supplier view for assigned work, updates, own time entries, and amount owed." />
@@ -96,6 +106,20 @@ export function SupplierPortalPage({ selectedSupplierId, projects, timeEntries }
       </section>
       <section className="card">
         <h2>My time entries</h2>
+        <div className="stats-grid">
+          <article className="stat-card">
+            <span>Total approved hours</span>
+            <strong>{approvedHours} hrs</strong>
+          </article>
+          <article className="stat-card">
+            <span>Estimated payable amount</span>
+            <strong>{supplierProfile ? currency.format(estimatedPayableAmount) : "Rate missing"}</strong>
+          </article>
+          <article className="stat-card">
+            <span>Submitted or rejected hours excluded</span>
+            <strong>{excludedHours} hrs</strong>
+          </article>
+        </div>
         {supplierTimeEntries.length ? (
           <table>
             <thead>
