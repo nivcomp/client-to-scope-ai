@@ -1,6 +1,6 @@
 import { PageHeader } from "../components/PageHeader";
 import { StatusBadge } from "../components/StatusBadge";
-import { fileLinks, projectMessages, suppliers } from "../data/mockData";
+import { fileLinks, projectMessages, scopeItems, scopes, suppliers } from "../data/mockData";
 import { canWorkStart, getProjectName } from "../lib/domainHelpers";
 import type { Project, TimeEntry } from "../types/domain";
 
@@ -23,6 +23,12 @@ export function SupplierPortalPage({ selectedSupplierId, projects, timeEntries }
   const supplierVisibleMessages = projectMessages.filter(
     (message) => assignedProjectIds.includes(message.projectId) && message.visibility === "supplier_visible",
   );
+  const supplierVisibleScopeItems = scopeItems
+    .map((item) => {
+      const scope = scopes.find((currentScope) => currentScope.id === item.scopeId);
+      return { item, scope };
+    })
+    .filter(({ item, scope }) => item.supplierVisible && scope && assignedProjectIds.includes(scope.projectId));
   const supplierTimeEntries = supplier
     ? timeEntries.filter((entry) => entry.supplierId === supplier.id)
     : [];
@@ -53,6 +59,39 @@ export function SupplierPortalPage({ selectedSupplierId, projects, timeEntries }
           </table>
         ) : (
           <p>No assigned projects are visible for this supplier yet.</p>
+        )}
+      </section>
+      <section className="card">
+        <h2>Assigned scope items</h2>
+        {supplierVisibleScopeItems.length ? (
+          <table>
+            <thead>
+              <tr>
+                <th>Project</th>
+                <th>Scope</th>
+                <th>Phase</th>
+                <th>Item</th>
+                <th>Acceptance</th>
+              </tr>
+            </thead>
+            <tbody>
+              {supplierVisibleScopeItems.map(({ item, scope }) => (
+                <tr key={item.id}>
+                  <td>{scope ? getProjectName(scope.projectId, projects) : "Project"}</td>
+                  <td>{scope ? `v${scope.version} · ${scope.status}` : "Scope"}</td>
+                  <td>{item.phase}</td>
+                  <td>
+                    <strong>{item.title}</strong>
+                    <br />
+                    {item.description}
+                  </td>
+                  <td>{item.acceptanceNotes}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        ) : (
+          <p>No supplier-visible scope items are assigned to this supplier yet.</p>
         )}
       </section>
       <section className="card">

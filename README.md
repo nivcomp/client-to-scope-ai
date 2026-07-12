@@ -119,6 +119,8 @@ Supplier Portal also lists supplier-visible project messages without adding chat
 
 Client Portal and Supplier Portal show explicit empty states when selected records have no related visible data.
 
+Supplier Portal lists supplier-visible scope items for the selected supplier's assigned projects without exposing client price, agency margin, or internal pricing notes.
+
 ## App Structure
 
 - `src/App.tsx` keeps the active view state and renders the selected page.

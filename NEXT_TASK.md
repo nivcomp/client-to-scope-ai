@@ -1,28 +1,28 @@
-# NEXT TASK: Supplier Portal Shows Assigned Scope Items
+# NEXT TASK: Client Portal Shows Client-Visible Scope Items
 
 ## Last Completed
 
-Client Portal and Supplier Portal now show clearer empty states when no related projects, payments, files, messages, time entries, or change requests are available.
+Supplier Portal now lists supplier-visible scope items for the selected supplier's assigned projects.
 
 ## Remaining Limitations
 
 - Portal state is local only and resets on refresh or local session reset.
-- Supplier Portal says suppliers can view assigned scope items, but it does not yet list the supplier-visible scope items.
+- Client Portal shows client-facing projects, payments, files, messages, and change requests, but does not yet list client-visible scope items.
 - There is still no durable database persistence, authentication, or real supplier account context.
 
 ## Recommended Next Work Unit
 
-Update Supplier Portal to show supplier-visible scope items from existing mock `scopes` and `scopeItems` for the selected supplier's assigned projects.
+Update Client Portal to show client-visible scope items from existing mock `scopes` and `scopeItems` for the selected client's projects.
 
 ## Why This Matters
 
-Supplier Portal now shows assigned work context, files, messages, and time. Listing supplier-visible scope items makes the supplier placeholder more useful without exposing client price, agency margin, or internal agency notes.
+Client Portal already gives clients project status, payment status, files, messages, and change request visibility. Listing client-visible scope items makes the client placeholder more useful for approval review without exposing supplier costs, agency margin, or internal notes.
 
 ## Acceptance Criteria
 
-- Supplier Portal lists scope items for the selected supplier's assigned projects.
-- Only scope items with `supplierVisible === true` are shown.
+- Client Portal lists scope items for the selected client's projects.
+- Only scope items with `clientVisible === true` are shown.
 - The section uses existing mock `scopes` and `scopeItems`; no new workflow or persistence is added.
-- Supplier Portal continues to hide client price, agency margin, and internal pricing notes.
+- Client Portal continues to hide supplier cost, agency margin, and internal delivery notes.
 - No Supabase, AI APIs, payment providers, auth, or deployment are added.
 - `pnpm run build` passes.

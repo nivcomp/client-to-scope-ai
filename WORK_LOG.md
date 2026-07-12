@@ -444,3 +444,32 @@ Add consistent empty states to Client Portal and Supplier Portal tables.
 
 **Next**  
 - Show supplier-visible assigned scope items in Supplier Portal.
+
+---
+
+### 2026-07-12 - Supplier portal scope items
+
+**Work unit**  
+Show supplier-visible assigned scope items in Supplier Portal.
+
+**Changes**  
+- Added an assigned scope items section to Supplier Portal.
+- Filtered scope items by the selected supplier's assigned projects and `supplierVisible === true`.
+- Used existing mock `scopes` and `scopeItems`; no workflow, persistence, AI, auth, or payment integration was added.
+- Preserved supplier visibility rules by excluding client price, agency margin, internal delivery notes, and pricing notes.
+
+**Tests**  
+- `pnpm run build` passed.
+- No automated test script exists beyond the production build.
+
+**Files**  
+- `src/pages/SupplierPortalPage.tsx`
+- `README.md`
+- `NEXT_TASK.md`
+- `WORK_LOG.md`
+
+**Commit**  
+- Commit will be created after this log entry; final automation summary records the SHA.
+
+**Next**  
+- Show client-visible scope items in Client Portal.
