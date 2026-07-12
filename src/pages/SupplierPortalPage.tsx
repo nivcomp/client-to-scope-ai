@@ -1,6 +1,6 @@
 import { PageHeader } from "../components/PageHeader";
 import { StatusBadge } from "../components/StatusBadge";
-import { suppliers } from "../data/mockData";
+import { fileLinks, suppliers } from "../data/mockData";
 import { canWorkStart, getProjectName } from "../lib/domainHelpers";
 import type { Project, TimeEntry } from "../types/domain";
 
@@ -16,6 +16,10 @@ export function SupplierPortalPage({ selectedSupplierId, projects, timeEntries }
   const assigned = supplier
     ? projects.filter((project) => project.assignedSupplierIds.includes(supplier.id))
     : [];
+  const assignedProjectIds = assigned.map((project) => project.id);
+  const supplierVisibleFiles = fileLinks.filter(
+    (file) => assignedProjectIds.includes(file.projectId) && file.visibility === "supplier_visible",
+  );
   const supplierTimeEntries = supplier
     ? timeEntries.filter((entry) => entry.supplierId === supplier.id)
     : [];
@@ -71,6 +75,36 @@ export function SupplierPortalPage({ selectedSupplierId, projects, timeEntries }
           </table>
         ) : (
           <p>No time entries for this supplier in the current local session.</p>
+        )}
+      </section>
+      <section className="card">
+        <h2>Files and links</h2>
+        {supplierVisibleFiles.length ? (
+          <table>
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Project</th>
+                <th>Type</th>
+                <th>Link</th>
+              </tr>
+            </thead>
+            <tbody>
+              {supplierVisibleFiles.map((file) => {
+                const project = assigned.find((item) => item.id === file.projectId);
+                return (
+                  <tr key={file.id}>
+                    <td>{file.title}</td>
+                    <td>{project?.name ?? "Project"}</td>
+                    <td>{file.fileType}</td>
+                    <td><a href={file.url}>Open</a></td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        ) : (
+          <p>No supplier-visible files or links are available for this supplier yet.</p>
         )}
       </section>
     </>

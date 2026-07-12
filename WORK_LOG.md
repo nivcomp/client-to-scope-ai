@@ -355,3 +355,32 @@ Show client-visible project messages in Client Portal.
 
 **Next**  
 - Show supplier-visible files and links in Supplier Portal.
+
+---
+
+### 2026-07-12 - Supplier portal visible files
+
+**Work unit**  
+Show supplier-visible files and links in Supplier Portal.
+
+**Changes**  
+- Added a supplier-visible file/link section to Supplier Portal.
+- Filtered project files by the selected supplier's assigned projects and `visibility === "supplier_visible"`.
+- Used existing mock `fileLinks`; no upload or storage integration was added.
+- Preserved visibility rules by excluding client-only and agency-only files from Supplier Portal.
+
+**Tests**  
+- `pnpm run build` passed.
+- No automated test script exists beyond the production build.
+
+**Files**  
+- `src/pages/SupplierPortalPage.tsx`
+- `README.md`
+- `NEXT_TASK.md`
+- `WORK_LOG.md`
+
+**Commit**  
+- Commit will be created after this log entry; final automation summary records the SHA.
+
+**Next**  
+- Show supplier-visible project messages in Supplier Portal.
