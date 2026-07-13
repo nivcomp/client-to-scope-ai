@@ -137,6 +137,8 @@ Client Detail includes a direct action to open Client Portal for the same select
 
 Client Portal lists client-visible files and links from project records without exposing agency-only or supplier-only files.
 
+Client Portal client-visible files include a short context label explaining the client-safe project and file details shown.
+
 Client Portal also lists client-visible project messages without adding chat, AI, or notification integrations.
 
 Client Portal lists client-visible scope items from selected client projects without exposing supplier costs, agency margin, or internal delivery notes.

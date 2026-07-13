@@ -1,31 +1,31 @@
-# NEXT TASK: Client Portal File Context Review
+# NEXT TASK: Client Portal File Project Status
 
 ## Last Completed
 
-Supplier Portal supplier-visible message rows now show the parent project's supplier-safe start rule with a clear fallback when project data is missing.
+Client Portal files and links now include a short client-safe context label above the table.
 
 ## Current State
 
 - The app is still a static React + TypeScript MVP using local in-memory state and mock seed data only.
-- Supplier Portal uses selected supplier context and hides client price, agency margin, and internal pricing notes.
-- Supplier Portal messages now show project name, project status, project start rule, author role, message, date, and a short context label.
-- Supplier Portal project, scope, time, file, and message sections now consistently show supplier-safe context.
-- Client Portal exists and shows client-facing local state, but its file and link context should be reviewed next for the same clarity standard.
+- Client Portal uses selected client context and hides supplier cost, agency margin, and internal pricing notes.
+- Client Portal shows client-facing projects, payments, paid hours, change requests, approvals, files, links, and messages.
+- Client Portal files and links show file title, parent project, file type, link, and a short context label.
+- Client Portal file rows do not yet show the parent project's client-safe status label.
 - There is no Supabase, auth, AI integration, payment provider, notification system, or persistence.
 
 ## Recommended Next Work Unit
 
-Review Client Portal files and links, then add one small client-safe context improvement if missing.
+Add parent project status labels to Client Portal client-visible file rows.
 
 ## Why This Matters
 
-Supplier Portal context is now consistent. The next MVP value is to make sure client-facing file/link context is equally clear while preserving agency-only pricing and internal notes.
+Files are tied to project delivery. Showing the parent project status helps clients understand whether each shared file belongs to waiting, active, or completed work without exposing supplier cost, agency margin, or internal delivery notes.
 
 ## Acceptance Criteria
 
-- Inspect the existing Client Portal files and links section before editing.
-- If missing, add one short client-safe context label or one missing project/status context column.
-- Existing Client Portal project, payment, hour bank, change request, file, and message information remains intact.
+- Client Portal file rows show the parent project's status label when project data is available.
+- Client Portal file rows show a clear fallback when project data is missing.
+- Existing Client Portal file title, project, type, and link columns remain intact.
 - Client Portal continues hiding supplier cost, agency margin, and internal pricing notes.
 - No new action workflow, persistence, integration, auth, payment, notification, or AI behavior is added.
 - `pnpm run build` passes.

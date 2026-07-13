@@ -274,29 +274,32 @@ export function ClientPortalPage({
       <section className="card">
         <h2>Files and links</h2>
         {clientVisibleFiles.length ? (
-          <table>
-            <thead>
-              <tr>
-                <th>Title</th>
-                <th>Project</th>
-                <th>Type</th>
-                <th>Link</th>
-              </tr>
-            </thead>
-            <tbody>
-              {clientVisibleFiles.map((file) => {
-                const project = clientProjects.find((item) => item.id === file.projectId);
-                return (
-                  <tr key={file.id}>
-                    <td>{file.title}</td>
-                    <td>{project?.name ?? "Project"}</td>
-                    <td>{file.fileType}</td>
-                    <td><a href={file.url}>Open</a></td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
+          <>
+            <p>Client-safe file context: project, file type, and client-visible links only.</p>
+            <table>
+              <thead>
+                <tr>
+                  <th>Title</th>
+                  <th>Project</th>
+                  <th>Type</th>
+                  <th>Link</th>
+                </tr>
+              </thead>
+              <tbody>
+                {clientVisibleFiles.map((file) => {
+                  const project = clientProjects.find((item) => item.id === file.projectId);
+                  return (
+                    <tr key={file.id}>
+                      <td>{file.title}</td>
+                      <td>{project?.name ?? "Project"}</td>
+                      <td>{file.fileType}</td>
+                      <td><a href={file.url}>Open</a></td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </>
         ) : (
           <p>No client-visible files or links are available for this client yet.</p>
         )}

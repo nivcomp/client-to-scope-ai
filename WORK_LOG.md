@@ -1429,3 +1429,34 @@ Add parent project start rules to Supplier Portal supplier-visible message rows.
 
 **Next**  
 - Review Client Portal files and links, then add one small client-safe context improvement if missing.
+
+---
+
+### 2026-07-13 - Client portal file context label
+
+**Work unit**  
+Review Client Portal files and links, then add one small client-safe context improvement if missing.
+
+**Changes**  
+- Reviewed the Client Portal files and links section.
+- Added a short client-facing context label above the files and links table.
+- Clarified that the section shows project, file type, and client-visible links only.
+- Kept existing file title, project, type, and link columns intact.
+- Preserved client visibility rules by excluding supplier cost, agency margin, and internal pricing notes.
+- No client action, persistence, AI, auth, notification, or payment integration was added.
+
+**Tests**  
+- `pnpm run build` passed.
+- No automated test script exists beyond the production build.
+
+**Files**  
+- `src/pages/ClientPortalPage.tsx`
+- `README.md`
+- `NEXT_TASK.md`
+- `WORK_LOG.md`
+
+**Commit**  
+- Commit will be created after this log entry; final automation summary records the SHA.
+
+**Next**  
+- Add parent project status labels to Client Portal client-visible file rows.
