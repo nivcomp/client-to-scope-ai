@@ -206,36 +206,39 @@ export function ClientPortalPage({
         <article className="card">
           <h2>Paid hours</h2>
           {clientHourBanks.length ? (
-            <table>
-              <thead>
-                <tr>
-                  <th>Project</th>
-                  <th>Purchased</th>
-                  <th>Used</th>
-                  <th>Usage</th>
-                  <th>Remaining</th>
-                  <th>Expiry</th>
-                </tr>
-              </thead>
-              <tbody>
-                {clientHourBanks.map((bank) => {
-                  const project = clientProjects.find((item) => item.id === bank.projectId);
-                  const usagePercent = bank.hoursPurchased > 0
-                    ? Math.round((bank.hoursUsed / bank.hoursPurchased) * 100)
-                    : 0;
-                  return (
-                    <tr key={bank.id}>
-                      <td>{project?.name ?? "General"}</td>
-                      <td>{bank.hoursPurchased} hrs</td>
-                      <td>{bank.hoursUsed} hrs</td>
-                      <td>{usagePercent}% used</td>
-                      <td>{bank.hoursRemaining} hrs</td>
-                      <td>{bank.expiryDate ?? "No expiry"}</td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
+            <>
+              <p>Client-safe hour-bank context: project, purchased hours, used hours, usage, remaining hours, and expiry only.</p>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Project</th>
+                    <th>Purchased</th>
+                    <th>Used</th>
+                    <th>Usage</th>
+                    <th>Remaining</th>
+                    <th>Expiry</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {clientHourBanks.map((bank) => {
+                    const project = clientProjects.find((item) => item.id === bank.projectId);
+                    const usagePercent = bank.hoursPurchased > 0
+                      ? Math.round((bank.hoursUsed / bank.hoursPurchased) * 100)
+                      : 0;
+                    return (
+                      <tr key={bank.id}>
+                        <td>{project?.name ?? "General"}</td>
+                        <td>{bank.hoursPurchased} hrs</td>
+                        <td>{bank.hoursUsed} hrs</td>
+                        <td>{usagePercent}% used</td>
+                        <td>{bank.hoursRemaining} hrs</td>
+                        <td>{bank.expiryDate ?? "No expiry"}</td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </>
           ) : (
             <p>No paid hour bank is visible for this client.</p>
           )}

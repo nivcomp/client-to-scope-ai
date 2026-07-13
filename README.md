@@ -135,6 +135,8 @@ Client Portal paid hour rows also show used hours from existing local hour bank 
 
 Client Portal paid hour rows show a simple usage percentage calculated from existing local hour bank records.
 
+Client Portal paid hour rows include a short context label explaining the client-safe hour-bank details shown.
+
 Client Detail includes a direct action to open Client Portal for the same selected client context.
 
 Client Portal lists client-visible files and links from project records without exposing agency-only or supplier-only files.

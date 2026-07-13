@@ -1829,3 +1829,33 @@ Review Client Portal payments and paid hours, then add one small client-safe con
 
 **Next**  
 - Add a short client-safe context label above the Client Portal paid hours table.
+
+---
+
+### 2026-07-13 - Client portal paid hours context label
+
+**Work unit**  
+Add a short client-safe context label above the Client Portal paid hours table.
+
+**Changes**  
+- Added a short client-facing context label above the paid hours table.
+- Clarified that the paid hours table shows project, purchased hours, used hours, usage, remaining hours, and expiry only.
+- Kept existing paid hours project, purchased, used, usage, remaining, and expiry columns intact.
+- Preserved client visibility rules by excluding supplier cost, agency margin, and internal financial notes.
+- No payment action, persistence, AI, auth, notification, or payment integration was added.
+
+**Tests**  
+- `pnpm run build` passed.
+- No automated test script exists beyond the production build.
+
+**Files**  
+- `src/pages/ClientPortalPage.tsx`
+- `README.md`
+- `NEXT_TASK.md`
+- `WORK_LOG.md`
+
+**Commit**  
+- Commit will be created after this log entry; final automation summary records the SHA.
+
+**Next**  
+- Add parent project status labels to Client Portal paid hour rows.
