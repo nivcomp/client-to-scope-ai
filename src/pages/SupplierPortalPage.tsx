@@ -1,7 +1,7 @@
 import { PageHeader } from "../components/PageHeader";
 import { StatusBadge } from "../components/StatusBadge";
 import { fileLinks, projectMessages, scopeItems, scopes, supplierProfiles, suppliers } from "../data/mockData";
-import { canWorkStart, currency, getProjectName } from "../lib/domainHelpers";
+import { canWorkStart, currency, getProjectName, statusLabels } from "../lib/domainHelpers";
 import type { Project, TimeEntry } from "../types/domain";
 
 type SupplierPortalPageProps = {
@@ -58,6 +58,7 @@ export function SupplierPortalPage({ selectedSupplierId, projects, timeEntries }
             <thead>
               <tr>
                 <th>Assigned project</th>
+                <th>Project status</th>
                 <th>Start rule</th>
                 <th>Visible instruction</th>
               </tr>
@@ -66,6 +67,7 @@ export function SupplierPortalPage({ selectedSupplierId, projects, timeEntries }
               {assigned.map((project) => (
                 <tr key={project.id}>
                   <td>{project.name}</td>
+                  <td>{statusLabels[project.status]}</td>
                   <td>{canWorkStart(project) ? "Ready to start" : "Blocked until agency approval, payment, or paid hours"}</td>
                   <td>View assigned scope items only</td>
                 </tr>

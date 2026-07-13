@@ -103,6 +103,8 @@ Supplier Portal uses the selected supplier when available and falls back to an a
 
 Supplier Portal assigned project rows show whether work is ready to start or blocked until agency approval, payment, or paid hours.
 
+Supplier Portal assigned project rows show the project's status label without exposing client price or agency margin.
+
 Supplier Portal also shows the selected supplier's local time entries and marks only approved time as payable.
 
 Supplier Portal summarizes approved payable hours and estimated payable amount from the selected supplier's hourly rate, while excluding submitted or rejected time.

@@ -972,3 +972,33 @@ Show a supplier-safe start rule for assigned project rows.
 
 **Next**  
 - Show assigned project status in Supplier Portal.
+
+---
+
+### 2026-07-13 - Supplier portal assigned project status
+
+**Work unit**  
+Show assigned project status in Supplier Portal.
+
+**Changes**  
+- Added a project status column to Supplier Portal assigned project rows.
+- Reused the existing `statusLabels` mapping for supplier-safe project status text.
+- Preserved the existing start rule and visible instruction columns.
+- Preserved supplier visibility rules by excluding client price, agency margin, and internal pricing notes.
+- No supplier action, persistence, AI, auth, or payment integration was added.
+
+**Tests**  
+- `pnpm run build` passed.
+- No automated test script exists beyond the production build.
+
+**Files**  
+- `src/pages/SupplierPortalPage.tsx`
+- `README.md`
+- `NEXT_TASK.md`
+- `WORK_LOG.md`
+
+**Commit**  
+- Commit will be created after this log entry; final automation summary records the SHA.
+
+**Next**  
+- Add a supplier-safe context label above the Supplier Portal assigned projects table.
