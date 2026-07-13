@@ -213,6 +213,7 @@ export function ClientPortalPage({
                   <tr>
                     <th>Project</th>
                     <th>Project status</th>
+                    <th>Project start rule</th>
                     <th>Purchased</th>
                     <th>Used</th>
                     <th>Usage</th>
@@ -230,6 +231,7 @@ export function ClientPortalPage({
                       <tr key={bank.id}>
                         <td>{project?.name ?? "General"}</td>
                         <td>{project ? statusLabels[project.status] : "General hour bank"}</td>
+                        <td>{project ? (canWorkStart(project) ? "Ready" : "Waiting for approval, payment, or paid hours") : "General hour bank"}</td>
                         <td>{bank.hoursPurchased} hrs</td>
                         <td>{bank.hoursUsed} hrs</td>
                         <td>{usagePercent}% used</td>

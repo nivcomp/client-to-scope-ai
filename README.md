@@ -139,6 +139,8 @@ Client Portal paid hour rows include a short context label explaining the client
 
 Client Portal paid hour rows show the parent project's status label, or a general hour-bank fallback when no project is linked.
 
+Client Portal paid hour rows show the parent project's client-safe start rule, or a general hour-bank fallback when no project is linked.
+
 Client Detail includes a direct action to open Client Portal for the same selected client context.
 
 Client Portal lists client-visible files and links from project records without exposing agency-only or supplier-only files.
