@@ -88,6 +88,7 @@ export function ClientPortalPage({
               <tr>
                 <th>Project</th>
                 <th>Project status</th>
+                <th>Project start rule</th>
                 <th>Scope</th>
                 <th>Phase</th>
                 <th>Item</th>
@@ -99,6 +100,7 @@ export function ClientPortalPage({
                 <tr key={item.id}>
                   <td>{scope ? clientProjects.find((project) => project.id === scope.projectId)?.name ?? "Project" : "Project"}</td>
                   <td>{scope && clientProjects.find((project) => project.id === scope.projectId) ? statusLabels[clientProjects.find((project) => project.id === scope.projectId)!.status] : "Project not found"}</td>
+                  <td>{scope && clientProjects.find((project) => project.id === scope.projectId) ? (canWorkStart(clientProjects.find((project) => project.id === scope.projectId)!) ? "Ready" : "Waiting for approval, payment, or paid hours") : "Project not found"}</td>
                   <td>{scope ? `v${scope.version} · ${scope.status}` : "Scope"}</td>
                   <td>{item.phase}</td>
                   <td>
