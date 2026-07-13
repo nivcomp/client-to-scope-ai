@@ -173,6 +173,8 @@ Supplier Portal supplier-visible message rows show the parent project's status l
 
 Supplier Portal supplier-visible messages include a short context label explaining the supplier-safe project and message details shown.
 
+Supplier Portal supplier-visible message rows show the parent project's supplier-safe start rule with a clear fallback when project data is missing.
+
 Client Portal and Supplier Portal show explicit empty states when selected records have no related visible data.
 
 Supplier Portal lists supplier-visible scope items for the selected supplier's assigned projects without exposing client price, agency margin, or internal pricing notes.
