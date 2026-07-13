@@ -1,28 +1,28 @@
-# NEXT TASK: Supplier Portal Shows Time Entry Approval Summary
+# NEXT TASK: Supplier Portal Shows Scope Item Project Status
 
 ## Last Completed
 
-Supplier Portal time-entry rows now show the approval owner or a clear agency-approval fallback.
+Supplier Portal time-entry stats now show approved and non-approved entry counts.
 
 ## Remaining Limitations
 
 - Portal state is local only and resets on refresh or local session reset.
-- Supplier Portal time-entry rows show approval owner context, but the section does not summarize how many entries are approved versus awaiting agency approval.
+- Supplier Portal scope item rows show project name and scope status, but not the assigned project's status label.
 - There is still no durable database persistence, authentication, or real supplier account context.
 
 ## Recommended Next Work Unit
 
-Add a small approval summary to the Supplier Portal time-entry stats.
+Add project status labels to Supplier Portal assigned scope item rows.
 
 ## Why This Matters
 
-Suppliers can scan the section faster if they see how many entries are approved versus still awaiting agency approval. This reinforces the approval gate without adding actions.
+When reviewing scope items, suppliers benefit from knowing whether the parent project is waiting, active, or complete. This adds delivery context without exposing client price or margin.
 
 ## Acceptance Criteria
 
-- Supplier Portal time-entry stats show approved entry count.
-- Supplier Portal time-entry stats show non-approved entry count.
-- Existing Supplier Portal payable hours, payable amount, excluded hours, time-entry rows, and payable rule remain intact.
+- Supplier Portal assigned scope item rows show the parent project's status label when available.
+- Missing project data has a clear fallback.
+- Existing Supplier Portal scope, phase, item, and acceptance columns remain intact.
 - Supplier Portal continues to hide client price, agency margin, and internal pricing notes.
 - Existing Supplier Portal project, scope, file, message, and time information remains intact.
 - Supplier cost, agency margin, and internal pricing notes remain hidden.

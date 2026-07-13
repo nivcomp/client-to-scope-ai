@@ -1123,3 +1123,33 @@ Add approval owner context to Supplier Portal time-entry rows.
 
 **Next**  
 - Add approval counts to Supplier Portal time-entry stats.
+
+---
+
+### 2026-07-13 - Supplier portal time entry approval summary
+
+**Work unit**  
+Add approval counts to Supplier Portal time-entry stats.
+
+**Changes**  
+- Added an approved entry count to Supplier Portal time-entry stats.
+- Added a non-approved entry count labeled as awaiting agency approval.
+- Kept payable hours, payable amount, excluded hours, payable project table, and time-entry rows intact.
+- Preserved supplier visibility rules by excluding client price, agency margin, and internal pricing notes.
+- No supplier action, persistence, AI, auth, or payment integration was added.
+
+**Tests**  
+- `pnpm run build` passed.
+- No automated test script exists beyond the production build.
+
+**Files**  
+- `src/pages/SupplierPortalPage.tsx`
+- `README.md`
+- `NEXT_TASK.md`
+- `WORK_LOG.md`
+
+**Commit**  
+- Commit will be created after this log entry; final automation summary records the SHA.
+
+**Next**  
+- Add project status labels to Supplier Portal assigned scope item rows.

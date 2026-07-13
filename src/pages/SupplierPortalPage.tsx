@@ -36,6 +36,7 @@ export function SupplierPortalPage({ selectedSupplierId, projects, timeEntries }
     ? supplierProfiles.find((profile) => profile.supplierId === supplier.id)
     : undefined;
   const approvedTimeEntries = supplierTimeEntries.filter((entry) => entry.status === "approved");
+  const nonApprovedTimeEntryCount = supplierTimeEntries.length - approvedTimeEntries.length;
   const approvedHours = approvedTimeEntries.reduce((total, entry) => total + entry.hours, 0);
   const excludedHours = supplierTimeEntries
     .filter((entry) => entry.status !== "approved")
@@ -121,6 +122,14 @@ export function SupplierPortalPage({ selectedSupplierId, projects, timeEntries }
           <article className="stat-card">
             <span>Total approved hours</span>
             <strong>{approvedHours} hrs</strong>
+          </article>
+          <article className="stat-card">
+            <span>Approved entries</span>
+            <strong>{approvedTimeEntries.length}</strong>
+          </article>
+          <article className="stat-card">
+            <span>Awaiting agency approval</span>
+            <strong>{nonApprovedTimeEntryCount}</strong>
           </article>
           <article className="stat-card">
             <span>Estimated payable amount</span>
