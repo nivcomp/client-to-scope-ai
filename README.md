@@ -169,6 +169,8 @@ Supplier Portal lists supplier-visible scope items for the selected supplier's a
 
 Supplier Portal assigned scope item rows show the parent project's status label with a clear fallback when project data is missing.
 
+Supplier Portal assigned scope item rows show the parent project's supplier-safe start rule with a clear fallback when project data is missing.
+
 ## App Structure
 
 - `src/App.tsx` keeps the active view state and renders the selected page.

@@ -90,6 +90,7 @@ export function SupplierPortalPage({ selectedSupplierId, projects, timeEntries }
               <tr>
                 <th>Project</th>
                 <th>Project status</th>
+                <th>Project start rule</th>
                 <th>Scope</th>
                 <th>Phase</th>
                 <th>Item</th>
@@ -103,6 +104,7 @@ export function SupplierPortalPage({ selectedSupplierId, projects, timeEntries }
                   <tr key={item.id}>
                     <td>{scope ? getProjectName(scope.projectId, projects) : "Project"}</td>
                     <td>{project ? statusLabels[project.status] : "Project not found"}</td>
+                    <td>{project ? (canWorkStart(project) ? "Ready to start" : "Blocked until agency approval, payment, or paid hours") : "Project not found"}</td>
                     <td>{scope ? `v${scope.version} · ${scope.status}` : "Scope"}</td>
                     <td>{item.phase}</td>
                     <td>

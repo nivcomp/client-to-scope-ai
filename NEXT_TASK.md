@@ -1,28 +1,27 @@
-# NEXT TASK: Supplier Portal Shows Scope Item Start Rule
+# NEXT TASK: Supplier Portal Groups Scope Item Context
 
 ## Last Completed
 
-Supplier Portal assigned scope item rows now show the parent project's status label.
+Supplier Portal assigned scope item rows now show the parent project's supplier-safe start rule.
 
 ## Remaining Limitations
 
 - Portal state is local only and resets on refresh or local session reset.
-- Supplier Portal scope item rows show parent project status, but not whether the parent project is ready to start.
+- Supplier Portal scope item rows now show project status and start readiness, but the section does not clearly label supplier-safe scope context.
 - There is still no durable database persistence, authentication, or real supplier account context.
 
 ## Recommended Next Work Unit
 
-Add supplier-safe parent project start rules to Supplier Portal assigned scope item rows.
+Add a short supplier-safe context label above the Supplier Portal assigned scope items table.
 
 ## Why This Matters
 
-When reviewing scope items, suppliers benefit from knowing whether work on the parent project is ready or still blocked by agency approval, payment, or paid hours.
+The assigned scope table now includes project context and scope context. A short label can improve scanability and reinforce that only supplier-visible scope is shown.
 
 ## Acceptance Criteria
 
-- Supplier Portal assigned scope item rows show the parent project's start rule when available.
-- Missing project data has a clear fallback.
-- Existing Supplier Portal project, project status, scope, phase, item, and acceptance columns remain intact.
+- Supplier Portal assigned scope items section labels supplier-safe project and scope context.
+- Existing Supplier Portal project, project status, project start rule, scope, phase, item, and acceptance columns remain intact.
 - Supplier Portal continues to hide client price, agency margin, and internal pricing notes.
 - Existing Supplier Portal project, scope, file, message, and time information remains intact.
 - Supplier cost, agency margin, and internal pricing notes remain hidden.
