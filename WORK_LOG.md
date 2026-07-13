@@ -882,3 +882,33 @@ Show related project status for Client Portal change requests.
 
 **Next**  
 - Show the related project start rule for Client Portal change requests.
+
+---
+
+### 2026-07-13 - Client portal change request project start rule
+
+**Work unit**  
+Show related project start rule for Client Portal change requests.
+
+**Changes**  
+- Added a project start rule column to Client Portal change request rows.
+- Reused the existing `canWorkStart(project)` rule to show whether the base project is ready.
+- Added a clear `Project not found` fallback for missing project data.
+- Preserved client visibility rules by excluding supplier cost, agency margin, and internal pricing notes.
+- No change request action, persistence, AI, auth, or payment integration was added.
+
+**Tests**  
+- `pnpm run build` passed.
+- No automated test script exists beyond the production build.
+
+**Files**  
+- `src/pages/ClientPortalPage.tsx`
+- `README.md`
+- `NEXT_TASK.md`
+- `WORK_LOG.md`
+
+**Commit**  
+- Commit will be created after this log entry; final automation summary records the SHA.
+
+**Next**  
+- Group project context and change request context in the Client Portal change request section.

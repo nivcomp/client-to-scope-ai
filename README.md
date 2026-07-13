@@ -141,6 +141,8 @@ Client Portal change requests show a client-safe work readiness state so approve
 
 Client Portal change requests show the related project status in client-safe terms for additional delivery context.
 
+Client Portal change requests show the related project's start rule so clients can see whether the base project is ready or waiting on approval, payment, or paid hours.
+
 Supplier Portal lists supplier-visible files and links from assigned projects without exposing client-only or agency-only files.
 
 Supplier Portal also lists supplier-visible project messages without adding chat, AI, or notification integrations.
