@@ -212,6 +212,7 @@ export function ClientPortalPage({
                 <thead>
                   <tr>
                     <th>Project</th>
+                    <th>Project status</th>
                     <th>Purchased</th>
                     <th>Used</th>
                     <th>Usage</th>
@@ -228,6 +229,7 @@ export function ClientPortalPage({
                     return (
                       <tr key={bank.id}>
                         <td>{project?.name ?? "General"}</td>
+                        <td>{project ? statusLabels[project.status] : "General hour bank"}</td>
                         <td>{bank.hoursPurchased} hrs</td>
                         <td>{bank.hoursUsed} hrs</td>
                         <td>{usagePercent}% used</td>

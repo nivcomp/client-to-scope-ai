@@ -1859,3 +1859,34 @@ Add a short client-safe context label above the Client Portal paid hours table.
 
 **Next**  
 - Add parent project status labels to Client Portal paid hour rows.
+
+---
+
+### 2026-07-13 - Client portal paid hours project status
+
+**Work unit**  
+Add parent project status labels to Client Portal paid hour rows.
+
+**Changes**  
+- Added a project status column to Client Portal paid hour rows.
+- Used the existing `statusLabels` mapping for linked project status.
+- Added a `General hour bank` fallback when no project is linked.
+- Kept existing paid hours project, purchased, used, usage, remaining, and expiry columns intact.
+- Preserved client visibility rules by excluding supplier cost, agency margin, and internal financial notes.
+- No payment action, persistence, AI, auth, notification, or payment integration was added.
+
+**Tests**  
+- `pnpm run build` passed.
+- No automated test script exists beyond the production build.
+
+**Files**  
+- `src/pages/ClientPortalPage.tsx`
+- `README.md`
+- `NEXT_TASK.md`
+- `WORK_LOG.md`
+
+**Commit**  
+- Commit will be created after this log entry; final automation summary records the SHA.
+
+**Next**  
+- Add parent project start rules to Client Portal paid hour rows.
