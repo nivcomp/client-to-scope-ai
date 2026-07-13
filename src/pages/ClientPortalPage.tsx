@@ -167,35 +167,38 @@ export function ClientPortalPage({
         <article className="card">
           <h2>Payments and hour balance</h2>
           {clientPayments.filter((payment) => clientProjectIds.includes(payment.projectId)).length ? (
-            <table>
-              <thead>
-                <tr>
-                  <th>Project</th>
-                  <th>Amount</th>
-                  <th>Status</th>
-                  <th>Due</th>
-                  <th>Received</th>
-                  <th>Notes</th>
-                </tr>
-              </thead>
-              <tbody>
-                {clientPayments
-                  .filter((payment) => clientProjectIds.includes(payment.projectId))
-                  .map((payment) => {
-                    const project = clientProjects.find((item) => item.id === payment.projectId);
-                    return (
-                      <tr key={payment.id}>
-                        <td>{project?.name ?? "Project"}</td>
-                        <td>{currency.format(payment.amount)}</td>
-                        <td><StatusBadge label={payment.status} tone={payment.status === "received" ? "success" : "warning"} /></td>
-                        <td>{payment.dueDate ?? "Not set"}</td>
-                        <td>{payment.receivedDate ?? "Not received"}</td>
-                        <td>{payment.notes}</td>
-                      </tr>
-                    );
-                  })}
-              </tbody>
-            </table>
+            <>
+              <p>Client-safe payment context: project, requested amount, payment status, due date, received date, and payment notes only.</p>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Project</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                    <th>Due</th>
+                    <th>Received</th>
+                    <th>Notes</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {clientPayments
+                    .filter((payment) => clientProjectIds.includes(payment.projectId))
+                    .map((payment) => {
+                      const project = clientProjects.find((item) => item.id === payment.projectId);
+                      return (
+                        <tr key={payment.id}>
+                          <td>{project?.name ?? "Project"}</td>
+                          <td>{currency.format(payment.amount)}</td>
+                          <td><StatusBadge label={payment.status} tone={payment.status === "received" ? "success" : "warning"} /></td>
+                          <td>{payment.dueDate ?? "Not set"}</td>
+                          <td>{payment.receivedDate ?? "Not received"}</td>
+                          <td>{payment.notes}</td>
+                        </tr>
+                      );
+                    })}
+                </tbody>
+              </table>
+            </>
           ) : (
             <p>No client payment requests are visible yet.</p>
           )}

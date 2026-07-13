@@ -127,6 +127,8 @@ Client Portal consumes selected client context and local app state to show clien
 
 Client Portal payment rows include due date, received date, and payment notes from existing local client payment records.
 
+Client Portal payment rows include a short context label explaining the client-safe payment details shown.
+
 Client Portal paid hour rows include hour bank expiry dates when available.
 
 Client Portal paid hour rows also show used hours from existing local hour bank records.
