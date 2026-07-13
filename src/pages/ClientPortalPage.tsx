@@ -121,37 +121,40 @@ export function ClientPortalPage({
       <section className="card">
         <h2>Scope approvals</h2>
         {clientApprovals.length ? (
-          <table>
-            <thead>
-              <tr>
-                <th>Project</th>
-                <th>Scope</th>
-                <th>Approval</th>
-                <th>Notes</th>
-                <th>Approved date</th>
-              </tr>
-            </thead>
-            <tbody>
-              {clientApprovals.map((approval) => {
-                const project = clientProjects.find((item) => item.id === approval.projectId);
-                const scope = scopes.find((item) => item.id === approval.scopeId);
-                return (
-                  <tr key={approval.id}>
-                    <td>{project?.name ?? "Project"}</td>
-                    <td>{scope ? `v${scope.version} - ${scope.status}` : "Scope not linked"}</td>
-                    <td>
-                      <StatusBadge
-                        label={approval.status}
-                        tone={approval.status === "approved" ? "success" : "warning"}
-                      />
-                    </td>
-                    <td>{approval.notes}</td>
-                    <td>{approval.approvedDate ?? "Pending"}</td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
+          <>
+            <p>Client-safe approval context: project, scope version, approval state, notes, and approved date only.</p>
+            <table>
+              <thead>
+                <tr>
+                  <th>Project</th>
+                  <th>Scope</th>
+                  <th>Approval</th>
+                  <th>Notes</th>
+                  <th>Approved date</th>
+                </tr>
+              </thead>
+              <tbody>
+                {clientApprovals.map((approval) => {
+                  const project = clientProjects.find((item) => item.id === approval.projectId);
+                  const scope = scopes.find((item) => item.id === approval.scopeId);
+                  return (
+                    <tr key={approval.id}>
+                      <td>{project?.name ?? "Project"}</td>
+                      <td>{scope ? `v${scope.version} - ${scope.status}` : "Scope not linked"}</td>
+                      <td>
+                        <StatusBadge
+                          label={approval.status}
+                          tone={approval.status === "approved" ? "success" : "warning"}
+                        />
+                      </td>
+                      <td>{approval.notes}</td>
+                      <td>{approval.approvedDate ?? "Pending"}</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </>
         ) : (
           <p>No scope approvals are visible for this client yet.</p>
         )}
