@@ -127,6 +127,7 @@ export function ClientPortalPage({
               <thead>
                 <tr>
                   <th>Project</th>
+                  <th>Project status</th>
                   <th>Scope</th>
                   <th>Approval</th>
                   <th>Notes</th>
@@ -140,6 +141,7 @@ export function ClientPortalPage({
                   return (
                     <tr key={approval.id}>
                       <td>{project?.name ?? "Project"}</td>
+                      <td>{project ? statusLabels[project.status] : "Project not found"}</td>
                       <td>{scope ? `v${scope.version} - ${scope.status}` : "Scope not linked"}</td>
                       <td>
                         <StatusBadge

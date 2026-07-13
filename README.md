@@ -163,6 +163,8 @@ Client Portal also lists scope approval details for selected client projects wit
 
 Client Portal scope approvals include a short context label explaining the client-safe approval details shown.
 
+Client Portal scope approval rows show the parent project's status label with a clear fallback when project data is missing.
+
 Client Portal change requests show the client-facing agency price when available and keep supplier cost, margin, and internal pricing notes hidden.
 
 Client Portal change requests also show approved dates when available, or a pending approval state.
