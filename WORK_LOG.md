@@ -1583,3 +1583,34 @@ Add parent project status labels to Client Portal client-visible message rows.
 
 **Next**  
 - Add parent project start rules to Client Portal client-visible message rows.
+
+---
+
+### 2026-07-13 - Client portal message start rule
+
+**Work unit**  
+Add parent project start rules to Client Portal client-visible message rows.
+
+**Changes**  
+- Added a project start rule column to Client Portal client-visible message rows.
+- Reused the existing `canWorkStart(project)` gate for client-safe readiness text.
+- Added a clear `Project not found` fallback for missing project data.
+- Kept existing message project, project status, from, message, and date columns intact.
+- Preserved client visibility rules by excluding supplier cost, agency margin, and internal pricing notes.
+- No client action, persistence, AI, auth, notification, or payment integration was added.
+
+**Tests**  
+- `pnpm run build` passed.
+- No automated test script exists beyond the production build.
+
+**Files**  
+- `src/pages/ClientPortalPage.tsx`
+- `README.md`
+- `NEXT_TASK.md`
+- `WORK_LOG.md`
+
+**Commit**  
+- Commit will be created after this log entry; final automation summary records the SHA.
+
+**Next**  
+- Add a short client-safe context label above the Client Portal scope items table.

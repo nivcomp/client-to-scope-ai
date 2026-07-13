@@ -149,6 +149,8 @@ Client Portal client-visible messages include a short context label explaining t
 
 Client Portal client-visible message rows show the parent project's status label with a clear fallback when project data is missing.
 
+Client Portal client-visible message rows show the parent project's client-safe start rule with a clear fallback when project data is missing.
+
 Client Portal lists client-visible scope items from selected client projects without exposing supplier costs, agency margin, or internal delivery notes.
 
 Client Portal also lists scope approval details for selected client projects without adding approval actions or exposing internal scope notes.

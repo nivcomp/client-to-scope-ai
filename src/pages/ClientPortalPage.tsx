@@ -318,6 +318,7 @@ export function ClientPortalPage({
                 <tr>
                   <th>Project</th>
                   <th>Project status</th>
+                  <th>Project start rule</th>
                   <th>From</th>
                   <th>Message</th>
                   <th>Date</th>
@@ -330,6 +331,7 @@ export function ClientPortalPage({
                     <tr key={message.id}>
                       <td>{project?.name ?? "Project"}</td>
                       <td>{project ? statusLabels[project.status] : "Project not found"}</td>
+                      <td>{project ? (canWorkStart(project) ? "Ready" : "Waiting for approval, payment, or paid hours") : "Project not found"}</td>
                       <td>{message.authorRole}</td>
                       <td>{message.body}</td>
                       <td>{message.createdDate}</td>
