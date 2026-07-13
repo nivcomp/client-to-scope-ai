@@ -912,3 +912,33 @@ Show related project start rule for Client Portal change requests.
 
 **Next**  
 - Group project context and change request context in the Client Portal change request section.
+
+---
+
+### 2026-07-13 - Client portal change request context grouping
+
+**Work unit**  
+Group project context and change request context in the Client Portal change request section.
+
+**Changes**  
+- Added a short client-facing context label above the Change Requests table.
+- Clarified which columns describe the base project and which describe the change request.
+- Kept the existing change request table columns and values intact.
+- Preserved client visibility rules by excluding supplier cost, agency margin, and internal pricing notes.
+- No change request action, persistence, AI, auth, or payment integration was added.
+
+**Tests**  
+- `pnpm run build` passed.
+- No automated test script exists beyond the production build.
+
+**Files**  
+- `src/pages/ClientPortalPage.tsx`
+- `README.md`
+- `NEXT_TASK.md`
+- `WORK_LOG.md`
+
+**Commit**  
+- Commit will be created after this log entry; final automation summary records the SHA.
+
+**Next**  
+- Review Supplier Portal assigned project rows and add a supplier-safe start rule if missing.

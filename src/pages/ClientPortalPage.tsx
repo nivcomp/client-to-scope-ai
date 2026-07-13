@@ -227,43 +227,46 @@ export function ClientPortalPage({
       <section className="card">
         <h2>Change requests</h2>
         {clientChangeRequests.length ? (
-          <table>
-            <thead>
-              <tr>
-                <th>Request</th>
-                <th>Description</th>
-                <th>Project</th>
-                <th>Project status</th>
-                <th>Project start rule</th>
-                <th>Status</th>
-                <th>Client price</th>
-                <th>Pricing state</th>
-                <th>Approved date</th>
-                <th>Work readiness</th>
-                <th>Rule</th>
-              </tr>
-            </thead>
-            <tbody>
-              {clientChangeRequests.map((request) => {
-                const project = clientProjects.find((item) => item.id === request.projectId);
-                return (
-                  <tr key={request.id}>
-                    <td>{request.title}</td>
-                    <td>{request.description}</td>
-                    <td>{project?.name ?? "Project"}</td>
-                    <td>{project ? statusLabels[project.status] : "Project not found"}</td>
-                    <td>{project ? (canWorkStart(project) ? "Project ready" : "Project waiting for approval, payment, or paid hours") : "Project not found"}</td>
-                    <td><StatusBadge label={request.status} tone={request.status === "client_approved" ? "success" : "warning"} /></td>
-                    <td>{request.agencyPrice ? currency.format(request.agencyPrice) : "Awaiting agency pricing"}</td>
-                    <td>{request.agencyPrice ? "Priced" : "Awaiting agency pricing"}</td>
-                    <td>{request.approvedDate ?? "Pending approval"}</td>
-                    <td>{request.status === "client_approved" ? "Ready for work review" : "Blocked until priced and approved"}</td>
-                    <td>{request.status === "client_approved" ? "Approved change can become work" : "Needs agency pricing and client approval before work starts"}</td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
+          <>
+            <p>Project context: project, project status, and project start rule. Change request context: request status, pricing state, approval date, work readiness, and rule.</p>
+            <table>
+              <thead>
+                <tr>
+                  <th>Request</th>
+                  <th>Description</th>
+                  <th>Project</th>
+                  <th>Project status</th>
+                  <th>Project start rule</th>
+                  <th>Status</th>
+                  <th>Client price</th>
+                  <th>Pricing state</th>
+                  <th>Approved date</th>
+                  <th>Work readiness</th>
+                  <th>Rule</th>
+                </tr>
+              </thead>
+              <tbody>
+                {clientChangeRequests.map((request) => {
+                  const project = clientProjects.find((item) => item.id === request.projectId);
+                  return (
+                    <tr key={request.id}>
+                      <td>{request.title}</td>
+                      <td>{request.description}</td>
+                      <td>{project?.name ?? "Project"}</td>
+                      <td>{project ? statusLabels[project.status] : "Project not found"}</td>
+                      <td>{project ? (canWorkStart(project) ? "Project ready" : "Project waiting for approval, payment, or paid hours") : "Project not found"}</td>
+                      <td><StatusBadge label={request.status} tone={request.status === "client_approved" ? "success" : "warning"} /></td>
+                      <td>{request.agencyPrice ? currency.format(request.agencyPrice) : "Awaiting agency pricing"}</td>
+                      <td>{request.agencyPrice ? "Priced" : "Awaiting agency pricing"}</td>
+                      <td>{request.approvedDate ?? "Pending approval"}</td>
+                      <td>{request.status === "client_approved" ? "Ready for work review" : "Blocked until priced and approved"}</td>
+                      <td>{request.status === "client_approved" ? "Approved change can become work" : "Needs agency pricing and client approval before work starts"}</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </>
         ) : (
           <p>No change requests are visible for this client.</p>
         )}
