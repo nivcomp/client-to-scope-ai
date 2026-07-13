@@ -1062,3 +1062,33 @@ Add a supplier-safe context label above the Supplier Portal time entry/payable s
 
 **Next**  
 - Add descriptions to Supplier Portal time-entry rows.
+
+---
+
+### 2026-07-13 - Supplier portal time entry descriptions
+
+**Work unit**  
+Add descriptions to Supplier Portal time-entry rows.
+
+**Changes**  
+- Added a description column to Supplier Portal time-entry rows.
+- Displayed each `TimeEntry.description` alongside project, date, hours, status, and payable rule.
+- Kept existing time-entry stats and payable project table intact.
+- Preserved supplier visibility rules by excluding client price, agency margin, and internal pricing notes.
+- No supplier action, persistence, AI, auth, or payment integration was added.
+
+**Tests**  
+- `pnpm run build` passed.
+- No automated test script exists beyond the production build.
+
+**Files**  
+- `src/pages/SupplierPortalPage.tsx`
+- `README.md`
+- `NEXT_TASK.md`
+- `WORK_LOG.md`
+
+**Commit**  
+- Commit will be created after this log entry; final automation summary records the SHA.
+
+**Next**  
+- Add approval owner context to Supplier Portal time-entry rows.

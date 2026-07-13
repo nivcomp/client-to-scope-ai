@@ -160,6 +160,7 @@ export function SupplierPortalPage({ selectedSupplierId, projects, timeEntries }
                 <th>Project</th>
                 <th>Date</th>
                 <th>Hours</th>
+                <th>Description</th>
                 <th>Status</th>
                 <th>Payable rule</th>
               </tr>
@@ -170,6 +171,7 @@ export function SupplierPortalPage({ selectedSupplierId, projects, timeEntries }
                   <td>{getProjectName(entry.projectId, projects)}</td>
                   <td>{entry.date}</td>
                   <td>{entry.hours}</td>
+                  <td>{entry.description}</td>
                   <td><StatusBadge label={entry.status} tone={entry.status === "approved" ? "success" : "warning"} /></td>
                   <td>{entry.status === "approved" ? "Payable" : "Not payable until agency approval"}</td>
                 </tr>
