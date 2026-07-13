@@ -1614,3 +1614,33 @@ Add parent project start rules to Client Portal client-visible message rows.
 
 **Next**  
 - Add a short client-safe context label above the Client Portal scope items table.
+
+---
+
+### 2026-07-13 - Client portal scope context label
+
+**Work unit**  
+Add a short client-safe context label above the Client Portal scope items table.
+
+**Changes**  
+- Added a short client-facing context label above the scope items table.
+- Clarified that the section shows project, scope version, phase, item details, and acceptance notes only.
+- Kept existing scope item project, scope, phase, item, and acceptance columns intact.
+- Preserved client visibility rules by excluding supplier cost, agency margin, and internal pricing notes.
+- No client action, persistence, AI, auth, notification, or payment integration was added.
+
+**Tests**  
+- `pnpm run build` passed.
+- No automated test script exists beyond the production build.
+
+**Files**  
+- `src/pages/ClientPortalPage.tsx`
+- `README.md`
+- `NEXT_TASK.md`
+- `WORK_LOG.md`
+
+**Commit**  
+- Commit will be created after this log entry; final automation summary records the SHA.
+
+**Next**  
+- Add parent project status labels to Client Portal client-visible scope item rows.

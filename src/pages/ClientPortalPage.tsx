@@ -81,7 +81,9 @@ export function ClientPortalPage({
       <section className="card">
         <h2>Scope items</h2>
         {clientVisibleScopeItems.length ? (
-          <table>
+          <>
+            <p>Client-safe scope context: project, scope version, phase, item details, and acceptance notes only.</p>
+            <table>
             <thead>
               <tr>
                 <th>Project</th>
@@ -106,7 +108,8 @@ export function ClientPortalPage({
                 </tr>
               ))}
             </tbody>
-          </table>
+            </table>
+          </>
         ) : (
           <p>No client-visible scope items are available for this client yet.</p>
         )}
