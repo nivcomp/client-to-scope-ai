@@ -135,6 +135,8 @@ Client Portal change requests also show approved dates when available, or a pend
 
 Client Portal change requests include the existing request description for client-facing context.
 
+Client Portal change requests show a client-safe pricing state so clients can distinguish priced changes from requests still awaiting agency pricing.
+
 Supplier Portal lists supplier-visible files and links from assigned projects without exposing client-only or agency-only files.
 
 Supplier Portal also lists supplier-visible project messages without adding chat, AI, or notification integrations.

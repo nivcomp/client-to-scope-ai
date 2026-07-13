@@ -793,3 +793,32 @@ Show change request descriptions in Client Portal.
 
 **Next**  
 - Show change request pricing state in Client Portal.
+
+---
+
+### 2026-07-13 - Client portal change request pricing state
+
+**Work unit**  
+Show change request pricing state in Client Portal.
+
+**Changes**  
+- Added a pricing state column to Client Portal change request rows.
+- Displayed `Priced` when `agencyPrice` exists and `Awaiting agency pricing` when missing.
+- Preserved client visibility rules by excluding supplier cost, agency margin, and internal pricing notes.
+- No change request action, persistence, AI, auth, or payment integration was added.
+
+**Tests**  
+- `pnpm run build` passed.
+- No automated test script exists beyond the production build.
+
+**Files**  
+- `src/pages/ClientPortalPage.tsx`
+- `README.md`
+- `NEXT_TASK.md`
+- `WORK_LOG.md`
+
+**Commit**  
+- Commit will be created after this log entry; final automation summary records the SHA.
+
+**Next**  
+- Show change request work readiness in Client Portal.
