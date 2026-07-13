@@ -85,39 +85,42 @@ export function SupplierPortalPage({ selectedSupplierId, projects, timeEntries }
       <section className="card">
         <h2>Assigned scope items</h2>
         {supplierVisibleScopeItems.length ? (
-          <table>
-            <thead>
-              <tr>
-                <th>Project</th>
-                <th>Project status</th>
-                <th>Project start rule</th>
-                <th>Scope</th>
-                <th>Phase</th>
-                <th>Item</th>
-                <th>Acceptance</th>
-              </tr>
-            </thead>
-            <tbody>
-              {supplierVisibleScopeItems.map(({ item, scope }) => {
-                const project = scope ? projects.find((currentProject) => currentProject.id === scope.projectId) : undefined;
-                return (
-                  <tr key={item.id}>
-                    <td>{scope ? getProjectName(scope.projectId, projects) : "Project"}</td>
-                    <td>{project ? statusLabels[project.status] : "Project not found"}</td>
-                    <td>{project ? (canWorkStart(project) ? "Ready to start" : "Blocked until agency approval, payment, or paid hours") : "Project not found"}</td>
-                    <td>{scope ? `v${scope.version} · ${scope.status}` : "Scope"}</td>
-                    <td>{item.phase}</td>
-                    <td>
-                      <strong>{item.title}</strong>
-                      <br />
-                      {item.description}
-                    </td>
-                    <td>{item.acceptanceNotes}</td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
+          <>
+            <p>Supplier-safe scope context: parent project status, start readiness, scope version, assigned phase, item details, and acceptance notes only.</p>
+            <table>
+              <thead>
+                <tr>
+                  <th>Project</th>
+                  <th>Project status</th>
+                  <th>Project start rule</th>
+                  <th>Scope</th>
+                  <th>Phase</th>
+                  <th>Item</th>
+                  <th>Acceptance</th>
+                </tr>
+              </thead>
+              <tbody>
+                {supplierVisibleScopeItems.map(({ item, scope }) => {
+                  const project = scope ? projects.find((currentProject) => currentProject.id === scope.projectId) : undefined;
+                  return (
+                    <tr key={item.id}>
+                      <td>{scope ? getProjectName(scope.projectId, projects) : "Project"}</td>
+                      <td>{project ? statusLabels[project.status] : "Project not found"}</td>
+                      <td>{project ? (canWorkStart(project) ? "Ready to start" : "Blocked until agency approval, payment, or paid hours") : "Project not found"}</td>
+                      <td>{scope ? `v${scope.version} · ${scope.status}` : "Scope"}</td>
+                      <td>{item.phase}</td>
+                      <td>
+                        <strong>{item.title}</strong>
+                        <br />
+                        {item.description}
+                      </td>
+                      <td>{item.acceptanceNotes}</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </>
         ) : (
           <p>No supplier-visible scope items are assigned to this supplier yet.</p>
         )}
