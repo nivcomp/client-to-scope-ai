@@ -1460,3 +1460,34 @@ Review Client Portal files and links, then add one small client-safe context imp
 
 **Next**  
 - Add parent project status labels to Client Portal client-visible file rows.
+
+---
+
+### 2026-07-13 - Client portal file project status
+
+**Work unit**  
+Add parent project status labels to Client Portal client-visible file rows.
+
+**Changes**  
+- Added a project status column to Client Portal client-visible file rows.
+- Used the existing `statusLabels` mapping for client-safe project status text.
+- Added a clear `Project not found` fallback for missing project data.
+- Kept existing file title, project, type, and link columns intact.
+- Preserved client visibility rules by excluding supplier cost, agency margin, and internal pricing notes.
+- No client action, persistence, AI, auth, notification, or payment integration was added.
+
+**Tests**  
+- `pnpm run build` passed.
+- No automated test script exists beyond the production build.
+
+**Files**  
+- `src/pages/ClientPortalPage.tsx`
+- `README.md`
+- `NEXT_TASK.md`
+- `WORK_LOG.md`
+
+**Commit**  
+- Commit will be created after this log entry; final automation summary records the SHA.
+
+**Next**  
+- Add parent project start rules to Client Portal client-visible file rows.

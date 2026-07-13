@@ -139,6 +139,8 @@ Client Portal lists client-visible files and links from project records without 
 
 Client Portal client-visible files include a short context label explaining the client-safe project and file details shown.
 
+Client Portal client-visible file rows show the parent project's status label with a clear fallback when project data is missing.
+
 Client Portal also lists client-visible project messages without adding chat, AI, or notification integrations.
 
 Client Portal lists client-visible scope items from selected client projects without exposing supplier costs, agency margin, or internal delivery notes.

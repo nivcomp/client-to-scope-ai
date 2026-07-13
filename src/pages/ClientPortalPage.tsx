@@ -281,6 +281,7 @@ export function ClientPortalPage({
                 <tr>
                   <th>Title</th>
                   <th>Project</th>
+                  <th>Project status</th>
                   <th>Type</th>
                   <th>Link</th>
                 </tr>
@@ -292,6 +293,7 @@ export function ClientPortalPage({
                     <tr key={file.id}>
                       <td>{file.title}</td>
                       <td>{project?.name ?? "Project"}</td>
+                      <td>{project ? statusLabels[project.status] : "Project not found"}</td>
                       <td>{file.fileType}</td>
                       <td><a href={file.url}>Open</a></td>
                     </tr>
