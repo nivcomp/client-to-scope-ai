@@ -735,3 +735,32 @@ Show paid hour usage percentage in Client Portal.
 
 **Next**  
 - Show change request approval dates in Client Portal.
+
+---
+
+### 2026-07-13 - Client portal change request approval dates
+
+**Work unit**  
+Show change request approval dates in Client Portal.
+
+**Changes**  
+- Added an approved date column to Client Portal change request rows.
+- Displayed `approvedDate` when available and a clear pending approval state when absent.
+- Preserved client visibility rules by excluding supplier cost, agency margin, and internal pricing notes.
+- No change request action, persistence, AI, auth, or payment integration was added.
+
+**Tests**  
+- `pnpm run build` passed.
+- No automated test script exists beyond the production build.
+
+**Files**  
+- `src/pages/ClientPortalPage.tsx`
+- `README.md`
+- `NEXT_TASK.md`
+- `WORK_LOG.md`
+
+**Commit**  
+- Commit will be created after this log entry; final automation summary records the SHA.
+
+**Next**  
+- Show change request descriptions in Client Portal.

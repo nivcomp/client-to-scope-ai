@@ -131,6 +131,8 @@ Client Portal also lists scope approval details for selected client projects wit
 
 Client Portal change requests show the client-facing agency price when available and keep supplier cost, margin, and internal pricing notes hidden.
 
+Client Portal change requests also show approved dates when available, or a pending approval state.
+
 Supplier Portal lists supplier-visible files and links from assigned projects without exposing client-only or agency-only files.
 
 Supplier Portal also lists supplier-visible project messages without adding chat, AI, or notification integrations.
