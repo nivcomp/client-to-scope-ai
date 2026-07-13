@@ -87,6 +87,7 @@ export function ClientPortalPage({
             <thead>
               <tr>
                 <th>Project</th>
+                <th>Project status</th>
                 <th>Scope</th>
                 <th>Phase</th>
                 <th>Item</th>
@@ -97,6 +98,7 @@ export function ClientPortalPage({
               {clientVisibleScopeItems.map(({ item, scope }) => (
                 <tr key={item.id}>
                   <td>{scope ? clientProjects.find((project) => project.id === scope.projectId)?.name ?? "Project" : "Project"}</td>
+                  <td>{scope && clientProjects.find((project) => project.id === scope.projectId) ? statusLabels[clientProjects.find((project) => project.id === scope.projectId)!.status] : "Project not found"}</td>
                   <td>{scope ? `v${scope.version} · ${scope.status}` : "Scope"}</td>
                   <td>{item.phase}</td>
                   <td>

@@ -155,6 +155,8 @@ Client Portal lists client-visible scope items from selected client projects wit
 
 Client Portal client-visible scope items include a short context label explaining the client-safe project and scope details shown.
 
+Client Portal client-visible scope item rows show the parent project's status label with a clear fallback when project data is missing.
+
 Client Portal also lists scope approval details for selected client projects without adding approval actions or exposing internal scope notes.
 
 Client Portal change requests show the client-facing agency price when available and keep supplier cost, margin, and internal pricing notes hidden.
