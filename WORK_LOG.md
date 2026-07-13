@@ -1368,3 +1368,33 @@ Add parent project status labels to Supplier Portal supplier-visible message row
 
 **Next**  
 - Add a supplier-safe context label above the Supplier Portal messages table.
+
+---
+
+### 2026-07-13 - Supplier portal message context label
+
+**Work unit**  
+Add a supplier-safe context label above the Supplier Portal messages table.
+
+**Changes**  
+- Added a short supplier-facing context label above the messages table.
+- Clarified that the section shows parent project status, sender role, message body, and date for supplier-visible updates only.
+- Kept existing message project, project status, from, message, and date columns intact.
+- Preserved supplier visibility rules by excluding client price, agency margin, and internal pricing notes.
+- No supplier action, persistence, AI, auth, notification, or payment integration was added.
+
+**Tests**  
+- `pnpm run build` passed.
+- No automated test script exists beyond the production build.
+
+**Files**  
+- `src/pages/SupplierPortalPage.tsx`
+- `README.md`
+- `NEXT_TASK.md`
+- `WORK_LOG.md`
+
+**Commit**  
+- Commit will be created after this log entry; final automation summary records the SHA.
+
+**Next**  
+- Add parent project start rules to Supplier Portal supplier-visible message rows.

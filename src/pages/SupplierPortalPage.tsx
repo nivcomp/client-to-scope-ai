@@ -243,31 +243,34 @@ export function SupplierPortalPage({ selectedSupplierId, projects, timeEntries }
       <section className="card">
         <h2>Messages</h2>
         {supplierVisibleMessages.length ? (
-          <table>
-            <thead>
-              <tr>
-                <th>Project</th>
-                <th>Project status</th>
-                <th>From</th>
-                <th>Message</th>
-                <th>Date</th>
-              </tr>
-            </thead>
-            <tbody>
-              {supplierVisibleMessages.map((message) => {
-                const project = assigned.find((item) => item.id === message.projectId);
-                return (
-                  <tr key={message.id}>
-                    <td>{project?.name ?? "Project"}</td>
-                    <td>{project ? statusLabels[project.status] : "Project not found"}</td>
-                    <td>{message.authorRole}</td>
-                    <td>{message.body}</td>
-                    <td>{message.createdDate}</td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
+          <>
+            <p>Supplier-safe message context: parent project status, sender role, message body, and date for supplier-visible updates only.</p>
+            <table>
+              <thead>
+                <tr>
+                  <th>Project</th>
+                  <th>Project status</th>
+                  <th>From</th>
+                  <th>Message</th>
+                  <th>Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                {supplierVisibleMessages.map((message) => {
+                  const project = assigned.find((item) => item.id === message.projectId);
+                  return (
+                    <tr key={message.id}>
+                      <td>{project?.name ?? "Project"}</td>
+                      <td>{project ? statusLabels[project.status] : "Project not found"}</td>
+                      <td>{message.authorRole}</td>
+                      <td>{message.body}</td>
+                      <td>{message.createdDate}</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </>
         ) : (
           <p>No supplier-visible project messages are available for this supplier yet.</p>
         )}
