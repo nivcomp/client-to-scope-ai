@@ -1337,3 +1337,34 @@ Add a supplier-safe context label above the Supplier Portal files and links tabl
 
 **Next**  
 - Add project status labels to Supplier Portal supplier-visible message rows.
+
+---
+
+### 2026-07-13 - Supplier portal message project status
+
+**Work unit**  
+Add parent project status labels to Supplier Portal supplier-visible message rows.
+
+**Changes**  
+- Added a project status column to Supplier Portal supplier-visible message rows.
+- Used the existing supplier-safe `statusLabels` mapping for assigned project status.
+- Added a clear `Project not found` fallback for missing project data.
+- Kept existing message project, from, message, and date columns intact.
+- Preserved supplier visibility rules by excluding client price, agency margin, and internal pricing notes.
+- No supplier action, persistence, AI, auth, notification, or payment integration was added.
+
+**Tests**  
+- `pnpm run build` passed.
+- No automated test script exists beyond the production build.
+
+**Files**  
+- `src/pages/SupplierPortalPage.tsx`
+- `README.md`
+- `NEXT_TASK.md`
+- `WORK_LOG.md`
+
+**Commit**  
+- Commit will be created after this log entry; final automation summary records the SHA.
+
+**Next**  
+- Add a supplier-safe context label above the Supplier Portal messages table.

@@ -169,6 +169,8 @@ Supplier Portal supplier-visible files include a short context label explaining 
 
 Supplier Portal also lists supplier-visible project messages without adding chat, AI, or notification integrations.
 
+Supplier Portal supplier-visible message rows show the parent project's status label with a clear fallback when project data is missing.
+
 Client Portal and Supplier Portal show explicit empty states when selected records have no related visible data.
 
 Supplier Portal lists supplier-visible scope items for the selected supplier's assigned projects without exposing client price, agency margin, or internal pricing notes.
