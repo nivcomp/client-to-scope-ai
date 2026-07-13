@@ -206,33 +206,36 @@ export function SupplierPortalPage({ selectedSupplierId, projects, timeEntries }
       <section className="card">
         <h2>Files and links</h2>
         {supplierVisibleFiles.length ? (
-          <table>
-            <thead>
-              <tr>
-                <th>Title</th>
-                <th>Project</th>
-                <th>Project status</th>
-                <th>Project start rule</th>
-                <th>Type</th>
-                <th>Link</th>
-              </tr>
-            </thead>
-            <tbody>
-              {supplierVisibleFiles.map((file) => {
-                const project = assigned.find((item) => item.id === file.projectId);
-                return (
-                  <tr key={file.id}>
-                    <td>{file.title}</td>
-                    <td>{project?.name ?? "Project"}</td>
-                    <td>{project ? statusLabels[project.status] : "Project not found"}</td>
-                    <td>{project ? (canWorkStart(project) ? "Ready to start" : "Blocked until agency approval, payment, or paid hours") : "Project not found"}</td>
-                    <td>{file.fileType}</td>
-                    <td><a href={file.url}>Open</a></td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
+          <>
+            <p>Supplier-safe file context: parent project status, start readiness, file type, and supplier-visible links only.</p>
+            <table>
+              <thead>
+                <tr>
+                  <th>Title</th>
+                  <th>Project</th>
+                  <th>Project status</th>
+                  <th>Project start rule</th>
+                  <th>Type</th>
+                  <th>Link</th>
+                </tr>
+              </thead>
+              <tbody>
+                {supplierVisibleFiles.map((file) => {
+                  const project = assigned.find((item) => item.id === file.projectId);
+                  return (
+                    <tr key={file.id}>
+                      <td>{file.title}</td>
+                      <td>{project?.name ?? "Project"}</td>
+                      <td>{project ? statusLabels[project.status] : "Project not found"}</td>
+                      <td>{project ? (canWorkStart(project) ? "Ready to start" : "Blocked until agency approval, payment, or paid hours") : "Project not found"}</td>
+                      <td>{file.fileType}</td>
+                      <td><a href={file.url}>Open</a></td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </>
         ) : (
           <p>No supplier-visible files or links are available for this supplier yet.</p>
         )}

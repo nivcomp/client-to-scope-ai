@@ -1307,3 +1307,33 @@ Add parent project start rules to Supplier Portal supplier-visible file rows.
 
 **Next**  
 - Add a supplier-safe context label above the Supplier Portal files and links table.
+
+---
+
+### 2026-07-13 - Supplier portal file context label
+
+**Work unit**  
+Add a supplier-safe context label above the Supplier Portal files and links table.
+
+**Changes**  
+- Added a short supplier-facing context label above the files and links table.
+- Clarified that the section shows parent project status, start readiness, file type, and supplier-visible links only.
+- Kept existing file title, project, project status, project start rule, type, and link columns intact.
+- Preserved supplier visibility rules by excluding client price, agency margin, and internal pricing notes.
+- No supplier action, persistence, AI, auth, or payment integration was added.
+
+**Tests**  
+- `pnpm run build` passed.
+- No automated test script exists beyond the production build.
+
+**Files**  
+- `src/pages/SupplierPortalPage.tsx`
+- `README.md`
+- `NEXT_TASK.md`
+- `WORK_LOG.md`
+
+**Commit**  
+- Commit will be created after this log entry; final automation summary records the SHA.
+
+**Next**  
+- Add project status labels to Supplier Portal supplier-visible message rows.

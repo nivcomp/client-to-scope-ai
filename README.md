@@ -165,6 +165,8 @@ Supplier Portal supplier-visible file rows show the parent project's status labe
 
 Supplier Portal supplier-visible file rows show the parent project's supplier-safe start rule with a clear fallback when project data is missing.
 
+Supplier Portal supplier-visible files include a short context label explaining the supplier-safe project and file details shown.
+
 Supplier Portal also lists supplier-visible project messages without adding chat, AI, or notification integrations.
 
 Client Portal and Supplier Portal show explicit empty states when selected records have no related visible data.

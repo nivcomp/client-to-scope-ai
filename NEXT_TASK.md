@@ -1,30 +1,31 @@
-# NEXT TASK: Supplier Portal Groups File Context
+# NEXT TASK: Supplier Portal Shows Message Project Status
 
 ## Last Completed
 
-Supplier Portal supplier-visible file rows now show the parent project's supplier-safe start rule.
+Supplier Portal files and links now include a short supplier-safe context label above the table so suppliers understand the visible project and file details without seeing client price, agency margin, or internal pricing notes.
 
-## Remaining Limitations
+## Current State
 
-- Portal state is local only and resets on refresh or local session reset.
-- Supplier Portal file rows now show project status and start readiness, but the section does not clearly label supplier-safe file context.
-- There is still no durable database persistence, authentication, or real supplier account context.
+- The app is still a static React + TypeScript MVP using local in-memory state and mock seed data only.
+- Supplier Portal uses selected supplier context and hides client price, agency margin, and internal pricing notes.
+- Supplier Portal shows assigned projects, supplier-visible scope items, local time entries, payable summaries, supplier-visible files, and supplier-visible messages.
+- Supplier Portal files and links show file title, parent project, parent project status, supplier-safe project start rule, file type, link, and a short context label.
+- Supplier Portal message rows show project name, author role, message, and date, but do not yet show the parent project's status.
+- There is no Supabase, auth, AI integration, payment provider, notification system, or persistence.
 
 ## Recommended Next Work Unit
 
-Add a short supplier-safe context label above the Supplier Portal files and links table.
+Add parent project status labels to Supplier Portal supplier-visible message rows.
 
 ## Why This Matters
 
-The file table now includes project context and file context. A short label can reinforce that suppliers only see supplier-visible files and delivery state.
+Supplier-visible messages are tied to project delivery. Showing the parent project status helps the supplier understand whether each message belongs to waiting, active, or completed work while preserving the supplier visibility boundary.
 
 ## Acceptance Criteria
 
-- Supplier Portal files and links section labels supplier-safe project and file context.
-- Existing Supplier Portal file title, project, project status, project start rule, type, and link columns remain intact.
-- Supplier Portal continues to hide client price, agency margin, and internal pricing notes.
-- Existing Supplier Portal project, scope, file, message, and time information remains intact.
-- Supplier cost, agency margin, and internal pricing notes remain hidden.
-- No new supplier action, persistence, or payment integration is added.
-- No Supabase, AI APIs, payment providers, auth, or deployment are added.
+- Supplier Portal message rows show the parent project's status label when project data is available.
+- Supplier Portal message rows show a clear fallback when project data is missing.
+- Existing Supplier Portal message project, from, message, and date columns remain intact.
+- Supplier Portal continues hiding client price, agency margin, and internal pricing notes.
+- No new action workflow, persistence, integration, auth, payment, or AI behavior is added.
 - `pnpm run build` passes.
