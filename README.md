@@ -101,6 +101,8 @@ Supplier Detail and Supplier Portal consume local project and time-entry state f
 
 Supplier Portal uses the selected supplier when available and falls back to an approved seed supplier for the placeholder view.
 
+Supplier Portal assigned project rows show whether work is ready to start or blocked until agency approval, payment, or paid hours.
+
 Supplier Portal also shows the selected supplier's local time entries and marks only approved time as payable.
 
 Supplier Portal summarizes approved payable hours and estimated payable amount from the selected supplier's hourly rate, while excluding submitted or rejected time.

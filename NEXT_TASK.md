@@ -1,26 +1,26 @@
-# NEXT TASK: Supplier Portal Shows Assigned Project Start Rule
+# NEXT TASK: Supplier Portal Shows Assigned Project Status
 
 ## Last Completed
 
-Client Portal change request section now labels project context separately from change request context.
+Supplier Portal assigned project rows now show a clear supplier-safe start rule.
 
 ## Remaining Limitations
 
 - Portal state is local only and resets on refresh or local session reset.
-- Supplier Portal shows assigned project and scope context, but may not expose the same clear start-rule context suppliers need before work begins.
+- Supplier Portal assigned project rows show start readiness, but do not yet show the assigned project's status label.
 - There is still no durable database persistence, authentication, or real supplier account context.
 
 ## Recommended Next Work Unit
 
-Review Supplier Portal assigned project rows and add a supplier-safe start rule if it is missing.
+Add a supplier-safe project status label to Supplier Portal assigned project rows.
 
 ## Why This Matters
 
-Suppliers should understand whether assigned work is ready to begin, but they must not see client price, agency margin, or internal pricing notes. A start rule reinforces the payment/hour-bank gate from the supplier side.
+Suppliers need enough delivery context to understand whether assigned work is waiting, active, or complete. Project status can provide that context without exposing client price or agency margin.
 
 ## Acceptance Criteria
 
-- Supplier Portal assigned project rows show whether work is ready or blocked by approval, payment, or paid hours.
+- Supplier Portal assigned project rows show the project's status label.
 - Supplier Portal continues to hide client price, agency margin, and internal pricing notes.
 - Existing Supplier Portal project, scope, file, message, and time information remains intact.
 - Supplier cost, agency margin, and internal pricing notes remain hidden.

@@ -942,3 +942,33 @@ Group project context and change request context in the Client Portal change req
 
 **Next**  
 - Review Supplier Portal assigned project rows and add a supplier-safe start rule if missing.
+
+---
+
+### 2026-07-13 - Supplier portal assigned project start rule
+
+**Work unit**  
+Show a supplier-safe start rule for assigned project rows.
+
+**Changes**  
+- Reviewed Supplier Portal assigned project rows and confirmed a start rule column already existed.
+- Replaced the vague blocked state with `Blocked until agency approval, payment, or paid hours`.
+- Renamed the ready state to `Ready to start`.
+- Preserved supplier visibility rules by excluding client price, agency margin, and internal pricing notes.
+- No supplier action, persistence, AI, auth, or payment integration was added.
+
+**Tests**  
+- `pnpm run build` passed.
+- No automated test script exists beyond the production build.
+
+**Files**  
+- `src/pages/SupplierPortalPage.tsx`
+- `README.md`
+- `NEXT_TASK.md`
+- `WORK_LOG.md`
+
+**Commit**  
+- Commit will be created after this log entry; final automation summary records the SHA.
+
+**Next**  
+- Show assigned project status in Supplier Portal.

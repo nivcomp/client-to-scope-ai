@@ -66,7 +66,7 @@ export function SupplierPortalPage({ selectedSupplierId, projects, timeEntries }
               {assigned.map((project) => (
                 <tr key={project.id}>
                   <td>{project.name}</td>
-                  <td>{canWorkStart(project) ? "Ready" : "Blocked by agency gate"}</td>
+                  <td>{canWorkStart(project) ? "Ready to start" : "Blocked until agency approval, payment, or paid hours"}</td>
                   <td>View assigned scope items only</td>
                 </tr>
               ))}
