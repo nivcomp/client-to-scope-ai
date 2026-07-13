@@ -116,6 +116,7 @@ export function SupplierPortalPage({ selectedSupplierId, projects, timeEntries }
       </section>
       <section className="card">
         <h2>My time entries</h2>
+        <p>Supplier-safe time context: approved time is payable; submitted or rejected time is excluded until agency approval.</p>
         <div className="stats-grid">
           <article className="stat-card">
             <span>Total approved hours</span>

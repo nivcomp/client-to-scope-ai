@@ -1,27 +1,27 @@
-# NEXT TASK: Supplier Portal Groups Time Entry Context
+# NEXT TASK: Supplier Portal Shows Time Entry Descriptions
 
 ## Last Completed
 
-Supplier Portal assigned projects now include a short supplier-safe context label.
+Supplier Portal time entry/payable section now includes a short supplier-safe context label.
 
 ## Remaining Limitations
 
 - Portal state is local only and resets on refresh or local session reset.
-- Supplier Portal time entry information shows payable and excluded time, but the section does not clearly label submitted/rejected versus approved payable context.
+- Supplier Portal time-entry rows show project, date, hours, status, and payable rule, but not the submitted description.
 - There is still no durable database persistence, authentication, or real supplier account context.
 
 ## Recommended Next Work Unit
 
-Add a short supplier-safe context label above the Supplier Portal time entry/payable section.
+Add time-entry descriptions to Supplier Portal time-entry rows.
 
 ## Why This Matters
 
-Suppliers need to understand that submitted or rejected time is not payable until Yaniv approves it. A short label reinforces the approval rule without adding new actions.
+Suppliers should be able to recognize what each submitted time entry was for without opening another view. Showing the description adds useful context without exposing client price or margin.
 
 ## Acceptance Criteria
 
-- Supplier Portal time entry section labels approved payable time versus submitted/rejected time.
-- Existing Supplier Portal time-entry stats, payable project table, and time-entry rows remain intact.
+- Supplier Portal time-entry rows show the entry description.
+- Existing Supplier Portal time-entry stats, payable project table, status, and payable rule remain intact.
 - Supplier Portal continues to hide client price, agency margin, and internal pricing notes.
 - Existing Supplier Portal project, scope, file, message, and time information remains intact.
 - Supplier cost, agency margin, and internal pricing notes remain hidden.
