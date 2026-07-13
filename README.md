@@ -113,6 +113,8 @@ Supplier Portal time entries include a short context label explaining that appro
 
 Supplier Portal time-entry rows show the submitted description so suppliers can recognize what each entry covers.
 
+Supplier Portal time-entry rows show the approval owner when available, or a clear agency-approval fallback when time is not approved yet.
+
 Supplier Portal summarizes approved payable hours and estimated payable amount from the selected supplier's hourly rate, while excluding submitted or rejected time.
 
 Supplier Portal also breaks approved payable hours and estimated payable amount down by project without exposing client price or agency margin.
