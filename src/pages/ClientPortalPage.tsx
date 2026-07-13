@@ -237,6 +237,7 @@ export function ClientPortalPage({
                 <th>Client price</th>
                 <th>Pricing state</th>
                 <th>Approved date</th>
+                <th>Work readiness</th>
                 <th>Rule</th>
               </tr>
             </thead>
@@ -252,6 +253,7 @@ export function ClientPortalPage({
                     <td>{request.agencyPrice ? currency.format(request.agencyPrice) : "Awaiting agency pricing"}</td>
                     <td>{request.agencyPrice ? "Priced" : "Awaiting agency pricing"}</td>
                     <td>{request.approvedDate ?? "Pending approval"}</td>
+                    <td>{request.status === "client_approved" ? "Ready for work review" : "Blocked until priced and approved"}</td>
                     <td>{request.status === "client_approved" ? "Approved change can become work" : "Needs agency pricing and client approval before work starts"}</td>
                   </tr>
                 );
