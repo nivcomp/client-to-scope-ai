@@ -161,6 +161,8 @@ Client Portal change requests include a short context label separating base proj
 
 Supplier Portal lists supplier-visible files and links from assigned projects without exposing client-only or agency-only files.
 
+Supplier Portal supplier-visible file rows show the parent project's status label with a clear fallback when project data is missing.
+
 Supplier Portal also lists supplier-visible project messages without adding chat, AI, or notification integrations.
 
 Client Portal and Supplier Portal show explicit empty states when selected records have no related visible data.
