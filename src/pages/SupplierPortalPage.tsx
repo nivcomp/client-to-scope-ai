@@ -54,26 +54,29 @@ export function SupplierPortalPage({ selectedSupplierId, projects, timeEntries }
         <h2>Supplier cannot see client price or margin</h2>
         <p>{selectedSupplierId ? `Viewing as ${supplier?.name}.` : `No supplier selected. Showing fallback supplier ${supplier?.name}.`}</p>
         {assigned.length ? (
-          <table>
-            <thead>
-              <tr>
-                <th>Assigned project</th>
-                <th>Project status</th>
-                <th>Start rule</th>
-                <th>Visible instruction</th>
-              </tr>
-            </thead>
-            <tbody>
-              {assigned.map((project) => (
-                <tr key={project.id}>
-                  <td>{project.name}</td>
-                  <td>{statusLabels[project.status]}</td>
-                  <td>{canWorkStart(project) ? "Ready to start" : "Blocked until agency approval, payment, or paid hours"}</td>
-                  <td>View assigned scope items only</td>
+          <>
+            <p>Supplier-safe project context: assigned project, delivery status, start readiness, and visible work instructions only.</p>
+            <table>
+              <thead>
+                <tr>
+                  <th>Assigned project</th>
+                  <th>Project status</th>
+                  <th>Start rule</th>
+                  <th>Visible instruction</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {assigned.map((project) => (
+                  <tr key={project.id}>
+                    <td>{project.name}</td>
+                    <td>{statusLabels[project.status]}</td>
+                    <td>{canWorkStart(project) ? "Ready to start" : "Blocked until agency approval, payment, or paid hours"}</td>
+                    <td>View assigned scope items only</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </>
         ) : (
           <p>No assigned projects are visible for this supplier yet.</p>
         )}
