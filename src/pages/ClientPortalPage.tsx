@@ -311,29 +311,32 @@ export function ClientPortalPage({
       <section className="card">
         <h2>Messages</h2>
         {clientVisibleMessages.length ? (
-          <table>
-            <thead>
-              <tr>
-                <th>Project</th>
-                <th>From</th>
-                <th>Message</th>
-                <th>Date</th>
-              </tr>
-            </thead>
-            <tbody>
-              {clientVisibleMessages.map((message) => {
-                const project = clientProjects.find((item) => item.id === message.projectId);
-                return (
-                  <tr key={message.id}>
-                    <td>{project?.name ?? "Project"}</td>
-                    <td>{message.authorRole}</td>
-                    <td>{message.body}</td>
-                    <td>{message.createdDate}</td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
+          <>
+            <p>Client-safe message context: project, sender role, message body, and date for client-visible updates only.</p>
+            <table>
+              <thead>
+                <tr>
+                  <th>Project</th>
+                  <th>From</th>
+                  <th>Message</th>
+                  <th>Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                {clientVisibleMessages.map((message) => {
+                  const project = clientProjects.find((item) => item.id === message.projectId);
+                  return (
+                    <tr key={message.id}>
+                      <td>{project?.name ?? "Project"}</td>
+                      <td>{message.authorRole}</td>
+                      <td>{message.body}</td>
+                      <td>{message.createdDate}</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </>
         ) : (
           <p>No client-visible project messages are available yet.</p>
         )}
