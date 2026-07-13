@@ -282,6 +282,7 @@ export function ClientPortalPage({
                   <th>Title</th>
                   <th>Project</th>
                   <th>Project status</th>
+                  <th>Project start rule</th>
                   <th>Type</th>
                   <th>Link</th>
                 </tr>
@@ -294,6 +295,7 @@ export function ClientPortalPage({
                       <td>{file.title}</td>
                       <td>{project?.name ?? "Project"}</td>
                       <td>{project ? statusLabels[project.status] : "Project not found"}</td>
+                      <td>{project ? (canWorkStart(project) ? "Ready" : "Waiting for approval, payment, or paid hours") : "Project not found"}</td>
                       <td>{file.fileType}</td>
                       <td><a href={file.url}>Open</a></td>
                     </tr>
