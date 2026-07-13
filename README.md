@@ -139,6 +139,8 @@ Client Portal change requests show a client-safe pricing state so clients can di
 
 Client Portal change requests show a client-safe work readiness state so approved changes are distinguishable from blocked or waiting requests.
 
+Client Portal change requests show the related project status in client-safe terms for additional delivery context.
+
 Supplier Portal lists supplier-visible files and links from assigned projects without exposing client-only or agency-only files.
 
 Supplier Portal also lists supplier-visible project messages without adding chat, AI, or notification integrations.

@@ -852,3 +852,33 @@ Show change request work readiness in Client Portal.
 
 **Next**  
 - Show related project status for Client Portal change requests.
+
+---
+
+### 2026-07-13 - Client portal change request project status
+
+**Work unit**  
+Show related project status for Client Portal change requests.
+
+**Changes**  
+- Added a project status column to Client Portal change request rows.
+- Displayed the related project's client-safe status label when the project is found.
+- Added a clear `Project not found` fallback for missing project data.
+- Preserved client visibility rules by excluding supplier cost, agency margin, and internal pricing notes.
+- No change request action, persistence, AI, auth, or payment integration was added.
+
+**Tests**  
+- `pnpm run build` passed.
+- No automated test script exists beyond the production build.
+
+**Files**  
+- `src/pages/ClientPortalPage.tsx`
+- `README.md`
+- `NEXT_TASK.md`
+- `WORK_LOG.md`
+
+**Commit**  
+- Commit will be created after this log entry; final automation summary records the SHA.
+
+**Next**  
+- Show the related project start rule for Client Portal change requests.
