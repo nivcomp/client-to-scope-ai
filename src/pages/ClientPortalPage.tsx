@@ -128,6 +128,7 @@ export function ClientPortalPage({
                 <tr>
                   <th>Project</th>
                   <th>Project status</th>
+                  <th>Project start rule</th>
                   <th>Scope</th>
                   <th>Approval</th>
                   <th>Notes</th>
@@ -142,6 +143,7 @@ export function ClientPortalPage({
                     <tr key={approval.id}>
                       <td>{project?.name ?? "Project"}</td>
                       <td>{project ? statusLabels[project.status] : "Project not found"}</td>
+                      <td>{project ? (canWorkStart(project) ? "Ready" : "Waiting for approval, payment, or paid hours") : "Project not found"}</td>
                       <td>{scope ? `v${scope.version} - ${scope.status}` : "Scope not linked"}</td>
                       <td>
                         <StatusBadge

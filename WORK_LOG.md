@@ -1767,3 +1767,34 @@ Add parent project status labels to Client Portal scope approval rows.
 
 **Next**  
 - Add parent project start rules to Client Portal scope approval rows.
+
+---
+
+### 2026-07-13 - Client portal approval start rule
+
+**Work unit**  
+Add parent project start rules to Client Portal scope approval rows.
+
+**Changes**  
+- Added a project start rule column to Client Portal scope approval rows.
+- Reused the existing `canWorkStart(project)` gate for client-safe readiness text.
+- Added a clear `Project not found` fallback for missing project data.
+- Kept existing scope approval project, project status, scope, approval, notes, and approved date columns intact.
+- Preserved client visibility rules by excluding supplier cost, agency margin, and internal pricing notes.
+- No approval action, persistence, AI, auth, notification, or payment integration was added.
+
+**Tests**  
+- `pnpm run build` passed.
+- No automated test script exists beyond the production build.
+
+**Files**  
+- `src/pages/ClientPortalPage.tsx`
+- `README.md`
+- `NEXT_TASK.md`
+- `WORK_LOG.md`
+
+**Commit**  
+- Commit will be created after this log entry; final automation summary records the SHA.
+
+**Next**  
+- Review Client Portal payments and paid hours, then add one small client-safe context improvement if missing.
