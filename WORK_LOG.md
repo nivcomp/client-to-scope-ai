@@ -706,3 +706,32 @@ Show paid hour usage in Client Portal.
 
 **Next**  
 - Show paid hour usage percentage in Client Portal.
+
+---
+
+### 2026-07-13 - Client portal paid hour usage percent
+
+**Work unit**  
+Show paid hour usage percentage in Client Portal.
+
+**Changes**  
+- Added a usage percentage column to Client Portal paid hour rows.
+- Calculated usage from existing `hoursUsed` and `hoursPurchased` values with a safe zero-hour fallback.
+- Continued showing purchased, used, remaining, and expiry values from existing local `HourBank` records.
+- Preserved client visibility rules by excluding supplier cost, agency margin, and internal pricing notes.
+
+**Tests**  
+- `pnpm run build` passed.
+- No automated test script exists beyond the production build.
+
+**Files**  
+- `src/pages/ClientPortalPage.tsx`
+- `README.md`
+- `NEXT_TASK.md`
+- `WORK_LOG.md`
+
+**Commit**  
+- Commit will be created after this log entry; final automation summary records the SHA.
+
+**Next**  
+- Show change request approval dates in Client Portal.

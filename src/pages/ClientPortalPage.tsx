@@ -195,6 +195,7 @@ export function ClientPortalPage({
                   <th>Project</th>
                   <th>Purchased</th>
                   <th>Used</th>
+                  <th>Usage</th>
                   <th>Remaining</th>
                   <th>Expiry</th>
                 </tr>
@@ -202,11 +203,15 @@ export function ClientPortalPage({
               <tbody>
                 {clientHourBanks.map((bank) => {
                   const project = clientProjects.find((item) => item.id === bank.projectId);
+                  const usagePercent = bank.hoursPurchased > 0
+                    ? Math.round((bank.hoursUsed / bank.hoursPurchased) * 100)
+                    : 0;
                   return (
                     <tr key={bank.id}>
                       <td>{project?.name ?? "General"}</td>
                       <td>{bank.hoursPurchased} hrs</td>
                       <td>{bank.hoursUsed} hrs</td>
+                      <td>{usagePercent}% used</td>
                       <td>{bank.hoursRemaining} hrs</td>
                       <td>{bank.expiryDate ?? "No expiry"}</td>
                     </tr>
