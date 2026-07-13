@@ -167,6 +167,8 @@ Client Portal and Supplier Portal show explicit empty states when selected recor
 
 Supplier Portal lists supplier-visible scope items for the selected supplier's assigned projects without exposing client price, agency margin, or internal pricing notes.
 
+Supplier Portal assigned scope item rows show the parent project's status label with a clear fallback when project data is missing.
+
 ## App Structure
 
 - `src/App.tsx` keeps the active view state and renders the selected page.
