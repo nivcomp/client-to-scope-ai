@@ -1,29 +1,31 @@
-# NEXT TASK: Action Queue Push Decision
+# NEXT TASK: Prepare Lovable UI Refinement Pass
 
 ## Last Completed
 
-Client Portal paid hour rows now show the parent project's client-safe start rule, or a general hour-bank fallback when no project is linked.
+Project Detail now has clearer local supplier assignment controls. Yaniv can assign or remove approved suppliers from the selected project using local React state, Recent Activity records assignment changes, and Action Queue ready-to-start rows only include projects whose scope is approved and whose payment or paid-hours gate is open.
 
 ## Current State
 
-- The app is still a static React + TypeScript MVP using local in-memory state and mock seed data only.
-- Client Portal uses selected client context and hides supplier cost, agency margin, and internal pricing notes.
-- Client Portal project, file, message, scope, approval, payment, and paid-hour sections now include client-safe context labels or project context where relevant.
-- The local `main` branch is many commits ahead of `origin/main` because automation cycles have intentionally avoided pushing without explicit approval.
+- The app remains a static React + TypeScript internal MVP using mock data and local in-memory state only.
+- Project supplier assignments use the existing `Project.assignedSupplierIds` array and reset on refresh.
+- Project Detail shows assigned suppliers and an approved supplier pool with assign/remove actions.
+- Action Queue ready-to-start logic now requires approved scope plus payment or paid hours.
+- Supplier-facing views continue to use assigned project state without exposing client price, agency margin, supplier cost estimates, or internal pricing notes.
 - There is no Supabase, auth, AI integration, payment provider, notification system, or persistence.
 
 ## Recommended Next Work Unit
 
-Ask for an explicit push decision before continuing more local-only automation commits.
+Prepare the existing application for the first Lovable UI refinement pass without changing business logic or connecting a backend.
 
 ## Why This Matters
 
-The MVP has accumulated many validated local commits. Pushing requires an external repository update, and the current heartbeat instructions say not to perform Git push automatically if approval is required.
+The MVP workflow is now broad enough that Lovable can improve visual hierarchy, spacing, forms, and responsive polish. The next step should make the current interface easier to refine safely without changing domain rules or adding integrations.
 
 ## Acceptance Criteria
 
-- Report the current ahead count and latest commit.
-- Ask whether to push the accumulated `main` commits to `origin/main`.
-- Do not change app code for this decision-only step.
-- Do not add integrations, auth, payments, notifications, AI, or persistence.
-- If push is approved, run the push and report the result.
+- Review the current page/component structure for obvious UI handoff friction.
+- Add or update concise Lovable-facing notes that identify the internal-app screens, constraints, and no-backend/no-business-logic-change boundaries.
+- Do not redesign the app in this cycle.
+- Do not change supplier visibility, pricing separation, approval/payment gates, or local workflow behavior.
+- Do not add Supabase, auth, AI APIs, payment integrations, notifications, deployment, or persistence.
+- Run `pnpm run build` and record the result.

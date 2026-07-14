@@ -17,6 +17,7 @@
 - `src/types/domain.ts` contains the domain record types.
 - `src/data/mockData.ts` contains static development records.
 - `src/lib/domainHelpers.ts` contains shared lookup and formatting helpers.
+- `src/lib/domainHelpers.ts` also centralizes the current local work-start rule: approved scope plus received payment or available paid hours.
 - `docs/` contains detailed product and workflow documentation.
 
 ## Current constraints

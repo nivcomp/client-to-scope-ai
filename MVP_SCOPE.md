@@ -14,7 +14,7 @@ Help Yaniv manage client projects with less manual tracking, fewer unclear hando
 - Scope creation, review status, and client approval status.
 - Separate client price, supplier cost, and expected margin.
 - Payment status and paid-hour bank tracking.
-- Supplier assignment only after start conditions are satisfied.
+- Supplier assignment planning from approved suppliers, while supplier work remains blocked until start conditions are satisfied.
 - Supplier work instructions and time entries.
 - Review of supplier time and amount owed.
 - Change request intake, pricing, approval, and status control.
@@ -59,6 +59,10 @@ Yaniv can quickly answer:
 ## Scope-control rule
 
 Choose the simplest implementation that advances the internal workflow. Do not add a broad platform feature merely because it may be useful later.
+
+## Work-start rule
+
+Supplier assignment does not by itself make a project ready to start. A project is ready only when the relevant scope is approved and the payment or paid-hours gate is open.
 
 ## Existing detailed source
 

@@ -1,4 +1,5 @@
-import type { ChangeRequest, ClientPayment, Project, TimeEntry } from "../types/domain";
+import { canWorkStart } from "./domainHelpers";
+import type { ChangeRequest, ClientPayment, Project, Scope, TimeEntry } from "../types/domain";
 
 export type PricingQueueItem =
   | { type: "project"; project: Project }
@@ -72,10 +73,6 @@ export function getBlockedProjects(projects: Project[]) {
   return projects.filter((project) => project.paymentGateStatus === "blocked");
 }
 
-export function getReadyToStartProjects(projects: Project[]) {
-  return projects.filter(
-    (project) =>
-      (project.paymentGateStatus === "paid" || project.paymentGateStatus === "hour_bank_available") &&
-      project.status !== "completed",
-  );
+export function getReadyToStartProjects(projects: Project[], scopes: Scope[]) {
+  return projects.filter((project) => canWorkStart(project, scopes) && project.status !== "completed");
 }

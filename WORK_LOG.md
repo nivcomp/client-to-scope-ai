@@ -1921,3 +1921,41 @@ Add parent project start rules to Client Portal paid hour rows.
 
 **Next**  
 - Ask for an explicit push decision before continuing more local-only automation commits.
+
+---
+
+### 2026-07-14 - Project supplier assignment controls
+
+**Work unit**  
+Add local supplier assignment controls in Project Detail.
+
+**Changes**  
+- Reviewed the existing local assignment flow and preserved `Project.assignedSupplierIds`.
+- Improved Project Detail with an approved supplier pool showing assigned and available suppliers.
+- Kept assign and remove actions local to app-level React state.
+- Preserved Recent Activity recording for supplier assignment and removal actions.
+- Updated Action Queue ready-to-start logic so supplier assignment alone does not make work ready; projects must have approved scope and payment or paid hours.
+- Preserved supplier-facing visibility rules by not adding client price, agency margin, supplier cost, or internal pricing notes to supplier views.
+
+**Tests**  
+- `pnpm run build` failed once because the new assignment badge used an unsupported `default` tone.
+- `pnpm run build` passed after changing the badge tone to `neutral`.
+- No automated test script exists beyond the production build.
+
+**Files**  
+- `src/lib/domainHelpers.ts`
+- `src/lib/actionQueue.ts`
+- `src/pages/ActionQueuePage.tsx`
+- `src/pages/ProjectDetailPage.tsx`
+- `README.md`
+- `MVP_SCOPE.md`
+- `ARCHITECTURE.md`
+- `DECISIONS.md`
+- `NEXT_TASK.md`
+- `WORK_LOG.md`
+
+**Commit**  
+- Commit will be created after this log entry; final automation summary records the SHA.
+
+**Next**  
+- Prepare the existing application for the first Lovable UI refinement pass without changing business logic or connecting a backend.

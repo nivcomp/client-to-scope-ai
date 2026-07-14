@@ -12,6 +12,7 @@ import {
 } from "../lib/actionQueue";
 import { currency, getClient, getProjectById, getProjectName, getSupplierName, statusLabels } from "../lib/domainHelpers";
 import type { ActivityEntry } from "../App";
+import { scopes } from "../data/mockData";
 import type { ChangeRequest, Client, ClientPayment, HourBank, Project, TimeEntry } from "../types/domain";
 
 type ActionQueuePageProps = {
@@ -63,7 +64,7 @@ export function ActionQueuePage({
   const waitingPayment = getWaitingPaymentItems(projects, clientPayments);
   const supplierTimeApprovals = getSupplierTimeApprovalItems(timeEntries);
   const blockedProjects = getBlockedProjects(projects);
-  const readyProjects = getReadyToStartProjects(projects);
+  const readyProjects = getReadyToStartProjects(projects, scopes);
 
   return (
     <>

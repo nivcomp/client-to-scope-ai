@@ -75,3 +75,17 @@ Immediate framework replacement or a full rebuild.
 
 **Consequences**  
 Improve incrementally. Introduce persistence and integrations in stages rather than replacing the whole application.
+
+### 2026-07-14 - Supplier assignment does not unlock work start
+
+**Decision**  
+Local supplier assignment can happen as project planning, but it does not make a project ready to start.
+
+**Reason**  
+Yaniv may need to plan supplier coverage before final approval or payment, while the business rule still requires approved scope and payment or available paid hours before work begins.
+
+**Alternatives considered**  
+Only allowing assignment after all start gates are open, or treating assignment as the ready-to-start trigger.
+
+**Consequences**  
+Ready-to-start views must use the shared start rule instead of checking only assignment or payment status.

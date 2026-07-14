@@ -1,5 +1,5 @@
-import { clients, projectPricing, projects, suppliers } from "../data/mockData";
-import type { Client, Project, ProjectPricing, ProjectStatus, Supplier } from "../types/domain";
+import { clients, projectPricing, projects, scopes, suppliers } from "../data/mockData";
+import type { Client, Project, ProjectPricing, ProjectStatus, Scope, Supplier } from "../types/domain";
 
 export const currency = new Intl.NumberFormat("en-GB", {
   style: "currency",
@@ -58,8 +58,16 @@ export function getProjectName(projectId: string, projectRecords: Project[] = pr
   return projectRecords.find((project) => project.id === projectId)?.name ?? "Unknown project";
 }
 
-export function canWorkStart(project: Project) {
+export function hasApprovedScope(project: Project, scopeRecords: Scope[] = scopes) {
+  return scopeRecords.some((scope) => scope.projectId === project.id && scope.status === "approved");
+}
+
+export function hasPaymentOrHours(project: Project) {
   return project.paymentGateStatus === "paid" || project.paymentGateStatus === "hour_bank_available";
+}
+
+export function canWorkStart(project: Project, scopeRecords: Scope[] = scopes) {
+  return hasApprovedScope(project, scopeRecords) && hasPaymentOrHours(project);
 }
 
 export function marginAmount() {

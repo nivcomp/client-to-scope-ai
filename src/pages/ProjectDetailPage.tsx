@@ -104,6 +104,11 @@ export function ProjectDetailPage({
   const projectDecisions = decisionLogs.filter((decision) => decision.projectId === activeProject.id);
   const approvedSuppliers = suppliers.filter((supplier) => supplier.status === "approved");
   const assignableSuppliers = approvedSuppliers.filter((supplier) => !activeProject.assignedSupplierIds.includes(supplier.id));
+  const approvedSupplierRows = approvedSuppliers.map((supplier) => ({
+    supplier,
+    profile: supplierProfiles.find((item) => item.supplierId === supplier.id),
+    assigned: activeProject.assignedSupplierIds.includes(supplier.id),
+  }));
 
   function handleChangeSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -155,13 +160,13 @@ export function ProjectDetailPage({
           <dl className="meta-list">
             <div><dt>Client</dt><dd>{client?.company}</dd></div>
             <div><dt>Status</dt><dd><StatusBadge label={statusLabels[activeProject.status]} tone="warning" /></dd></div>
-            <div><dt>Start gate</dt><dd>{canWorkStart(activeProject) ? "Ready" : "Blocked until payment or paid hours"}</dd></div>
-            <div><dt>Assigned</dt><dd>{activeProject.assignedSupplierIds.map((supplierId) => getSupplierName(supplierId)).join(", ")}</dd></div>
+            <div><dt>Start gate</dt><dd>{canWorkStart(activeProject) ? "Ready" : "Blocked until approved scope and payment or paid hours"}</dd></div>
+            <div><dt>Assigned</dt><dd>{activeProject.assignedSupplierIds.map((supplierId) => getSupplierName(supplierId)).join(", ") || "No supplier assigned"}</dd></div>
           </dl>
         </article>
         <article className="card warning-card">
           <h2>Payment gate</h2>
-          <p>{canWorkStart(activeProject) ? "Work may start because payment is received or paid hours are available." : "Work remains blocked until payment is received or paid hours are available."}</p>
+          <p>{canWorkStart(activeProject) ? "Work may start because scope is approved and payment is received or paid hours are available." : "Work remains blocked until scope is approved and payment is received or paid hours are available."}</p>
           <dl className="meta-list">
             <div><dt>Gate</dt><dd>{activeProject.paymentGateStatus}</dd></div>
             <div><dt>Payment</dt><dd>{payment?.status ?? "Not due"}</dd></div>
@@ -362,6 +367,43 @@ export function ProjectDetailPage({
             </label>
             <button type="submit" disabled={!supplierToAssign}>Assign</button>
           </form>
+          <h3>Approved supplier pool</h3>
+          {approvedSupplierRows.length ? (
+            <table>
+              <thead>
+                <tr>
+                  <th>Supplier</th>
+                  <th>Skills</th>
+                  <th>Weekly availability</th>
+                  <th>Assignment</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {approvedSupplierRows.map(({ supplier, profile, assigned }) => (
+                  <tr key={supplier.id}>
+                    <td>{supplier.name}</td>
+                    <td>{profile?.mainSkills.join(", ") ?? "Not set"}</td>
+                    <td>{profile ? `${profile.weeklyAvailabilityHours}h` : "Not set"}</td>
+                    <td><StatusBadge label={assigned ? "Assigned" : "Available"} tone={assigned ? "success" : "neutral"} /></td>
+                    <td>
+                      {assigned ? (
+                        <button type="button" onClick={() => onSupplierAssignmentChange(activeProject.id, supplier.id, false)}>
+                          Remove
+                        </button>
+                      ) : (
+                        <button type="button" onClick={() => onSupplierAssignmentChange(activeProject.id, supplier.id, true)}>
+                          Assign
+                        </button>
+                      )}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          ) : (
+            <p>No approved suppliers are available for assignment yet.</p>
+          )}
           <p className="form-note">Only agency-approved suppliers can be assigned. Assignment stays local until persistence is added.</p>
         </article>
         <article className="card">
