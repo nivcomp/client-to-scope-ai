@@ -1959,3 +1959,35 @@ Add local supplier assignment controls in Project Detail.
 
 **Next**  
 - Prepare the existing application for the first Lovable UI refinement pass without changing business logic or connecting a backend.
+
+---
+
+### 2026-07-14 - Lovable UI refinement handoff
+
+**Work unit**  
+Prepare the existing application for the first Lovable UI refinement pass without changing business logic or connecting a backend.
+
+**Changes**  
+- Confirmed Project Detail supplier assignment controls were already completed in `9beee06`.
+- Inspected the current app shell, navigation, local app state, page structure, and global styles.
+- Added a focused Lovable UI handoff document with screens to preserve, business rules, allowed UI-only changes, forbidden integration changes, and verification expectations.
+- Linked the new handoff from the README and existing Lovable build plan.
+- Updated `NEXT_TASK.md` to point at the first Lovable UI refinement pass while preserving all current business logic.
+- Did not change app behavior, local state, supplier visibility, pricing separation, or workflow gates.
+
+**Tests**  
+- `pnpm run build` passed.
+- No automated test script exists beyond the production build.
+
+**Files**  
+- `docs/lovable-ui-refinement-handoff.md`
+- `docs/lovable-build-plan.md`
+- `README.md`
+- `NEXT_TASK.md`
+- `WORK_LOG.md`
+
+**Commit**  
+- Commit will be created after this log entry; final automation summary records the SHA.
+
+**Next**  
+- Prepare the existing application for the first Lovable UI refinement pass while preserving all current business logic.

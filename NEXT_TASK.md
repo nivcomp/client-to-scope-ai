@@ -2,30 +2,31 @@
 
 ## Last Completed
 
-Project Detail now has clearer local supplier assignment controls. Yaniv can assign or remove approved suppliers from the selected project using local React state, Recent Activity records assignment changes, and Action Queue ready-to-start rows only include projects whose scope is approved and whose payment or paid-hours gate is open.
+Added a Lovable UI refinement handoff that documents the current internal MVP screens, app structure, UI refinement boundaries, and business rules that must be preserved during visual polish.
 
 ## Current State
 
 - The app remains a static React + TypeScript internal MVP using mock data and local in-memory state only.
-- Project supplier assignments use the existing `Project.assignedSupplierIds` array and reset on refresh.
-- Project Detail shows assigned suppliers and an approved supplier pool with assign/remove actions.
-- Action Queue ready-to-start logic now requires approved scope plus payment or paid hours.
+- Project supplier assignment controls already exist in Project Detail and use `Project.assignedSupplierIds`.
+- Recent Activity records local workflow actions, including supplier assignment and removal.
+- Ready-to-start logic requires approved scope plus payment or paid hours.
 - Supplier-facing views continue to use assigned project state without exposing client price, agency margin, supplier cost estimates, or internal pricing notes.
-- There is no Supabase, auth, AI integration, payment provider, notification system, or persistence.
+- `docs/lovable-ui-refinement-handoff.md` now gives Lovable a focused UI-only brief.
+- There is no Supabase, auth, AI integration, payment provider, notification system, deployment, or persistence.
 
 ## Recommended Next Work Unit
 
-Prepare the existing application for the first Lovable UI refinement pass without changing business logic or connecting a backend.
+Prepare the existing application for the first Lovable UI refinement pass while preserving all current business logic.
 
 ## Why This Matters
 
-The MVP workflow is now broad enough that Lovable can improve visual hierarchy, spacing, forms, and responsive polish. The next step should make the current interface easier to refine safely without changing domain rules or adding integrations.
+The current app is functionally broad enough for a careful visual refinement pass. The next step should improve visual hierarchy and usability without changing workflow behavior or introducing integrations.
 
 ## Acceptance Criteria
 
-- Review the current page/component structure for obvious UI handoff friction.
-- Add or update concise Lovable-facing notes that identify the internal-app screens, constraints, and no-backend/no-business-logic-change boundaries.
-- Do not redesign the app in this cycle.
-- Do not change supplier visibility, pricing separation, approval/payment gates, or local workflow behavior.
+- Refine only UI structure, spacing, hierarchy, and readability.
+- Preserve all current business logic and local in-memory state behavior.
+- Preserve supplier/client visibility rules and pricing separation.
+- Preserve approval, payment, paid-hours, change-request, and supplier-time gates.
 - Do not add Supabase, auth, AI APIs, payment integrations, notifications, deployment, or persistence.
 - Run `pnpm run build` and record the result.

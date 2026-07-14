@@ -2,6 +2,8 @@
 
 This plan is for the first application pass after the documentation foundation.
 
+For the next visual refinement pass, use `docs/lovable-ui-refinement-handoff.md` as the practical handoff. It defines the screens, constraints, and business rules that must be preserved while improving the UI.
+
 ## Build Style
 
 Build a practical internal dashboard, not a public SaaS landing page.

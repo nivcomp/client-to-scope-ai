@@ -62,6 +62,7 @@ Clients can explain needs, review progress, approve scopes, make payments, and r
 - [Agency Control Rules](docs/agency-control-rules.md)
 - [AI Agents Plan](docs/ai-agents-plan.md)
 - [Lovable Build Plan](docs/lovable-build-plan.md)
+- [Lovable UI Refinement Handoff](docs/lovable-ui-refinement-handoff.md)
 
 ## Run The App
 
